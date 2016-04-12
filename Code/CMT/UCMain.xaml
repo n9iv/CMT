@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="CMT.Main"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="851" Width="888.441">
+    <Grid>
+        <StackPanel x:Name="_sp"  Width="1200">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="45">Welcome to CMT Wizart<LineBreak></LineBreak></TextBlock>
+            <TextBlock Margin="10" Text="Please choose one of the optione bellow:" HorizontalAlignment="Left"  FontSize="35" />
+            <DockPanel Margin="10" Width="auto" Height="auto">
+                <StackPanel DockPanel.Dock="Left" Margin="10" >
+                    <RadioButton Margin="10" Content="Clock Configurator" Name="_rbClockConf" FontSize="30" Checked="_rbClockConf_Checked" />
+                    <RadioButton Margin="10" Content="T-Switch Configurator" Name="_rbTswitchConf" FontSize="30" Checked="_rbTswitchConf_Checked" />
+                    <RadioButton Margin="10" Content="C-Switch Configurator" Name="_rbCswitchConf" FontSize="30" />
+                    <RadioButton Margin="10" Content="Client SN-APP" Name="_rbClientSN" FontSize="30" />
+                </StackPanel>
+                <Image x:Name="_iImageMain" Margin="70,0,0,0" DockPanel.Dock="Right" Height="500" Width="800" Stretch="UniformToFill" />
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
