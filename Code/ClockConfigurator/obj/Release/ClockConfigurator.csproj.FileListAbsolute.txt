@@ -1,6 +1,0 @@
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\bin\Release\ClockConfigurator.exe.config
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\bin\Release\ClockConfigurator.exe
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\bin\Release\ClockConfigurator.pdb
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\obj\Release\ClockConfigurator.exe
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\obj\Release\ClockConfigurator.pdb
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\obj\Release\ClockConfigurator.csprojResolveAssemblyReference.cache
