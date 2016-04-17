@@ -13,7 +13,7 @@
         <StackPanel Width="1500" Margin="100,0" Grid.RowSpan="2">
             <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center" >Configuration Instruction<LineBreak/></TextBlock>
             <TextBlock Margin="40,0,0,20" HorizontalAlignment="left" Grid.Row="0" FontSize="20">Follow the instruction:</TextBlock>
-            <DocumentViewer HorizontalAlignment="Center" Grid.Column="1" Name="_dcDoc" Zoom="120" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="1000" Height="600"  />
+            <DocumentViewer HorizontalAlignment="Center" Grid.Column="1" Name="_dcDoc" Zoom="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="1200" Height="800"  />
         </StackPanel>
 
     </Grid>

@@ -23,15 +23,15 @@ namespace CMT.ClockConfiguratorGUI
     /// </summary>
     public partial class FinalWin : UserControl
     {
-        private Int16 _val;
+        private int _val;
         private MainWindow _win;
 
-        public FinalWin(Int16 val)
+        public FinalWin(int val)
         {
             InitializeComponent();
             _val = val;
             _win = (MainWindow)Application.Current.Windows[0];
-           // _win._btnNext.IsEnabled = false;
+
         }
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
@@ -58,7 +58,6 @@ namespace CMT.ClockConfiguratorGUI
             {
                 _tbConf.Foreground = Brushes.Green;
                 str = "Configuration succeded\n" + read.ReadToEnd();
-                _win._btnShtDown.IsEnabled = true;
             }
 
             else
@@ -70,18 +69,5 @@ namespace CMT.ClockConfiguratorGUI
             _tbConf.Text = str;
         }
 
-        private void _btnReturn_Click(object sender, RoutedEventArgs e)
-        {
-            double width, height;
-            Main uc = new Main();
-
-            height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            width = System.Windows.SystemParameters.PrimaryScreenWidth;
-            uc.Width = _win._cUserCtrlMain.Width;
-            uc._iImageMain.Width = (500.0 / 1366.0) * width;
-            uc._iImageMain.Height = (500.0 / 768.0) * height;
-            _win._cUserCtrlMain.Content = uc;
-            _win._backList.Clear();
-        }
     }
 }

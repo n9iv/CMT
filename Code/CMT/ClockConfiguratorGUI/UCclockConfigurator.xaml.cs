@@ -79,7 +79,7 @@ namespace CMT
                 _spBtn.IsEnabled = false;
             }
             _val = 0;
-            Next();
+            MainWindow.val[0] = _val;
             EnableNext();
         }
 
@@ -90,21 +90,10 @@ namespace CMT
             main._btnNext.IsEnabled = true;
         }
 
-        public void Next()
-        {
-            double height;
-            UCinstruction ins = new UCinstruction(_val);
-            height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            ins._dcDoc.Height = (500.0 / 768.0) * height;
-            UCstruct.usNext = (UserControl)ins;
-            UCstruct.func = ins.ReadInstructions;
-            UCstruct.isNxtEnabled = true;
-        }
-
         private void _tbBatVal_TextChanged(object sender, TextChangedEventArgs e)
         {
             _val = Int16.Parse(_tbBatVal.Text);
-            Next();
+            MainWindow.val[0] = _val;
         }
     }
 }

@@ -42,13 +42,13 @@ namespace T_SwitchConfigurator
                 //configure
                line = line.Replace("MN", MN.ToString());
                line = line.Replace("BN", BN.ToString());
-              //  _Tswitch.SendData(line);
+               _Tswitch.SendData(line);
                 Thread.Sleep(200);
 
                 //Check configured value
                 tokens = line.Split(' ');
-                //_Tswitch.SendData(tokens[0]);
-               // _Tswitch.ReadData(out rcv);
+                _Tswitch.SendData(tokens[0]);
+                _Tswitch.ReadData(out rcv);
                 if (rcv != line)
                 {
                     resVal = -1;
@@ -60,7 +60,7 @@ namespace T_SwitchConfigurator
                 }
             }
             script.Close();
-            //_Tswitch.Close();
+            _Tswitch.Close();
             return resVal;
         }
 

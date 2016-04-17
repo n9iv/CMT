@@ -26,12 +26,14 @@ namespace CMT.ClockConfiguratorGUI
     /// </summary>
     public partial class UCinstruction : UserControl
     {
-        private Int16 _val;
+        private int _val;
 
-        public UCinstruction(Int16 val)
+        public UCinstruction(int val)
         {
             InitializeComponent();
             _val = val;
+            MainWindow.val[0] = _val;
+            ReadInstructions();
         }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace CMT.ClockConfiguratorGUI
         {
             var process = Process.GetCurrentProcess(); // Or whatever method you are using
             string fullPath = process.MainModule.FileName;
-            string fileName = "temp.docx";
+            string fileName = "Instructions\\ClockInstructions.docx";
             fullPath = fullPath.Replace("CMT.exe", fileName);
             if(!File.Exists(fullPath))
             {

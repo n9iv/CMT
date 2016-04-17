@@ -180,11 +180,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Rafael_pic.PNG" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Clock.png" />
-    <Resource Include="Resources\Desert.png" />
     <Resource Include="Resources\Down.png" />
     <Resource Include="Resources\UP.png" />
   </ItemGroup>
@@ -237,6 +233,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClockConfigurator\ClockConfigurator.csproj">
+      <Project>{d0c3ad09-6699-42c4-81f6-cb452c0e7eef}</Project>
+      <Name>ClockConfigurator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\T-SwitchConfigurator\T-SwitchConfigurator.csproj">
+      <Project>{d155ef44-5dce-4c76-95bc-eaccf3cac264}</Project>
+      <Name>T-SwitchConfigurator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

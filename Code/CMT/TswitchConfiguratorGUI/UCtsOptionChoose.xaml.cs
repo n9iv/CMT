@@ -24,6 +24,7 @@ namespace CMT.TswitchConfiguratorGUI
 
         public UCtsOptionChoose()
         {
+            MainWindow.val = new int[2];
             InitializeComponent();
             _MN = Int32.Parse(_tbMN.Text);
             _BN = Int32.Parse(_tbBN.Text);
@@ -70,7 +71,6 @@ namespace CMT.TswitchConfiguratorGUI
                 _tbMN.IsEnabled = true;
                 _tbBN.IsEnabled = true;
                 EnableNext();
-                Next();
             }
         }
 
@@ -89,14 +89,17 @@ namespace CMT.TswitchConfiguratorGUI
 
         private void _tbMN_TextChanged(object sender, TextChangedEventArgs e)
         {
+
             _MN = int.Parse(_tbMN.Text);
-            Next();
+           // Next();
+            MainWindow.val[0] = _MN;
         }
 
         private void _tbBN_TextChanged(object sender, TextChangedEventArgs e)
         {
             _BN = int.Parse(_tbBN.Text);
-            Next();
+            //Next();
+            MainWindow.val[1] = _BN;
         }
 
     }

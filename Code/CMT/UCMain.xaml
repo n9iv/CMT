@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="851" Width="888.441">
     <Grid>
-        <StackPanel x:Name="_sp"  Width="1200">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="45">Welcome to CMT Wizart<LineBreak></LineBreak></TextBlock>
-            <TextBlock Margin="10" Text="Please choose one of the optione bellow:" HorizontalAlignment="Left"  FontSize="35" />
+        <StackPanel x:Name="_sp"  Width="1700">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40">Welcome to Configuration Management Tool of the O-Level Configuration Set<LineBreak></LineBreak></TextBlock>
+            <TextBlock Margin="10" Text="Please choose one of the options below:" HorizontalAlignment="Left"  FontSize="35" />
             <DockPanel Margin="10" Width="auto" Height="auto">
                 <StackPanel DockPanel.Dock="Left" Margin="10" >
                     <RadioButton Margin="10" Content="Clock Configurator" Name="_rbClockConf" FontSize="30" Checked="_rbClockConf_Checked" />
