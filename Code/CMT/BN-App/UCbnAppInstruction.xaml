@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="CMT.BN_App.UCbnAppInstruction"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="1500" d:DesignWidth="1700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="1590*"/>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="14*"/>
+            <ColumnDefinition Width="12*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Width="1500" Margin="53,0,37,0" Grid.Column="1">
+            <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center" >B-Network Configuration Instruction<LineBreak/></TextBlock>
+            <TextBlock Margin="40,0,0,20" HorizontalAlignment="left" Grid.Row="0" FontSize="20">Follow the instruction:</TextBlock>
+            <DocumentViewer HorizontalAlignment="Center" Grid.Column="1" Name="_dcDoc" Zoom="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="1200" Height="800"  />
+        </StackPanel>
+    </Grid>
+</UserControl>
