@@ -27,6 +27,7 @@ namespace CMT.ClockConfiguratorGUI
     public partial class UCinstruction : UserControl
     {
         private int _val;
+        private string _fileName = "ClockInstructions.docx";
 
         public UCinstruction(int val)
         {
@@ -73,7 +74,7 @@ namespace CMT.ClockConfiguratorGUI
         {
             var process = Process.GetCurrentProcess(); // Or whatever method you are using
             string fullPath = process.MainModule.FileName;
-            string fileName = "Instructions\\ClockInstructions.docx";
+            string fileName = "Instructions\\" + _fileName;
             fullPath = fullPath.Replace("CMT.exe", fileName);
             if(!File.Exists(fullPath))
             {
@@ -88,12 +89,6 @@ namespace CMT.ClockConfiguratorGUI
             xpsDoc = ConvertWordDocToXPSDoc(fullPath, newXPSDocumentName);
             _dcDoc.Document = xpsDoc.GetFixedDocumentSequence();
             xpsDoc.Close();
-            UCstruct.usNext = (UserControl)new FinalWin(_val);
-        }
-
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            ReadInstructions();
         }
     }
 }

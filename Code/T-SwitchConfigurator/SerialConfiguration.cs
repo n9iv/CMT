@@ -38,11 +38,13 @@ namespace T_SwitchConfigurator
             return resVal;
         }
 
-        public void Open()
+        public int Open()
         {
             try
             {
                 _spSwitch.Open();
+                Console.WriteLine("T-Switch communication is oppened\n");
+                return 0;
    
             }
             catch(Exception ex)
@@ -61,7 +63,7 @@ namespace T_SwitchConfigurator
               {
                   Console.WriteLine("Serial port Gets invalid parameters");
               }
-
+              return -1;
             }
      
         }
@@ -76,28 +78,35 @@ namespace T_SwitchConfigurator
             string port, tmp;
             int portNum;
             bool isNumeric;
-            
-            using (StreamReader fileRead = File.OpenText("SerialConfiguration.txt"))
+            try
             {
-                port = fileRead.ReadLine();
-                tmp = port.Substring(0,3);
-                
-                if ((tmp != "com") && (tmp != "COM") && (tmp != "Com"))
+                using (StreamReader fileRead = File.OpenText("SerialConfiguration.txt"))
                 {
-                    Console.WriteLine("Check syntex in file");
-                    return -1;
-                }
-                tmp = port.Substring(3);
-                isNumeric = Int32.TryParse(tmp, out portNum);
-                if (!isNumeric)
-                {
-                    Console.WriteLine("Syntex error, after the word 'com' comes numeric value");
-                    return -1;
-                }
-            }
+                    port = fileRead.ReadLine();
+                    tmp = port.Substring(0, 3);
 
-            _port = port.ToUpper();
-            return 1;
+                    if ((tmp != "com") && (tmp != "COM") && (tmp != "Com"))
+                    {
+                        Console.WriteLine("Check syntex in file");
+                        return -1;
+                    }
+                    tmp = port.Substring(3);
+                    isNumeric = Int32.TryParse(tmp, out portNum);
+                    if (!isNumeric)
+                    {
+                        Console.WriteLine("Syntex error, after the word 'com' comes numeric value");
+                        return -1;
+                    }
+                }
+
+                _port = port.ToUpper();
+                return 1;
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("SerialConfiguration.txt does not exist");
+                return -1;
+            }
         }
 
         public void ReadData(out String data)

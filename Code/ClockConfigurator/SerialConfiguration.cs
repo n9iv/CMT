@@ -16,7 +16,7 @@ namespace ClockConfigurator
 
         public SerialConfiguration(string port)
         {
-            _port = port.ToUpper();
+           _port = port.ToUpper();
         }
 
         public int init()
@@ -38,12 +38,13 @@ namespace ClockConfigurator
             return resVal;
         }
 
-        public void Open()
+        public int Open()
         {
             try
             {
                 _spClock.Open();
                 Console.WriteLine("Clock communication is oppened\n");
+                return 0;
             }
             catch (Exception ex)
             {
@@ -62,6 +63,7 @@ namespace ClockConfigurator
                     Console.WriteLine("Serial port Gets invalid parameters");
                 }
 
+                return -1;
             }
 
         }
@@ -77,28 +79,35 @@ namespace ClockConfigurator
             string port, tmp;
             int portNum;
             bool isNumeric;
-
-            using (StreamReader fileRead = File.OpenText("SerialConfiguration.txt"))
+            try
             {
-                port = fileRead.ReadLine();
-                tmp = port.Substring(0, 3);
+                using (StreamReader fileRead = File.OpenText("SerialConfiguration.txt"))
+                {
+                    port = fileRead.ReadLine();
+                    tmp = port.Substring(0, 3);
 
-                if ((tmp != "com") && (tmp != "COM") && (tmp != "Com"))
-                {
-                    Console.WriteLine("Check syntex in file");
-                    return -1;
+                    if ((tmp != "com") && (tmp != "COM") && (tmp != "Com"))
+                    {
+                        Console.WriteLine("Check syntex in file");
+                        return -1;
+                    }
+                    tmp = port.Substring(3);
+                    isNumeric = Int32.TryParse(tmp, out portNum);
+                    if (!isNumeric)
+                    {
+                        Console.WriteLine("Syntex error, after the word 'com' comes numeric value");
+                        return -1;
+                    }
                 }
-                tmp = port.Substring(3);
-                isNumeric = Int32.TryParse(tmp, out portNum);
-                if (!isNumeric)
-                {
-                    Console.WriteLine("Syntex error, after the word 'com' comes numeric value");
-                    return -1;
-                }
+
+                _port = port.ToUpper();
+                return 1;
             }
-
-            _port = port.ToUpper();
-            return 1;
+            catch(FileNotFoundException)
+            {
+                Console.WriteLine("SerialConfiguration.txt does not exist");
+                return -1;
+            }
         }
 
         public void ReadData(out String data)
@@ -109,7 +118,7 @@ namespace ClockConfigurator
                 tmp = _spClock.ReadLine();
                 Console.WriteLine("{0} is read", tmp);
             }
-            catch(TimeoutException exp)
+            catch (TimeoutException exp)
             {
                 Console.WriteLine("Read from serial is failed!");
             }
@@ -120,10 +129,10 @@ namespace ClockConfigurator
         {
             try
             {
-            _spClock.WriteLine(data);
-            Console.WriteLine("{0} is written", data);
+                _spClock.WriteLine(data);
+                Console.WriteLine("{0} is written", data);
             }
-            catch(NullReferenceException exc)
+            catch (NullReferenceException exc)
             {
                 Console.WriteLine("Check the data to be send or serial connection.");
             }

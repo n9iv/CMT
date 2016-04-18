@@ -7,6 +7,11 @@ using System.IO;
 
 namespace ClockConfigurator
 {
+    /// <summary>
+    /// The options to run the program from command line:
+    /// 1. [val] path - val is the battery value to configure, path - full script path destination.
+    /// 2. [COM#] [val] path - COM# - is the com port name (example: COM4), the rest is the same.
+    /// </summary>
     class Program
     {
         static int Main(string[] args)
@@ -49,7 +54,8 @@ namespace ClockConfigurator
             }
 
             config = new Configure(port, path);
-            config.Init();
+            if (config.Init() == -1)
+                return -1;
             res = config.RunScript(val);
             return res;
         }

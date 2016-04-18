@@ -35,19 +35,19 @@ namespace CMT.TswitchConfiguratorGUI
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
         {
-            int res;
+            int res = - 1;
             string str;
             Process switchProc = new Process();
 
             switchProc.StartInfo.FileName = "T-SwitchConfigurator.exe";
-            switchProc.StartInfo.Arguments = "s " + _MN.ToString() + " " + _BN.ToString() +  "TswitchScript.txt";
+            switchProc.StartInfo.Arguments = "s " + _MN.ToString() + " " + _BN.ToString() +  " Scripts\\T-SwitchScript.txt";
             switchProc.StartInfo.RedirectStandardInput = true;
             switchProc.StartInfo.RedirectStandardOutput = true;
             switchProc.StartInfo.RedirectStandardError = true;
             switchProc.StartInfo.UseShellExecute = false;
             switchProc.StartInfo.CreateNoWindow = true;
             switchProc.Start();
-            Thread.Sleep(1000);
+            switchProc.WaitForExit();
             res = switchProc.ExitCode;
             StreamReader read = switchProc.StandardOutput;
             switchProc.Close();
@@ -57,7 +57,7 @@ namespace CMT.TswitchConfiguratorGUI
             if (res != -1)
             {
                 _tbConf.Foreground = Brushes.Green;
-                str = "Configuration succeded";
+                str = "Configuration succeeded!";
             }
 
             else

@@ -19,9 +19,9 @@ namespace ClockConfigurator
             _clock = new SerialConfiguration(port);
         }
 
-        public void Init()
+        public int Init()
         {
-            _clock.init();
+            return _clock.init();
         }
 
         public int RunScript(int val)
@@ -30,7 +30,8 @@ namespace ClockConfigurator
             StreamReader script = File.OpenText(_path);
             string line, rcv = null;
             string[] tokens;
-            _clock.Open();
+            if (_clock.Open() == -1)
+                return -1;
 
             while((line = script.ReadLine()) != null)
             {

@@ -35,7 +35,8 @@ namespace T_SwitchConfigurator
             StreamReader script = File.OpenText(_path);
             string line, rcv = null;
             string[] tokens;
-            // _clock.Open();
+            if (_Tswitch.Open() == -1)
+                return -1;
 
             while ((line = script.ReadLine()) != null)
             {

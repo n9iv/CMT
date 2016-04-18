@@ -48,93 +48,7 @@ namespace CMT
             uc._iImageMain.Height = (500.0 / 768.0) * height;
             _cUserCtrlMain.Content = uc;
 
-        }
-
-        //private void btnNext_onClick(object sender, RoutedEventArgs e)
-        //{
-        //    UserControl tempUC = UCstruct.usNext;
-        //    int index, flag = 0;
-
-        //    if ((_cUserCtrlMain.Content is Main) && (_isBackClicked))
-        //    {
-        //        _backList.Clear();
-        //        UCstruct.func = null;
-        //        _isBackClicked = false;
-        //    }
-        //    if (_btnBack.IsEnabled == false)
-        //        _btnBack.IsEnabled = true;
-        //    tempUC.Height = _cUserCtrlMain.Height;
-        //    tempUC.Width = _cUserCtrlMain.Width;
-        //    if (_isBackClicked)
-        //    {
-        //        index = _backList.FindIndex(x => x == (UserControl)_cUserCtrlMain.Content) + 1;
-        //        _cUserCtrlMain.Content = _backList[index];
-        //        if (index == _backList.Count-1)
-        //            _btnNext.IsEnabled = false;
-        //        _isBackClicked = false;
-        //        return;
-        //    }
-        //    if (_backList.Count == 0)
-        //        _backList.Add((UserControl)_cUserCtrlMain.Content);
-        //    else if (!IsExist((UserControl)_cUserCtrlMain.Content))
-        //        _backList.Add((UserControl)_cUserCtrlMain.Content);
-        //    else
-        //    {
-        //        index = _backList.FindIndex(x => x == (UserControl)_cUserCtrlMain.Content) + 1;
-        //        _cUserCtrlMain.Content = _backList[index];
-        //        flag++;
-        //    }
-        //    if (flag == 0)
-        //        _cUserCtrlMain.Content = tempUC;
-        //    flag = 0;
-        //    if (UCstruct.func != null)
-        //    {
-        //        //UCstruct.func();
-        //        UCstruct.func = null;
-        //    }
-        //    if (UCstruct.isNxtEnabled == false)
-        //        _btnNext.IsEnabled = false;
-
-        //    if (_cUserCtrlMain.Content is FinalWin)
-        //        _btnNext.IsEnabled = false;
-        //}
-
-        //private void btnBack_onClick(object sender, RoutedEventArgs e)
-        //{
-        //    UserControl tempUC;
-        //    int index = _backList.Count - 1;
-
-        //    //UCsecks if the current window is in the list
-        //    if(!IsExist((UserControl)_cUserCtrlMain.Content))
-        //        _backList.Add((UserControl)_cUserCtrlMain.Content);
-        //    //checks if the next window to display is in the list
-        //    if (!IsExist(UCstruct.usNext))
-        //        _backList.Add(UCstruct.usNext);
-
-        //    //find the previous window of the one displayed
-        //    if (IsExist((UserControl)_cUserCtrlMain.Content))
-        //        index = _backList.FindIndex(x => x == (UserControl)_cUserCtrlMain.Content) - 1;
-        //    tempUC = _backList[index];
-
-        //    if (tempUC is Main)
-        //    {
-        //        double width, height;
-        //        Main uc = new Main();
-
-        //        height = System.Windows.SystemParameters.PrimaryScreenHeight;
-        //        width = System.Windows.SystemParameters.PrimaryScreenWidth;
-        //        uc.Width = _cUserCtrlMain.Width;
-        //        uc._iImageMain.Width = (500.0 / 1366.0) * width;
-        //        uc._iImageMain.Height = (500.0 / 768.0) * height;
-
-        //        tempUC = uc;
-        //    }
-        //    _cUserCtrlMain.Content = tempUC;
-        //    if ((_backList.Count == 0) || (_cUserCtrlMain.Content is Main))
-        //        _btnBack.IsEnabled = false;
-        //    _btnNext.IsEnabled = true;
-        //    _isBackClicked = true;
-        //}
+        }     
 
         private bool IsExist(UserControl u)
         {
@@ -287,8 +201,8 @@ namespace CMT
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var hwnd = new WindowInteropHelper(this).Handle;
-            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+            //var hwnd = new WindowInteropHelper(this).Handle;
+            //SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)

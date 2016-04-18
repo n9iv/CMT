@@ -91,14 +91,12 @@ namespace CMT.TswitchConfiguratorGUI
         {
 
             _MN = int.Parse(_tbMN.Text);
-           // Next();
             MainWindow.val[0] = _MN;
         }
 
         private void _tbBN_TextChanged(object sender, TextChangedEventArgs e)
         {
             _BN = int.Parse(_tbBN.Text);
-            //Next();
             MainWindow.val[1] = _BN;
         }
 

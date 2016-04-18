@@ -10,7 +10,7 @@
             <TextBlock FontSize="35" Margin ="20" HorizontalAlignment="Center">Switch Configuration<LineBreak/><LineBreak/></TextBlock>
             <TextBlock FontSize="20" HorizontalAlignment="Center">Press the follow button to configurate the switch<LineBreak/></TextBlock>
             <Button Name="_btnConfig" FontSize="30" Height="60" Width="250" Click="_btnConfig_Click" >Configure</Button>
-            <TextBlock Name="_tbConf" HorizontalAlignment="Center" Margin="40" FontSize="30" Height="60" Width="300"></TextBlock>
+            <TextBlock Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40" FontSize="30" Height="60" Width="350"></TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

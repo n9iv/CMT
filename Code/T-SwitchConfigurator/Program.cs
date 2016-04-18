@@ -7,6 +7,11 @@ using System.IO;
 
 namespace T_SwitchConfigurator
 {
+    /// <summary>
+    /// the options to run the program from command line:
+    /// 1. r/s [MN] [BN] path - r/s is the type (r - router, s - switch), path - is full script path destination.
+    /// 2. [COM#] r/s [MN] [BN] path - COM# - is the com name (example: COM4), the rest is the same.
+    /// </summary>
     class Program
     {
         static int Main(string[] args)

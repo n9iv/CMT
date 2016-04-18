@@ -4,6 +4,9 @@
     <StartArguments>0 ClockScript.txt</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>0 ClockScript.txt</StartArguments>
+    <StartArguments>0 Scripts\ClockScript.txt</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <StartArguments>0 Scripts\\ClockScript.txt</StartArguments>
   </PropertyGroup>
 </Project>

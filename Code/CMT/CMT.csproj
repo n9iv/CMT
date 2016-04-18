@@ -96,19 +96,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BN-App\UCbnAppInstruction.xaml.cs">
+      <DependentUpon>UCbnAppInstruction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BN-App\UCrunBNapp.xaml.cs">
+      <DependentUpon>UCrunBNapp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ClockConfiguratorGUI\FinalWin.xaml.cs">
       <DependentUpon>FinalWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClockConfiguratorGUI\UCclockConfigurator.xaml.cs">
       <DependentUpon>UCclockConfigurator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TswitchConfiguratorGUI\UCconfigRouter.xaml.cs">
+      <DependentUpon>UCconfigRouter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TswitchConfiguratorGUI\UCconfigSwitch.xaml.cs">
       <DependentUpon>UCconfigSwitch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TswitchConfiguratorGUI\UCrouterInstruction.xaml.cs">
+      <DependentUpon>UCrouterInstruction.xaml</DependentUpon>
     </Compile>
     <Compile Include="TswitchConfiguratorGUI\UCtsOptionChoose.xaml.cs">
       <DependentUpon>UCtsOptionChoose.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TswitchConfiguratorGUI\USswitchInstruction.xaml.cs">
+      <DependentUpon>USswitchInstruction.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UCstruct.cs" />
+    <Page Include="BN-App\UCbnAppInstruction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BN-App\UCrunBNapp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ClockConfiguratorGUI\FinalWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,11 +140,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TswitchConfiguratorGUI\UCconfigRouter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TswitchConfiguratorGUI\UCconfigSwitch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TswitchConfiguratorGUI\UCrouterInstruction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TswitchConfiguratorGUI\UCtsOptionChoose.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TswitchConfiguratorGUI\USswitchInstruction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,9 +267,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ClockConfigurator\ClockConfigurator.csproj">
       <Project>{d0c3ad09-6699-42c4-81f6-cb452c0e7eef}</Project>
       <Name>ClockConfigurator</Name>
@@ -244,6 +276,7 @@
       <Name>T-SwitchConfigurator</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

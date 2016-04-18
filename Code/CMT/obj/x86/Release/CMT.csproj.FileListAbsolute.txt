@@ -30,3 +30,13 @@ C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\bin\x86\Release\C
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\bin\x86\Release\T-SwitchConfigurator.exe
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\bin\x86\Release\ClockConfigurator.pdb
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\bin\x86\Release\T-SwitchConfigurator.pdb
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\USswitchInstruction.baml
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\USswitchInstruction.g.cs
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCconfigRouter.baml
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCrouterInstruction.baml
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCconfigRouter.g.cs
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCrouterInstruction.g.cs
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\BN-App\UCbnAppInstruction.baml
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\BN-App\UCbnAppInstruction.g.cs
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\BN-App\UCrunBNapp.baml
+C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\BN-App\UCrunBNapp.g.cs

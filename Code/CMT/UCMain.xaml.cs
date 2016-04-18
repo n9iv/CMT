@@ -16,6 +16,7 @@ using System.Collections;
 using System.Diagnostics;
 using CMT.ClockConfiguratorGUI;
 using CMT.TswitchConfiguratorGUI;
+using CMT.BN_App;
 
 namespace CMT
 {
@@ -34,14 +35,7 @@ namespace CMT
             SetImagesPath();
             InitializeComponent();
             _typeList = new List<Type>();
-            //LoadInitImage();
-        }
 
-        private void LoadInitImage()
-        {
-            _image = new BitmapImage(new Uri(@"Rafael_pic.png", UriKind.Relative));
-            _image.CacheOption = BitmapCacheOption.OnLoad;
-            _iImageMain.Source = _image;
         }
 
         private void _rbClockConf_Checked(object sender, RoutedEventArgs e)
@@ -79,6 +73,39 @@ namespace CMT
             UCstruct.isNxtEnabled = false;
         }
 
+        private void _rbCswitchConf_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton r = (RadioButton)sender;
+            string s;
+
+            MainWindow.val = null;
+
+            if (r.Content != null)
+            {
+                s = r.Content.ToString();
+                DisplayImage(s);
+            }
+            EnableNext();
+            UCstruct.isNxtEnabled = false;
+        }
+
+        private void _rbClientSN_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton r = (RadioButton)sender;
+            string s;
+
+            MainWindow.val = null;
+            SetBNapp();
+
+            if (r.Content != null)
+            {
+                s = r.Content.ToString();
+                DisplayImage(s);
+            }
+            EnableNext();
+            UCstruct.isNxtEnabled = true;
+        }
+
         private void DisplayImage(string str)
         {
             string imagePath = _imagesPath[str];
@@ -92,8 +119,10 @@ namespace CMT
 
         private void SetImagesPath()
         {
-            _imagesPath.Add("Clock Configurator","Rafael_pic.png");
-            _imagesPath.Add("T-Switch Configurator","Desert.png");
+            _imagesPath.Add("Clock Configurator","Clock.png");
+            _imagesPath.Add("T-Switch Configurator","T-Switch.png");
+            _imagesPath.Add("C-Switch Configurator", "C-Switch.png");
+            _imagesPath.Add("Client BN-APP", "BN-App.png");
         }
 
         private void EnableNext()
@@ -115,7 +144,17 @@ namespace CMT
         {
             _typeList.Clear();
             _typeList.Add(typeof(UCtsOptionChoose));
+            _typeList.Add(typeof(USswitchInstruction));
             _typeList.Add(typeof(UCconfigSwitch));
+            _typeList.Add(typeof(UCrouterInstruction));
+            _typeList.Add(typeof(UCconfigRouter));
+        }
+
+        private void SetBNapp()
+        {
+            _typeList.Clear();
+            _typeList.Add(typeof(UCbnAppInstruction));
+            _typeList.Add(typeof(UCrunBNapp));
         }
     }
 }

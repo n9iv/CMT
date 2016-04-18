@@ -31,24 +31,25 @@ namespace CMT.ClockConfiguratorGUI
             InitializeComponent();
             _val = val;
             _win = (MainWindow)Application.Current.Windows[0];
+            UCstruct.isNxtEnabled = false;
 
         }
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
         {
-            int res;
+            int res = -1;
             string str;
             Process clockProc = new Process();
 
             clockProc.StartInfo.FileName = "ClockConfigurator.exe";
-            clockProc.StartInfo.Arguments = _val.ToString() + "ClockScript.txt";
+            clockProc.StartInfo.Arguments = _val.ToString() + " Scripts\\ClockScript.txt";
             clockProc.StartInfo.RedirectStandardInput = true;
             clockProc.StartInfo.RedirectStandardOutput = true;
             clockProc.StartInfo.RedirectStandardError = true;
             clockProc.StartInfo.UseShellExecute = false;
             clockProc.StartInfo.CreateNoWindow = true;
             clockProc.Start();
-            Thread.Sleep(1000);
+            clockProc.WaitForExit();
             res = clockProc.ExitCode;
             StreamReader read = clockProc.StandardOutput;
 
@@ -57,7 +58,7 @@ namespace CMT.ClockConfiguratorGUI
             if (res != -1)
             {
                 _tbConf.Foreground = Brushes.Green;
-                str = "Configuration succeded\n" + read.ReadToEnd();
+                str = "Configuration succeeded!";
             }
 
             else
