@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="1500" d:DesignWidth="1700">
+             d:DesignHeight="1500" d:DesignWidth="1700" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47*"/>
@@ -16,7 +16,7 @@
         <StackPanel Width="1500" Margin="53,0,37,0" Grid.Column="1">
             <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center" >B-Network Configuration Instruction<LineBreak/></TextBlock>
             <TextBlock Margin="40,0,0,20" HorizontalAlignment="left" Grid.Row="0" FontSize="20">Follow the instruction:</TextBlock>
-            <DocumentViewer HorizontalAlignment="Center" Grid.Column="1" Name="_dcDoc" Zoom="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="1200" Height="800"  />
+            <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Auto" Name="_wbInstruction" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="800"/>
         </StackPanel>
     </Grid>
 </UserControl>

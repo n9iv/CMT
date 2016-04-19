@@ -2,8 +2,6 @@ C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\bin\x86\Release\C
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\bin\x86\Release\CMT.exe
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\bin\x86\Release\CMT.pdb
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\CMT.csprojResolveAssemblyReference.cache
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\Interop.ACTIVEXLib.dll
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\Interop.LCC11.dll
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\CMT.csproj.ResolveComReference.cache
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\ClockConfiguratorGUI\FinalWin.baml
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\ClockConfiguratorGUI\UCinstruction.baml

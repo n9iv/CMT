@@ -1,5 +1,4 @@
-﻿using Microsoft.Office.Interop.Word;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -24,48 +23,14 @@ namespace CMT.BN_App
     /// </summary>
     public partial class UCbnAppInstruction : UserControl
     {
-        private string _fileName = "B-NetInstruction.docx";
+        private string _fileName = "B-NetInstruction.html";
 
         public UCbnAppInstruction()
         {
             InitializeComponent();
-            ReadInstructions();
         }
 
-        /// <summary>
-        /// This method takes a Word document full path and new XPS document full path and name
-        /// and returns the new XpsDocument
-        /// </summary>
-        /// <param name="wordDocName"></param>
-        /// <param name="xpsDocName"></param>
-        /// <returns></returns>
-        private XpsDocument ConvertWordDocToXPSDoc(string wordDocName, string xpsDocName)
-        {
-            // Create a WordApplication and add Document to it
-            Microsoft.Office.Interop.Word.Application
-                wordApplication = new Microsoft.Office.Interop.Word.Application();
-            wordApplication.Documents.Add(wordDocName);
-            XpsDocument xpsDoc = null;
-
-            Document doc = wordApplication.ActiveDocument;
-            // You must ensure you have Microsoft.Office.Interop.Word.Dll version 12.
-            // Version 11 or previous versions do not have WdSaveFormat.wdFormatXPS option
-            try
-            {
-                doc.SaveAs(xpsDocName, WdSaveFormat.wdFormatXPS);
-                wordApplication.Quit();
-
-                xpsDoc = new XpsDocument(xpsDocName, System.IO.FileAccess.Read);
-                return xpsDoc;
-            }
-            catch (Exception exp)
-            {
-
-            }
-            return xpsDoc;
-        }
-
-        public void ReadInstructions()
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             var process = Process.GetCurrentProcess(); // Or whatever method you are using
             string fullPath = process.MainModule.FileName;
@@ -73,17 +38,12 @@ namespace CMT.BN_App
             fullPath = fullPath.Replace("CMT.exe", fileName);
             if (!File.Exists(fullPath))
             {
+                MainWindow main = (MainWindow)Application.Current.Windows[0];
                 MessageBox.Show("There is no file instruction.");
-                UCstruct.isNxtEnabled = false;
+                main._btnNext.IsEnabled = false;
                 return;
             }
-            XpsDocument xpsDoc = null;
-
-            string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(fullPath), "\\",
-                           System.IO.Path.GetFileNameWithoutExtension(fullPath), ".xps");
-            xpsDoc = ConvertWordDocToXPSDoc(fullPath, newXPSDocumentName);
-            _dcDoc.Document = xpsDoc.GetFixedDocumentSequence();
-            xpsDoc.Close();
+            this._wbInstruction.Navigate(fullPath);
         }
     }
 }

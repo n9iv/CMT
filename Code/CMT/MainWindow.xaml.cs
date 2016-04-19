@@ -73,6 +73,7 @@ namespace CMT
 
             if (res == MessageBoxResult.Yes)
             {
+                Application.Current.Shutdown();
                 var psi = new ProcessStartInfo("shutdown", "/s /t 0");
                 psi.CreateNoWindow = true;
                 psi.UseShellExecute = false;
@@ -201,8 +202,8 @@ namespace CMT
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //var hwnd = new WindowInteropHelper(this).Handle;
-            //SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+            var hwnd = new WindowInteropHelper(this).Handle;
+            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
@@ -221,6 +222,11 @@ namespace CMT
             }
 
             return IntPtr.Zero;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }
