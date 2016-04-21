@@ -4,3 +4,9 @@ C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\T-SwitchConfigurator\
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\T-SwitchConfigurator\obj\x86\Debug\T-SwitchConfigurator.csprojResolveAssemblyReference.cache
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\T-SwitchConfigurator\obj\x86\Debug\T-SwitchConfigurator.exe
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\T-SwitchConfigurator\obj\x86\Debug\T-SwitchConfigurator.pdb
+C:\Users\Administrator\CMT\T-SwitchConfigurator\bin\x86\Debug\T-SwitchConfigurator.exe.config
+C:\Users\Administrator\CMT\T-SwitchConfigurator\bin\x86\Debug\T-SwitchConfigurator.exe
+C:\Users\Administrator\CMT\T-SwitchConfigurator\bin\x86\Debug\T-SwitchConfigurator.pdb
+C:\Users\Administrator\CMT\T-SwitchConfigurator\obj\x86\Debug\T-SwitchConfigurator.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\CMT\T-SwitchConfigurator\obj\x86\Debug\T-SwitchConfigurator.exe
+C:\Users\Administrator\CMT\T-SwitchConfigurator\obj\x86\Debug\T-SwitchConfigurator.pdb

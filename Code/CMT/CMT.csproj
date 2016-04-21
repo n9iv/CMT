@@ -218,17 +218,6 @@
     <Resource Include="Resources\UP.png" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ClockConfigurator\ClockConfigurator.csproj">
       <Project>{d0c3ad09-6699-42c4-81f6-cb452c0e7eef}</Project>
       <Name>ClockConfigurator</Name>

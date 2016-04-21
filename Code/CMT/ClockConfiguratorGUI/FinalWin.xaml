@@ -9,7 +9,7 @@
         <StackPanel HorizontalAlignment="Center" Height="1500">
             <TextBlock FontSize="35" Margin ="10" HorizontalAlignment="Center">Configuration<LineBreak/><LineBreak/><LineBreak/></TextBlock>
             <TextBlock FontSize="20" HorizontalAlignment="Center">Press the follow button to configurate the clock<LineBreak/></TextBlock>
-            <Button Name="_btnConfig" FontSize="30" Height="60" Width="250" Click="_btnConfig_Click" >Configure</Button>
+            <Button Name="_btnConfig" FontSize="30" Height="60" Width="250" Click="_btnConfig_Click" MouseDown="_btnConfig_MouseDown" >Configure</Button>
             <TextBlock x:Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40" FontSize="30" Height="60" Width="350"/>
         </StackPanel>
     </Grid>

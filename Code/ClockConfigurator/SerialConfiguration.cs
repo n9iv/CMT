@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.IO.Ports;
+using System.Threading;
 
 namespace ClockConfigurator
 {
@@ -44,6 +45,7 @@ namespace ClockConfigurator
             {
                 _spClock.Open();
                 Console.WriteLine("Clock communication is oppened\n");
+                this.Flush();
                 return 0;
             }
             catch (Exception ex)
@@ -70,8 +72,9 @@ namespace ClockConfigurator
 
         public void Close()
         {
+            _spClock.Dispose();
             _spClock.Close();
-            Console.WriteLine("Clock communication is oppened\n");
+            Console.WriteLine("Clock communication is closed\n");
         }
 
         private int ParsePortFile()
@@ -110,12 +113,16 @@ namespace ClockConfigurator
             }
         }
 
-        public void ReadData(out String data)
+        public void ReadData(out String data, string token)
         {
             string tmp = null;
             try
             {
-                tmp = _spClock.ReadLine();
+                tmp = _spClock.ReadExisting();
+                tmp = tmp.Replace(token + "\n\r\n", "");
+                tmp = tmp.Replace("\r", "");
+                tmp = tmp.Replace("\n", "");
+                tmp = tmp.Replace("> ", "");
                 Console.WriteLine("{0} is read", tmp);
             }
             catch (TimeoutException exp)
@@ -127,15 +134,28 @@ namespace ClockConfigurator
 
         public void SendData(string data)
         {
+            char[] dataArray = data.ToCharArray();
             try
             {
-                _spClock.WriteLine(data);
+                foreach(char ch in dataArray)
+                {
+                    _spClock.Write(ch.ToString());
+                    Thread.Sleep(100);
+                }
+                _spClock.Write("\n");
                 Console.WriteLine("{0} is written", data);
             }
-            catch (NullReferenceException exc)
+            catch (NullReferenceException ex)
             {
                 Console.WriteLine("Check the data to be send or serial connection.");
             }
+        }
+
+        public void Flush()
+        {
+            _spClock.BaseStream.Flush();
+            _spClock.DiscardOutBuffer();
+            _spClock.DiscardInBuffer();
         }
     }
 }

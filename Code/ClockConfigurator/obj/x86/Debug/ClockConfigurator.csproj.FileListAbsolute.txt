@@ -4,3 +4,9 @@ C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\bin
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\obj\x86\Debug\ClockConfigurator.csprojResolveAssemblyReference.cache
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\obj\x86\Debug\ClockConfigurator.exe
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\obj\x86\Debug\ClockConfigurator.pdb
+C:\Users\Administrator\CMT\ClockConfigurator\bin\x86\Debug\ClockConfigurator.exe.config
+C:\Users\Administrator\CMT\ClockConfigurator\obj\x86\Debug\ClockConfigurator.exe
+C:\Users\Administrator\CMT\ClockConfigurator\obj\x86\Debug\ClockConfigurator.pdb
+C:\Users\Administrator\CMT\ClockConfigurator\bin\x86\Debug\ClockConfigurator.exe
+C:\Users\Administrator\CMT\ClockConfigurator\bin\x86\Debug\ClockConfigurator.pdb
+C:\Users\Administrator\CMT\ClockConfigurator\obj\x86\Debug\ClockConfigurator.csprojResolveAssemblyReference.cache

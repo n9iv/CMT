@@ -70,5 +70,10 @@ namespace CMT.ClockConfiguratorGUI
             _tbConf.Text = str;
         }
 
+        private void _btnConfig_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            _tbConf.Text = "";
+        }
+
     }
 }

@@ -3,3 +3,8 @@ C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\bin
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\bin\x86\Release\ClockConfigurator.pdb
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\obj\x86\Release\ClockConfigurator.exe
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\ClockConfigurator\obj\x86\Release\ClockConfigurator.pdb
+C:\Users\Administrator\CMT\ClockConfigurator\bin\x86\Release\ClockConfigurator.exe.config
+C:\Users\Administrator\CMT\ClockConfigurator\obj\x86\Release\ClockConfigurator.exe
+C:\Users\Administrator\CMT\ClockConfigurator\obj\x86\Release\ClockConfigurator.pdb
+C:\Users\Administrator\CMT\ClockConfigurator\bin\x86\Release\ClockConfigurator.exe
+C:\Users\Administrator\CMT\ClockConfigurator\bin\x86\Release\ClockConfigurator.pdb

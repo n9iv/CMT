@@ -26,32 +26,12 @@ namespace CMT
         public UCclockConfigurator()
         {
             InitializeComponent();
-            //LoadUPDownImage();
         }
-
-        //private void LoadUPDownImage()
-        //{
-        //    //Load down image
-        //    BitmapImage srcDown = new BitmapImage();
-        //    srcDown.BeginInit();
-        //    srcDown.UriSource = new Uri("../../Resources/Down.png", UriKind.Relative);
-        //    srcDown.CacheOption = BitmapCacheOption.OnLoad;
-        //    srcDown.EndInit();
-        //    _iDown.Source = srcDown;
-
-        //    //Load up image
-        //    BitmapImage srcUP = new BitmapImage();
-        //    srcUP.BeginInit();
-        //    srcUP.UriSource = new Uri("../../Resources/UP.png", UriKind.Relative);
-        //    srcUP.CacheOption = BitmapCacheOption.OnLoad;
-        //    srcUP.EndInit();
-        //    _iUP.Source = srcUP;
-        //}
 
         private void _cmdUp_Click(object sender, RoutedEventArgs e)
         {
             int val = Int32.Parse(_tbBatVal.Text);
-            if (val <= 99)
+            if (val < 3)
                 val += 1;
             _tbBatVal.Text = val.ToString();
         }
@@ -59,19 +39,21 @@ namespace CMT
         private void _cmdDown_Click(object sender, RoutedEventArgs e)
         {
             int val = Int32.Parse(_tbBatVal.Text);
-            if (val > 0)
+            if (val > 1)
                 val -= 1;
             _tbBatVal.Text = val.ToString();
         }
 
-        private void _rbbbbb_Checked(object sender, RoutedEventArgs e)
+        private void _rbCCU_Checked(object sender, RoutedEventArgs e)
         {
             _spBtn.IsEnabled = true;
             _tbBatVal.IsEnabled = true;
+            _val = Int16.Parse(_tbBatVal.Text);
+            MainWindow.val[0] = _val;
             EnableNext();
         }
 
-        private void _rbaaa_Checked(object sender, RoutedEventArgs e)
+        private void _rbMFU_Checked(object sender, RoutedEventArgs e)
         {
             if ((_tbBatVal != null) && (_spBtn != null))
             {

@@ -38,3 +38,42 @@ C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\B
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\BN-App\UCbnAppInstruction.g.cs
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\BN-App\UCrunBNapp.baml
 C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\x86\Release\BN-App\UCrunBNapp.g.cs
+C:\Users\Administrator\CMT\CMT\bin\x86\Release\CMT.exe.config
+C:\Users\Administrator\CMT\CMT\bin\x86\Release\CMT.exe
+C:\Users\Administrator\CMT\CMT\bin\x86\Release\CMT.pdb
+C:\Users\Administrator\CMT\CMT\bin\x86\Release\ClockConfigurator.exe
+C:\Users\Administrator\CMT\CMT\bin\x86\Release\T-SwitchConfigurator.exe
+C:\Users\Administrator\CMT\CMT\bin\x86\Release\ClockConfigurator.pdb
+C:\Users\Administrator\CMT\CMT\bin\x86\Release\T-SwitchConfigurator.pdb
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\CMT.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\BN-App\UCbnAppInstruction.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\BN-App\UCrunBNapp.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\ClockConfiguratorGUI\FinalWin.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\ClockConfiguratorGUI\UCinstruction.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCconfigRouter.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCconfigSwitch.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCrouterInstruction.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCtsOptionChoose.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\USswitchInstruction.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\UCMain.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\MainWindow.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\ClockConfiguratorGUI\UCclockConfigurator.baml
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\BN-App\UCbnAppInstruction.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\BN-App\UCrunBNapp.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\ClockConfiguratorGUI\FinalWin.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\ClockConfiguratorGUI\UCinstruction.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCconfigRouter.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCconfigSwitch.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCrouterInstruction.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\UCtsOptionChoose.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\TswitchConfiguratorGUI\USswitchInstruction.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\UCMain.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\MainWindow.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\ClockConfiguratorGUI\UCclockConfigurator.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\App.g.cs
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\CMT_MarkupCompile.cache
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\CMT.g.resources
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\CMT.Properties.Resources.resources
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\CMT.csproj.GenerateResource.Cache
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\CMT.exe
+C:\Users\Administrator\CMT\CMT\obj\x86\Release\CMT.pdb
