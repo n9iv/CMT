@@ -113,7 +113,7 @@ namespace CMT
             string path = proc.MainModule.FileName;
 
             imagePath = path.Replace("CMT.exe", "MainPagePics\\" + imagePath);
-            _image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+           // _image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
             _iImageMain.Source = _image;
         }
 

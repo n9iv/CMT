@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\obj\Debug\
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\Debug\
 CMT
 none
 false
 DEBUG;TRACE
-C:\Users\arthurs\documents\visual studio 2013\Projects\CMT\CMT\App.xaml
-7152473139
+C:\Users\arthurs\Git\CMT\Code\CMT\App.xaml
+12-1758442531
 
-16189337802
-20293972498
-ClockConfiguratorGUI\FinalWin.xaml;ClockConfiguratorGUI\UCinstruction.xaml;TswitchConfiguratorGUI\UCconfigSwitch.xaml;TswitchConfiguratorGUI\UCtsOptionChoose.xaml;UCMain.xaml;MainWindow.xaml;ClockConfiguratorGUI\UCclockConfigurator.xaml;
+2131357013
+161334849994
+BN-App\UCbnAppInstruction.xaml;BN-App\UCrunBNapp.xaml;ClockConfiguratorGUI\FinalWin.xaml;ClockConfiguratorGUI\UCinstruction.xaml;TswitchConfiguratorGUI\UCconfigRouter.xaml;TswitchConfiguratorGUI\UCconfigSwitch.xaml;TswitchConfiguratorGUI\UCrouterInstruction.xaml;TswitchConfiguratorGUI\UCtsOptionChoose.xaml;TswitchConfiguratorGUI\USswitchInstruction.xaml;UCMain.xaml;MainWindow.xaml;ClockConfiguratorGUI\UCclockConfigurator.xaml;
 
 False
 

@@ -8,3 +8,8 @@ C:\Users\Administrator\CMT\ClockConfigurator\obj\x86\Release\ClockConfigurator.e
 C:\Users\Administrator\CMT\ClockConfigurator\obj\x86\Release\ClockConfigurator.pdb
 C:\Users\Administrator\CMT\ClockConfigurator\bin\x86\Release\ClockConfigurator.exe
 C:\Users\Administrator\CMT\ClockConfigurator\bin\x86\Release\ClockConfigurator.pdb
+C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\bin\x86\Release\ClockConfigurator.exe.config
+C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\bin\x86\Release\ClockConfigurator.exe
+C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\bin\x86\Release\ClockConfigurator.pdb
+C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\obj\x86\Release\ClockConfigurator.exe
+C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\obj\x86\Release\ClockConfigurator.pdb

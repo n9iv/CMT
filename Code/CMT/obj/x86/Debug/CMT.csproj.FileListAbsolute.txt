@@ -118,3 +118,5 @@ C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CMT_MarkupCompile.cache
 C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CMT.g.resources
 C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CMT.Properties.Resources.resources
 C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CMT.csproj.GenerateResource.Cache
+C:\Users\arthurs\Git\CMT\Code\CMT\bin\x86\Debug\C-SwitchConfigurator.exe
+C:\Users\arthurs\Git\CMT\Code\CMT\bin\x86\Debug\C-SwitchConfigurator.pdb

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClockConfigurator", "ClockC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T-SwitchConfigurator", "T-SwitchConfigurator\T-SwitchConfigurator.csproj", "{D155EF44-5DCE-4C76-95BC-EACCF3CAC264}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C-SwitchConfigurator", "C-SwitchConfigurator\C-SwitchConfigurator.csproj", "{504968F3-DB7D-4BD3-AF40-67E048554ABB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{D155EF44-5DCE-4C76-95BC-EACCF3CAC264}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D155EF44-5DCE-4C76-95BC-EACCF3CAC264}.Release|x86.ActiveCfg = Release|x86
 		{D155EF44-5DCE-4C76-95BC-EACCF3CAC264}.Release|x86.Build.0 = Release|x86
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Debug|x86.Build.0 = Debug|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Release|x86.ActiveCfg = Release|Any CPU
+		{504968F3-DB7D-4BD3-AF40-67E048554ABB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

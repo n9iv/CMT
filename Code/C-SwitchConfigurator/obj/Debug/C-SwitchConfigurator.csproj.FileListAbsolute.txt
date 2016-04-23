@@ -1,0 +1,6 @@
+C:\Users\arthurs\Git\CMT\Code\C-SwitchConfigurator\bin\Debug\C-SwitchConfigurator.exe.config
+C:\Users\arthurs\Git\CMT\Code\C-SwitchConfigurator\bin\Debug\C-SwitchConfigurator.exe
+C:\Users\arthurs\Git\CMT\Code\C-SwitchConfigurator\bin\Debug\C-SwitchConfigurator.pdb
+C:\Users\arthurs\Git\CMT\Code\C-SwitchConfigurator\obj\Debug\C-SwitchConfigurator.csprojResolveAssemblyReference.cache
+C:\Users\arthurs\Git\CMT\Code\C-SwitchConfigurator\obj\Debug\C-SwitchConfigurator.exe
+C:\Users\arthurs\Git\CMT\Code\C-SwitchConfigurator\obj\Debug\C-SwitchConfigurator.pdb

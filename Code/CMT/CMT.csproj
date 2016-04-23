@@ -218,6 +218,10 @@
     <Resource Include="Resources\UP.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\C-SwitchConfigurator\C-SwitchConfigurator.csproj">
+      <Project>{504968f3-db7d-4bd3-af40-67e048554abb}</Project>
+      <Name>C-SwitchConfigurator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClockConfigurator\ClockConfigurator.csproj">
       <Project>{d0c3ad09-6699-42c4-81f6-cb452c0e7eef}</Project>
       <Name>ClockConfigurator</Name>

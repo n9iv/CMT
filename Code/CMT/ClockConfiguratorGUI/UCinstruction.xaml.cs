@@ -37,18 +37,18 @@ namespace CMT.ClockConfiguratorGUI
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var process = Process.GetCurrentProcess(); // Or whatever method you are using
-            string fullPath = process.MainModule.FileName;
-            string fileName = "Instructions\\" + _fileName;
-            fullPath = fullPath.Replace("CMT.exe", fileName);
-            if (!File.Exists(fullPath))
-            {
-                MainWindow main = (MainWindow)Application.Current.Windows[0];
-                MessageBox.Show("There is no file instruction.");
-                main._btnNext.IsEnabled = false;
-                return;
-            }
-            this._wbInstruction.Navigate(fullPath);
+            //var process = Process.GetCurrentProcess(); // Or whatever method you are using
+            //string fullPath = process.MainModule.FileName;
+            //string fileName = "Instructions\\" + _fileName;
+            //fullPath = fullPath.Replace("CMT.exe", fileName);
+            //if (!File.Exists(fullPath))
+            //{
+            //    MainWindow main = (MainWindow)Application.Current.Windows[0];
+            //    MessageBox.Show("There is no file instruction.");
+            //    main._btnNext.IsEnabled = false;
+            //    return;
+            //}
+            //this._wbInstruction.Navigate(fullPath);
         }
     }
 }

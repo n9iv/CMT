@@ -117,7 +117,7 @@ namespace CMT
 
             nxtIndx = _userControlList.FindIndex(x => x == _cUserCtrlMain.Content);
 
-            if (nxtIndx >= 0 && (nxtIndx < _userControlList.Count - 2))
+            if (nxtIndx >= 0 && (nxtIndx < _userControlList.Count - 1))
             {
                 obj = _userControlList[nxtIndx + 1];
             }
@@ -202,8 +202,8 @@ namespace CMT
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var hwnd = new WindowInteropHelper(this).Handle;
-            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+            //var hwnd = new WindowInteropHelper(this).Handle;
+            //SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
@@ -226,7 +226,7 @@ namespace CMT
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = true;
+            //e.Cancel = true;
         }
     }
 }

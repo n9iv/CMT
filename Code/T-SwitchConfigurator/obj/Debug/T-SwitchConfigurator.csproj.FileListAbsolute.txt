@@ -10,3 +10,6 @@ C:\Users\Administrator\CMT\T-SwitchConfigurator\bin\Debug\T-SwitchConfigurator.p
 C:\Users\Administrator\CMT\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\CMT\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.exe
 C:\Users\Administrator\CMT\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.pdb
+C:\Users\arthurs\Git\CMT\Code\T-SwitchConfigurator\bin\Debug\T-SwitchConfigurator.exe.config
+C:\Users\arthurs\Git\CMT\Code\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.exe
+C:\Users\arthurs\Git\CMT\Code\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.pdb
