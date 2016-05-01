@@ -25,6 +25,8 @@ namespace CMT.ClockConfiguratorGUI
     {
         private int _val;
         private MainWindow _win;
+        private Process _clockProc;
+        private Thread _ConfThread;
 
         public FinalWin(int val)
         {
@@ -37,43 +39,60 @@ namespace CMT.ClockConfiguratorGUI
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
         {
+            ThreadStart start = new ThreadStart(WaitConfigurator);
+            _ConfThread = new Thread(start);
+            _clockProc = new Process();
+
+            _tbConf.Text = "";
+            _clockProc.StartInfo.FileName = "ClockConfigurator.exe";
+            _clockProc.StartInfo.Arguments = _val.ToString() + " Scripts\\ClockScript.txt";
+            _clockProc.StartInfo.RedirectStandardInput = true;
+            _clockProc.StartInfo.RedirectStandardOutput = true;
+            _clockProc.StartInfo.RedirectStandardError = true;
+            _clockProc.StartInfo.UseShellExecute = false;
+            _clockProc.StartInfo.CreateNoWindow = true;
+            _clockProc.Start();
+            _ConfThread.Start();
+
+            _btnConfig.IsEnabled = false;
+            _tbPb.Visibility = System.Windows.Visibility.Visible;
+            _pb.Visibility = System.Windows.Visibility.Visible;
+            _pb.IsIndeterminate = true;
+        }
+
+        /// <summary>
+        /// Thread that is waiting for configurator result.
+        /// </summary>
+        private void WaitConfigurator()
+        {
             int res = -1;
             string str;
-            Process clockProc = new Process();
+            Brush b = Brushes.Red;
 
-            clockProc.StartInfo.FileName = "ClockConfigurator.exe";
-            clockProc.StartInfo.Arguments = _val.ToString() + " Scripts\\ClockScript.txt";
-            clockProc.StartInfo.RedirectStandardInput = true;
-            clockProc.StartInfo.RedirectStandardOutput = true;
-            clockProc.StartInfo.RedirectStandardError = true;
-            clockProc.StartInfo.UseShellExecute = false;
-            clockProc.StartInfo.CreateNoWindow = true;
-            clockProc.Start();
-            clockProc.WaitForExit();
-            res = clockProc.ExitCode;
-            StreamReader read = clockProc.StandardOutput;
-
-            clockProc.Close();
+            _clockProc.WaitForExit();
+            res = _clockProc.ExitCode;
+            _clockProc.Close();
 
             if (res != -1)
             {
-                _tbConf.Foreground = Brushes.Green;
+                b = Brushes.Green;
                 str = "Configuration succeeded!";
             }
 
             else
             {
                 str = "Configuration failed!";
-                _tbConf.Foreground = Brushes.Red;
+                b = Brushes.Red;
             }
-
-            _tbConf.Text = str;
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                _tbConf.Foreground = b;
+                _tbConf.Text = str;
+                _btnConfig.IsEnabled = true;
+                _pb.IsIndeterminate = false;
+                _tbPb.Visibility = System.Windows.Visibility.Hidden;
+                _pb.Visibility = System.Windows.Visibility.Hidden;
+            }));
         }
-
-        private void _btnConfig_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            _tbConf.Text = "";
-        }
-
     }
 }

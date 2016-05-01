@@ -27,6 +27,7 @@ namespace CMT.ClockConfiguratorGUI
     {
         private int _val;
         private string _fileName = "ClockInstructions.html";
+        private string _fileName1 = "ClockInstructions.htm";
 
         public UCinstruction(int val)
         {
@@ -37,18 +38,29 @@ namespace CMT.ClockConfiguratorGUI
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //var process = Process.GetCurrentProcess(); // Or whatever method you are using
-            //string fullPath = process.MainModule.FileName;
-            //string fileName = "Instructions\\" + _fileName;
-            //fullPath = fullPath.Replace("CMT.exe", fileName);
-            //if (!File.Exists(fullPath))
-            //{
-            //    MainWindow main = (MainWindow)Application.Current.Windows[0];
-            //    MessageBox.Show("There is no file instruction.");
-            //    main._btnNext.IsEnabled = false;
-            //    return;
-            //}
-            //this._wbInstruction.Navigate(fullPath);
+            string fullPath = GetFullPath(_fileName);
+
+            if (!File.Exists(fullPath))
+            {
+                fullPath = GetFullPath(_fileName1);
+                if (!File.Exists(fullPath))
+                {
+                    MainWindow main = (MainWindow)Application.Current.Windows[0];
+                    MessageBox.Show("There is no file instruction.");
+                    main._btnNext.IsEnabled = false;
+                    return;
+                }
+            }
+            this._wbInstruction.Navigate(fullPath);
+        }
+
+        private string GetFullPath(string name)
+        {
+            var process = Process.GetCurrentProcess(); // Or whatever method you are using
+            string fullPath = process.MainModule.FileName;
+            string fileName = "Instructions\\" + name;
+            fullPath = fullPath.Replace("CMT.exe", fileName);
+            return fullPath;
         }
     }
 }

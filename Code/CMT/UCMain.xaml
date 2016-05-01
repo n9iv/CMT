@@ -7,13 +7,13 @@
     <Grid>
         <StackPanel x:Name="_sp"  Width="1300">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30">Welcome to Configuration Management Tool of the O-Level Configuration Set<LineBreak></LineBreak></TextBlock>
-            <TextBlock Margin="10" Text="Please choose one of the options below:" HorizontalAlignment="Left"  FontSize="35" />
+            <TextBlock Margin="10" Text="Please choose one of the options below:" HorizontalAlignment="Left"  FontSize="25" />
             <DockPanel Margin="10" Width="auto" Height="auto">
                 <StackPanel DockPanel.Dock="Left" Margin="10" >
-                    <RadioButton Margin="10" Content="Clock Configurator" Name="_rbClockConf" FontSize="30" Checked="_rbClockConf_Checked" />
-                    <RadioButton Margin="10" Content="T-Switch Configurator" Name="_rbTswitchConf" FontSize="30" Checked="_rbTswitchConf_Checked" />
-                    <RadioButton Margin="10" Content="C-Switch Configurator" Name="_rbCswitchConf" FontSize="30" Checked="_rbCswitchConf_Checked" />
-                    <RadioButton Margin="10" Content="Client BN-APP" Name="_rbClientSN" FontSize="30" Checked="_rbClientSN_Checked" />
+                    <RadioButton Margin="10" Content="Clock Configurator" Name="_rbClockConf" FontSize="25" Checked="_rbClockConf_Checked" />
+                    <RadioButton Margin="10" Content="T-Switch Configurator" Name="_rbTswitchConf" FontSize="25" Checked="_rbTswitchConf_Checked" />
+                    <RadioButton Margin="10" Content="C-Switch Configurator" Name="_rbCswitchConf" FontSize="25" Checked="_rbCswitchConf_Checked" />
+                    <RadioButton Margin="10" Content="Client BN-APP" Name="_rbClientSN" FontSize="25" Checked="_rbClientSN_Checked" />
                 </StackPanel>
                 <Image x:Name="_iImageMain" Margin="70,0,0,0" DockPanel.Dock="Right" Height="500" Width="800" Stretch="UniformToFill" />
             </DockPanel>

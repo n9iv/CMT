@@ -25,6 +25,8 @@ namespace CMT.TswitchConfiguratorGUI
     {
         private int _MN;
         private int _BN;
+        private Process _routerProc;
+        private Thread _ConfThread;
 
         public UCconfigRouter(int mn, int bn)
         {
@@ -36,38 +38,59 @@ namespace CMT.TswitchConfiguratorGUI
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
         {
+            ThreadStart start = new ThreadStart(WaitConfigurator);
+            _ConfThread = new Thread(start);
+            _routerProc = new Process();
+
+            _routerProc.StartInfo.FileName = "T-SwitchConfigurator.exe";
+            _routerProc.StartInfo.Arguments = "r " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchRouterScript.txt";
+            _routerProc.StartInfo.RedirectStandardInput = true;
+            _routerProc.StartInfo.RedirectStandardOutput = true;
+            _routerProc.StartInfo.RedirectStandardError = true;
+            _routerProc.StartInfo.UseShellExecute = false;
+            _routerProc.StartInfo.CreateNoWindow = true;
+            _routerProc.Start();
+            _ConfThread.Start();
+
+            _btnConfig.IsEnabled = false;
+            _tbPb.Visibility = System.Windows.Visibility.Visible;
+            _pb.Visibility = System.Windows.Visibility.Visible;
+            _pb.IsIndeterminate = true;
+        }
+
+        /// <summary>
+        /// Thread that is waiting for configurator result.
+        /// </summary>
+        private void WaitConfigurator()
+        {
             int res = -1;
             string str;
-            Process routerProc = new Process();
+            Brush b = Brushes.Red;
 
-            routerProc.StartInfo.FileName = "T-SwitchConfigurator.exe";
-            routerProc.StartInfo.Arguments = "r " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchScript.txt";
-            routerProc.StartInfo.RedirectStandardInput = true;
-            routerProc.StartInfo.RedirectStandardOutput = true;
-            routerProc.StartInfo.RedirectStandardError = true;
-            routerProc.StartInfo.UseShellExecute = false;
-            routerProc.StartInfo.CreateNoWindow = true;
-            routerProc.Start();
-            routerProc.WaitForExit();
-            res = routerProc.ExitCode;
-            StreamReader read = routerProc.StandardOutput;
-            routerProc.Close();
+            _routerProc.WaitForExit();
+            res = _routerProc.ExitCode;
+            _routerProc.Close();
 
-
-            Debug.WriteLine(read.ReadToEnd());
             if (res != -1)
             {
-                _tbConf.Foreground = Brushes.Green;
+                b = Brushes.Green;
                 str = "Configuration succeeded!";
             }
 
             else
             {
                 str = "Configuration failed!";
-                _tbConf.Foreground = Brushes.Red;
+                b = Brushes.Red;
             }
-
-            _tbConf.Text = str;
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                _tbConf.Foreground = b;
+                _tbConf.Text = str;
+                _btnConfig.IsEnabled = true;
+                _pb.IsIndeterminate = false;
+                _tbPb.Visibility = System.Windows.Visibility.Hidden;
+                _pb.Visibility = System.Windows.Visibility.Hidden;
+            }));
         }
     }
 }

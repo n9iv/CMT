@@ -118,8 +118,9 @@ namespace C_SwitchConfigurator
                 //    Console.WriteLine("value is properly configured.\n");
 
                 //}
+                line = line.Replace("BN", (70 + val).ToString());
                 _cSwitch.SendData(line);
-                _cSwitch.ReadData(out rcv);
+                _cSwitch.ReadData(out rcv, "");
                 if (line == "exit")
                 {
                     Thread.Sleep(200);
@@ -141,19 +142,17 @@ namespace C_SwitchConfigurator
             _cSwitch.Flush();
             _cSwitch.SendData("\n");
             Thread.Sleep(200);
-            _cSwitch.ReadData(out rcv);
+            _cSwitch.ReadData(out rcv, "");
             if (rcv != "Username: ")
                 return -1;
             _cSwitch.SendData(_userName);
-            _cSwitch.Flush();
-            _cSwitch.SendData("\n");
-            _cSwitch.ReadData(out rcv);
+            Thread.Sleep(200);
+            _cSwitch.ReadData(out rcv, _userName);
             if (rcv != "Password: ")
                 return -1;
             _cSwitch.SendData(_password);
-            _cSwitch.Flush();
-            _cSwitch.SendData("\n");
-            _cSwitch.ReadData(out rcv);
+            Thread.Sleep(200);
+            _cSwitch.ReadData(out rcv, "");
             if (rcv != "Switch#")
                 return -1;
 
@@ -170,7 +169,7 @@ namespace C_SwitchConfigurator
             {
                 _cSwitch.SendData("WR");
                 _cSwitch.SendData("Y");
-                _cSwitch.ReadData(out rcv);
+                _cSwitch.ReadData(out rcv, "");
 
                 if (rcv == "Copy Succeded")
                     isSaved = 0;

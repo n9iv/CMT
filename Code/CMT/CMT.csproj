@@ -107,6 +107,15 @@
     <Compile Include="ClockConfiguratorGUI\UCclockConfigurator.xaml.cs">
       <DependentUpon>UCclockConfigurator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CswitchConfiguratorGUI\UCconfigCSwitch.xaml.cs">
+      <DependentUpon>UCconfigCSwitch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CswitchConfiguratorGUI\UCcSwitchconfigOptions.xaml.cs">
+      <DependentUpon>UCcSwitchconfigOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CswitchConfiguratorGUI\UCcSwitchInstruction.xaml.cs">
+      <DependentUpon>UCcSwitchInstruction.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TswitchConfiguratorGUI\UCconfigRouter.xaml.cs">
       <DependentUpon>UCconfigRouter.xaml</DependentUpon>
     </Compile>
@@ -136,6 +145,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ClockConfiguratorGUI\UCinstruction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CswitchConfiguratorGUI\UCconfigCSwitch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CswitchConfiguratorGUI\UCcSwitchconfigOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CswitchConfiguratorGUI\UCcSwitchInstruction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

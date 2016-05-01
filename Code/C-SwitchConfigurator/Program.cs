@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace C_SwitchConfigurator
 {
+    /// <summary>
+    /// The options to run the program from command line:
+    /// 1. [val] path - val is the value to be replaced in script, path - full script path destination.
+    /// 2. [COM#] [val] path - COM# - is the com port name (example: COM4), the rest is the same.
+    /// </summary>
     class Program
     {
         static int Main(string[] args)
@@ -23,21 +28,22 @@ namespace C_SwitchConfigurator
                 case 1:
                     Console.WriteLine("Argument is missing.");
                     return res;
-                //case 2:
-                //    if (!int.TryParse(args[0], out val))
-                //    {
-                //        Console.WriteLine("The value is not numeric.");
-                //        return res;
-                //    }
-                //    path = args[1];
-                //    break;
+   
                 case 2:
-                    port = args[0];
-                    //if (!int.TryParse(args[1], out val))
-                    //{
-                    //    Console.WriteLine("The value is not numeric.");
-                    //    return res;
-                    //}
+                    if (!int.TryParse(args[0], out val))
+                    {
+                        Console.WriteLine("The value is not numeric.");
+                        return res;
+                    }
+                    path = args[1];
+                    break;
+                case 3:
+                        port = args[0];
+                        if (!int.TryParse(args[1], out val))
+                        {
+                            Console.WriteLine("The value is not numeric.");
+                            return res;
+                        }
                     path = args[1];
                     break;
             }

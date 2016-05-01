@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using CMT.CswitchConfiguratorGUI;
 
 namespace CMT
 {
@@ -26,10 +27,10 @@ namespace CMT
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static UserControl nextUC;
-        public List<UserControl> _backList;
         public static int[] val;
         public static List<UserControl> _userControlList;
+        private string _adminUserName = "Administrator";
+        private bool _isAdmin = false;
 
         public MainWindow()
         {
@@ -37,7 +38,6 @@ namespace CMT
             double height, width;
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            _backList = new List<UserControl>();
             _userControlList = new List<UserControl>();
 
             Main uc = new Main();
@@ -48,19 +48,6 @@ namespace CMT
             uc._iImageMain.Height = (500.0 / 768.0) * height;
             _cUserCtrlMain.Content = uc;
 
-        }     
-
-        private bool IsExist(UserControl u)
-        {
-            bool isExist = false;
-
-            foreach (UserControl uc in _backList)
-            {
-                if (uc.Equals(u))
-                    return true;
-            }
-
-            return isExist;
         }
 
         private void _btnShtDown_onClick(object sender, RoutedEventArgs e)
@@ -119,6 +106,10 @@ namespace CMT
 
             if (nxtIndx >= 0 && (nxtIndx < _userControlList.Count - 1))
             {
+                if ((_userControlList[nxtIndx + 1] is FinalWin) || (_userControlList[nxtIndx + 1] is UCconfigRouter) || (_userControlList[nxtIndx + 1] is UCconfigSwitch) || (_userControlList[nxtIndx + 1] is UCconfigCSwitch))
+                {
+                    _userControlList[nxtIndx + 1] = (UserControl)GetInstance(_userControlList[nxtIndx + 1].GetType(), val);
+                }
                 obj = _userControlList[nxtIndx + 1];
             }
 
@@ -193,6 +184,8 @@ namespace CMT
         private const int GWL_STYLE = -16;
         private const int WS_SYSMENU = 0x80000;
         private const int WS_MAXIMIZEBOX = 0x10000;
+        const int WM_SYSCOMMAND = 0x0112;
+        const int SC_MOVE = 0xF010;
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
@@ -202,10 +195,18 @@ namespace CMT
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //var hwnd = new WindowInteropHelper(this).Handle;
-            //SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+            if (Environment.UserName == _adminUserName)
+                _isAdmin = true;
+            if (!_isAdmin)
+            {
+                var hwnd = new WindowInteropHelper(this).Handle;
+                SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+                this.Topmost = true;
+                ResizeMode = System.Windows.ResizeMode.NoResize;
+            }
         }
 
+        //Disable resize window
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
             System.Windows.Interop.HwndSource source = System.Windows.Interop.HwndSource.FromHwnd(new System.Windows.Interop.WindowInteropHelper(this).Handle);
@@ -221,12 +222,28 @@ namespace CMT
                 handled = true;  //prevent double click from maximizing the window.
             }
 
+            switch (msg)
+            {
+                case WM_SYSCOMMAND:
+                    int command = wParam.ToInt32() & 0xfff0;
+                    if (command == SC_MOVE)
+                    {
+                        handled = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
             return IntPtr.Zero;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //e.Cancel = true;
+            if (!_isAdmin)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

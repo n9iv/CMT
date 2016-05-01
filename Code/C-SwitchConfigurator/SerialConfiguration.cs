@@ -113,7 +113,7 @@ namespace C_SwitchConfigurator
             }
         }
 
-        public void ReadData(out String data)
+        public void ReadData(out String data, string token)
         {
             string tmp = null;
             try
@@ -122,7 +122,8 @@ namespace C_SwitchConfigurator
                 //tmp = tmp.Replace(token + "\n\r\n", "");
                 tmp = tmp.Replace("\r", "");
                 tmp = tmp.Replace("\n", "");
-                //tmp = tmp.Replace("> ", "");
+                if(token.Length > 0)
+                    tmp = tmp.Replace(token, "");
                 Console.WriteLine(tmp);
             }
             catch (TimeoutException exp)
@@ -138,11 +139,15 @@ namespace C_SwitchConfigurator
             char[] dataArray = data.ToCharArray();
             try
             {
-                foreach (char ch in dataArray)
+                if (data != "\n")
                 {
-                    _spCswitch.Write(ch.ToString());
-                    Thread.Sleep(100);
+                    foreach (char ch in dataArray)
+                    {
+                        _spCswitch.Write(ch.ToString());
+                        Thread.Sleep(100);
+                    }
                 }
+                _spCswitch.Write("\n");
                 if (data != "\n")
                     Console.WriteLine(data);
             }

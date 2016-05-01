@@ -25,6 +25,8 @@ namespace CMT.TswitchConfiguratorGUI
     {
         private int _MN;
         private int _BN;
+        private Process _switchProc;
+        private Thread _ConfThread;
 
         public UCconfigSwitch(int mn, int bn)
         {
@@ -35,38 +37,59 @@ namespace CMT.TswitchConfiguratorGUI
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
         {
-            int res = - 1;
+            ThreadStart start = new ThreadStart(WaitConfigurator);
+            _ConfThread = new Thread(start);
+            _switchProc = new Process();
+
+            _switchProc.StartInfo.FileName = "T-SwitchConfigurator.exe";
+            _switchProc.StartInfo.Arguments = "s " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchSwitchScript.txt";
+            _switchProc.StartInfo.RedirectStandardInput = true;
+            _switchProc.StartInfo.RedirectStandardOutput = true;
+            _switchProc.StartInfo.RedirectStandardError = true;
+            _switchProc.StartInfo.UseShellExecute = false;
+            _switchProc.StartInfo.CreateNoWindow = true;
+            _switchProc.Start();
+            _ConfThread.Start();
+
+            _btnConfig.IsEnabled = false;
+            _tbPb.Visibility = System.Windows.Visibility.Visible;
+            _pb.Visibility = System.Windows.Visibility.Visible;
+            _pb.IsIndeterminate = true;
+        }
+
+        /// <summary>
+        /// Thread that is waiting for configurator result.
+        /// </summary>
+        private void WaitConfigurator()
+        {
+            int res = -1;
             string str;
-            Process switchProc = new Process();
+            Brush b = Brushes.Red;
 
-            switchProc.StartInfo.FileName = "T-SwitchConfigurator.exe";
-            switchProc.StartInfo.Arguments = "s " + _MN.ToString() + " " + _BN.ToString() +  " Scripts\\T-SwitchScript.txt";
-            switchProc.StartInfo.RedirectStandardInput = true;
-            switchProc.StartInfo.RedirectStandardOutput = true;
-            switchProc.StartInfo.RedirectStandardError = true;
-            switchProc.StartInfo.UseShellExecute = false;
-            switchProc.StartInfo.CreateNoWindow = true;
-            switchProc.Start();
-            switchProc.WaitForExit();
-            res = switchProc.ExitCode;
-            StreamReader read = switchProc.StandardOutput;
-            switchProc.Close();
+            _switchProc.WaitForExit();
+            res = _switchProc.ExitCode;
+            _switchProc.Close();
 
-
-            Debug.WriteLine(read.ReadToEnd());
             if (res != -1)
             {
-                _tbConf.Foreground = Brushes.Green;
+                b = Brushes.Green;
                 str = "Configuration succeeded!";
             }
 
             else
             {
                 str = "Configuration failed!";
-                _tbConf.Foreground = Brushes.Red;
+                b = Brushes.Red;
             }
-
-            _tbConf.Text = str;
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                _tbConf.Foreground = b;
+                _tbConf.Text = str;
+                _btnConfig.IsEnabled = true;
+                _pb.IsIndeterminate = false;
+                _tbPb.Visibility = System.Windows.Visibility.Hidden;
+                _pb.Visibility = System.Windows.Visibility.Hidden;
+            }));
         }
     }
 }

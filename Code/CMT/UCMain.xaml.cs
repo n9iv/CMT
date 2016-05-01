@@ -17,6 +17,7 @@ using System.Diagnostics;
 using CMT.ClockConfiguratorGUI;
 using CMT.TswitchConfiguratorGUI;
 using CMT.BN_App;
+using CMT.CswitchConfiguratorGUI;
 
 namespace CMT
 {
@@ -79,6 +80,7 @@ namespace CMT
             string s;
 
             MainWindow.val = null;
+            SetCswitchList();
 
             if (r.Content != null)
             {
@@ -86,7 +88,7 @@ namespace CMT
                 DisplayImage(s);
             }
             EnableNext();
-            UCstruct.isNxtEnabled = false;
+            //UCstruct.isNxtEnabled = false;
         }
 
         private void _rbClientSN_Checked(object sender, RoutedEventArgs e)
@@ -113,7 +115,7 @@ namespace CMT
             string path = proc.MainModule.FileName;
 
             imagePath = path.Replace("CMT.exe", "MainPagePics\\" + imagePath);
-           // _image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+            _image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
             _iImageMain.Source = _image;
         }
 
@@ -148,6 +150,14 @@ namespace CMT
             _typeList.Add(typeof(UCconfigSwitch));
             _typeList.Add(typeof(UCrouterInstruction));
             _typeList.Add(typeof(UCconfigRouter));
+        }
+
+        private void SetCswitchList()
+        {
+            _typeList.Clear();
+            _typeList.Add(typeof(UCcSwitchconfigOptions));
+            _typeList.Add(typeof(UCcSwitchInstruction));
+            _typeList.Add(typeof(UCconfigCSwitch));
         }
 
         private void SetBNapp()

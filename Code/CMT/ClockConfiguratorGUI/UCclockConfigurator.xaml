@@ -7,10 +7,10 @@
              d:DesignHeight="1700" d:DesignWidth="1700">
     <Grid>
         <StackPanel Margin="10" Width="1000">
-            <TextBlock FontSize="40" HorizontalAlignment="Center" Margin="10">Clock Configurator<LineBreak/></TextBlock>
-            <TextBlock FontSize="35">Choose one of the clock configuration below:</TextBlock>
-            <RadioButton Margin="10" x:Name="_rbMFU" Content="MFU" FontSize="30" Checked="_rbMFU_Checked"/>
-            <RadioButton Margin="10" Name="_rbCCU" Content="CCU" FontSize="30" Checked="_rbCCU_Checked"/>
+            <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="10">Clock Configurator<LineBreak/></TextBlock>
+            <TextBlock FontSize="30">Choose one of the clock configuration below:</TextBlock>
+            <RadioButton Margin="10" x:Name="_rbMFU" Content="MFU" FontSize="25" Checked="_rbMFU_Checked"/>
+            <RadioButton Margin="10" Name="_rbCCU" Content="CCU" FontSize="25" Checked="_rbCCU_Checked"/>
             <StackPanel Name="_sp" Orientation="Horizontal">
                 <TextBlock FontSize="20" Margin="10">Insert battery value:</TextBlock>
                 <TextBox Width="60" Height="25" Text="1" TextAlignment="Center" Margin="10,0,0,0"  Name="_tbBatVal" IsEnabled="False" TextChanged="_tbBatVal_TextChanged"/>

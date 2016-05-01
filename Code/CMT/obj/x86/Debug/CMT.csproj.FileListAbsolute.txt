@@ -120,3 +120,9 @@ C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CMT.Properties.Resources.resourc
 C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CMT.csproj.GenerateResource.Cache
 C:\Users\arthurs\Git\CMT\Code\CMT\bin\x86\Debug\C-SwitchConfigurator.exe
 C:\Users\arthurs\Git\CMT\Code\CMT\bin\x86\Debug\C-SwitchConfigurator.pdb
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CswitchConfiguratorGUI\UCconfigCSwitch.baml
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CswitchConfiguratorGUI\UCconfigCSwitch.g.cs
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CswitchConfiguratorGUI\UCcSwitchInstruction.baml
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CswitchConfiguratorGUI\UCcSwitchInstruction.g.cs
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CswitchConfiguratorGUI\UCcSwitchconfigOptions.baml
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Debug\CswitchConfiguratorGUI\UCcSwitchconfigOptions.g.cs

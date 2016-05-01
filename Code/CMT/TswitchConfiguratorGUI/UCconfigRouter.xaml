@@ -11,6 +11,8 @@
             <TextBlock FontSize="20" HorizontalAlignment="Center">Press the follow button to configurate the router<LineBreak/></TextBlock>
             <Button Name="_btnConfig" FontSize="30" Height="60" Width="250" Click="_btnConfig_Click" >Configure</Button>
             <TextBlock Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40" FontSize="30" Height="60" Width="350"></TextBlock>
+            <TextBlock x:Name="_tbPb" HorizontalAlignment="Center" Text="Configuring, please wait..." Visibility="Hidden" TextAlignment="Center" Margin="0,0,40,0" FontSize="20" Height="60" Width="350"/>
+            <ProgressBar Name="_pb" Maximum="100" Visibility="Hidden" Minimum="0" Height="50"/>
         </StackPanel>
     </Grid>
 </UserControl>
