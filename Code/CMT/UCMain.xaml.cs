@@ -18,6 +18,7 @@ using CMT.ClockConfiguratorGUI;
 using CMT.TswitchConfiguratorGUI;
 using CMT.BN_App;
 using CMT.CswitchConfiguratorGUI;
+using System.IO;
 
 namespace CMT
 {
@@ -115,7 +116,10 @@ namespace CMT
             string path = proc.MainModule.FileName;
 
             imagePath = path.Replace("CMT.exe", "MainPagePics\\" + imagePath);
-            _image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+            if (File.Exists(imagePath))
+                _image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+            else
+                _image = null;
             _iImageMain.Source = _image;
         }
 

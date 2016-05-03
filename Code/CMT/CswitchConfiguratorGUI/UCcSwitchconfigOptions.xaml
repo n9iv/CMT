@@ -8,7 +8,7 @@
     <Grid>
         <StackPanel Margin="10" Width="1000">
             <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="10">C-Switch Configurator<LineBreak/></TextBlock>
-            <TextBlock FontSize="30">Select BN value:</TextBlock>
+            <TextBlock FontSize="25">Select BN value:</TextBlock>
             <StackPanel Name="_sp" Orientation="Horizontal">
                 <TextBlock FontSize="20" Margin="10">BN:</TextBlock>
                 <TextBox Width="60" Height="25" Text="1" TextAlignment="Center" Margin="10,0,0,0"  Name="_tbBN" TextChanged="_tbBN_TextChanged" />

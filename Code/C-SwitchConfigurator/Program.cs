@@ -14,6 +14,16 @@ namespace C_SwitchConfigurator
     /// </summary>
     class Program
     {
+        private static int CheckValue(int val)
+        {
+            if ((val < 0) || (val > 3))
+            {
+                Console.WriteLine("Incorrect value. The value should be between 0-3");
+                return -1;
+            }
+            return 0;
+        }
+
         static int Main(string[] args)
         {
             Configure config;
@@ -28,22 +38,26 @@ namespace C_SwitchConfigurator
                 case 1:
                     Console.WriteLine("Argument is missing.");
                     return res;
-   
+
                 case 2:
                     if (!int.TryParse(args[0], out val))
                     {
                         Console.WriteLine("The value is not numeric.");
                         return res;
                     }
+                    if (CheckValue(val) == -1)
+                        return res;
                     path = args[1];
                     break;
                 case 3:
-                        port = args[0];
-                        if (!int.TryParse(args[1], out val))
-                        {
-                            Console.WriteLine("The value is not numeric.");
-                            return res;
-                        }
+                    port = args[0];
+                    if (!int.TryParse(args[1], out val))
+                    {
+                        Console.WriteLine("The value is not numeric.");
+                        return res;
+                    }
+                    if (CheckValue(val) == -1)
+                        return res;
                     path = args[1];
                     break;
             }

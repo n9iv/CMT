@@ -14,6 +14,16 @@ namespace ClockConfigurator
     /// </summary>
     class Program
     {
+        private static int CheckValue(int val)
+        {
+            if ((val < 0) || (val > 3))
+            {
+                Console.WriteLine("Incorrect value. The value should be between 0-3");
+                return -1;
+            }       
+            return 0;
+        }
+
         static int Main(string[] args)
         {
             Configure config;
@@ -34,6 +44,8 @@ namespace ClockConfigurator
                         Console.WriteLine("The value is not numeric.");
                         return res;
                     }
+                    if (CheckValue(val) == -1)
+                        return res;
                     path = args[1];
                     break;
                 case 3:
@@ -43,6 +55,8 @@ namespace ClockConfigurator
                         Console.WriteLine("The value is not numeric.");
                         return res;
                     }
+                    if (CheckValue(val) == -1)
+                        return res;
                     path = args[2];
                     break;
             }

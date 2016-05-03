@@ -56,7 +56,7 @@ namespace CMT
             string cap = "Warning";
             MessageBoxButton button = MessageBoxButton.YesNo;
 
-            var res = MessageBox.Show(msg, cap, button);
+            var res = MessageBox.Show(msg, cap, button,MessageBoxImage.Warning,MessageBoxResult.No);
 
             if (res == MessageBoxResult.Yes)
             {

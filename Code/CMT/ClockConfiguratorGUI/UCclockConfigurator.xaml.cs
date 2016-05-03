@@ -74,6 +74,21 @@ namespace CMT
 
         private void _tbBatVal_TextChanged(object sender, TextChangedEventArgs e)
         {
+            try
+            {
+                if ((Int16.Parse(_tbBatVal.Text) < 1) || (Int16.Parse(_tbBatVal.Text) > 3))
+                {
+                    MessageBox.Show("Invalid value. The value should be between 1-3", "Invalid Argument", MessageBoxButton.OK);
+                    _tbBatVal.Text = "1";
+                    return;
+                }
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("The value is not in correct format", "Invalid Argument", MessageBoxButton.OK);
+                _tbBatVal.Text = "1";
+                return;
+            }
             _val = Int16.Parse(_tbBatVal.Text);
             MainWindow.val[0] = _val;
         }

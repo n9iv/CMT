@@ -10,6 +10,6 @@
     <StartArguments>COM3 1 Scripts\ClockScript.txt</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <StartArguments>COM3 2 C:\\Users\\arthurs\\Desktop\\\\ClockScript.txt</StartArguments>
+    <StartArguments>COM3 4 C:\\Users\\arthurs\\Desktop\\\\ClockScript.txt</StartArguments>
   </PropertyGroup>
 </Project>

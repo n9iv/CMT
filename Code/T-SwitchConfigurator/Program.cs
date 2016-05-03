@@ -8,12 +8,22 @@ using System.IO;
 namespace T_SwitchConfigurator
 {
     /// <summary>
-    /// the options to run the program from command line:
+    /// The options to run the program from command line:
     /// 1. r/s [MN] [BN] path - r/s is the type (r - router, s - switch), path - is full script path destination.
     /// 2. [COM#] r/s [MN] [BN] path - COM# - is the com name (example: COM4), the rest is the same.
     /// </summary>
     class Program
     {
+        private static int CheckValue(int MN, int BN)
+        {
+            if ((MN < 0) || (MN > 3) || (BN < 0) || (BN > 3))
+            {
+                Console.WriteLine("Incorrect value. The MN and BN values should be between 0-3");
+                return -1;
+            }
+            return 0;
+        }
+
         static int Main(string[] args)
         {
             Switch sw;
@@ -43,6 +53,8 @@ namespace T_SwitchConfigurator
                         Console.WriteLine("The BN value is not numeric");
                         return res;
                     }
+                    if (CheckValue(MN,BN) == -1)
+                        return res;
                     path = args[3];
                     break;
                 case 5:
@@ -58,6 +70,8 @@ namespace T_SwitchConfigurator
                         Console.WriteLine("The BN value is not numeric");
                         return res;
                     }
+                    if (CheckValue(MN, BN) == -1)
+                        return res;
                     path = args[4];
                     break;
             }
