@@ -26,8 +26,7 @@ namespace ClockConfigurator
 
             if (_port == "")
             {
-                if (ParsePortFile() == -1)
-                    return -1;
+                _port = XMLparser.portName;
             }
 
             _spClock = new SerialPort();
@@ -75,42 +74,6 @@ namespace ClockConfigurator
             _spClock.Dispose();
             _spClock.Close();
             Console.WriteLine("Clock communication is closed\n");
-        }
-
-        private int ParsePortFile()
-        {
-            string port, tmp;
-            int portNum;
-            bool isNumeric;
-            try
-            {
-                using (StreamReader fileRead = File.OpenText("SerialConfiguration.txt"))
-                {
-                    port = fileRead.ReadLine();
-                    tmp = port.Substring(0, 3);
-
-                    if ((tmp != "com") && (tmp != "COM") && (tmp != "Com"))
-                    {
-                        Console.WriteLine("Check syntex in file");
-                        return -1;
-                    }
-                    tmp = port.Substring(3);
-                    isNumeric = Int32.TryParse(tmp, out portNum);
-                    if (!isNumeric)
-                    {
-                        Console.WriteLine("Syntex error, after the word 'com' comes numeric value");
-                        return -1;
-                    }
-                }
-
-                _port = port.ToUpper();
-                return 1;
-            }
-            catch(FileNotFoundException)
-            {
-                Console.WriteLine("SerialConfiguration.txt does not exist");
-                return -1;
-            }
         }
 
         public void ReadData(out String data, string token)

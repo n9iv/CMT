@@ -16,3 +16,4 @@ C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\bin\x86\Debug\ClockConfigurator.
 C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\obj\x86\Debug\ClockConfigurator.csprojResolveAssemblyReference.cache
 C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\obj\x86\Debug\ClockConfigurator.exe
 C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\obj\x86\Debug\ClockConfigurator.pdb
+C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\bin\x86\Debug\Configurator.xml

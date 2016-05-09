@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.IO.Ports;
+using System.Threading;
 
 namespace T_SwitchConfigurator
 {
@@ -25,8 +26,7 @@ namespace T_SwitchConfigurator
 
             if (_port == "")
             {
-                if (ParsePortFile() == -1)
-                    return -1;
+                _port = XMLparser.portName;
             }
 
             _spSwitch = new SerialPort();
@@ -109,25 +109,55 @@ namespace T_SwitchConfigurator
             }
         }
 
-        public void ReadData(out String data)
+        public void ReadData(out String data, string token)
         {
             string tmp = null;
             try
             {
-                tmp = _spSwitch.ReadLine();
-                Console.WriteLine("{0} is read", tmp);
+                tmp = _spSwitch.ReadExisting();
+                //tmp = tmp.Replace(token + "\n\r\n", "");
+                tmp = tmp.Replace("\r", "");
+                tmp = tmp.Replace("\n", "");
+                if (token.Length > 0)
+                    tmp = tmp.Replace(token, "");
+                Console.WriteLine(tmp);
             }
             catch (TimeoutException exp)
             {
                 Console.WriteLine("Read from serial is failed!");
             }
+
             data = tmp;
         }
 
         public void SendData(string data)
         {
-            _spSwitch.WriteLine(data);
-            Console.WriteLine("{0} is written", data);
+            char[] dataArray = data.ToCharArray();
+            try
+            {
+                if (data != "\n")
+                {
+                    foreach (char ch in dataArray)
+                    {
+                        _spSwitch.Write(ch.ToString());
+                        Thread.Sleep(100);
+                    }
+                }
+                _spSwitch.Write("\n");
+                if (data != "\n")
+                    Console.WriteLine(data);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("Check the data to be send or serial connection.");
+            }
+        }
+
+        public void Flush()
+        {
+            _spSwitch.BaseStream.Flush();
+            _spSwitch.DiscardOutBuffer();
+            _spSwitch.DiscardInBuffer();
         }
     }
 }

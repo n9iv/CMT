@@ -27,6 +27,7 @@ namespace CMT.TswitchConfiguratorGUI
         private int _BN;
         private Process _switchProc;
         private Thread _ConfThread;
+        private bool _rstFlag = false;
 
         public UCconfigSwitch(int mn, int bn)
         {
@@ -37,20 +38,18 @@ namespace CMT.TswitchConfiguratorGUI
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
         {
+            _switchProc = new Process();
             ThreadStart start = new ThreadStart(WaitConfigurator);
             _ConfThread = new Thread(start);
-            _switchProc = new Process();
 
-            _switchProc.StartInfo.FileName = "T-SwitchConfigurator.exe";
-            _switchProc.StartInfo.Arguments = "s " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchSwitchScript.txt";
-            _switchProc.StartInfo.RedirectStandardInput = true;
-            _switchProc.StartInfo.RedirectStandardOutput = true;
-            _switchProc.StartInfo.RedirectStandardError = true;
-            _switchProc.StartInfo.UseShellExecute = false;
-            _switchProc.StartInfo.CreateNoWindow = true;
-            _switchProc.Start();
+            if (_rstFlag)
+                RunResetScript();
+            else
+            {
+                RunProc(false);
+                _tbPb.Text = "Applying new configuration";
+            }
             _ConfThread.Start();
-
             _btnConfig.IsEnabled = false;
             _tbPb.Visibility = System.Windows.Visibility.Visible;
             _pb.Visibility = System.Windows.Visibility.Visible;
@@ -65,7 +64,16 @@ namespace CMT.TswitchConfiguratorGUI
             int res = -1;
             string str;
             Brush b = Brushes.Red;
+            if (_rstFlag)
+            {
+                _switchProc.WaitForExit();
+                this.Dispatcher.Invoke((Action)(() =>
+             {
+                 _tbPb.Text = "Applying new configuration";
+             }));
+            }
 
+            RunProc(false);
             _switchProc.WaitForExit();
             res = _switchProc.ExitCode;
             _switchProc.Close();
@@ -90,6 +98,44 @@ namespace CMT.TswitchConfiguratorGUI
                 _tbPb.Visibility = System.Windows.Visibility.Hidden;
                 _pb.Visibility = System.Windows.Visibility.Hidden;
             }));
+        }
+
+        private void RunProc(bool flag)
+        {
+            this.Dispatcher.Invoke((Action)(() =>
+       {
+           _switchProc.StartInfo.FileName = "T-SwitchConfigurator.exe";
+           if (flag)
+               _switchProc.StartInfo.Arguments = "s r " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchSwitchScript.txt";
+           else
+               _switchProc.StartInfo.Arguments = "s " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchSwitchScript.txt";
+           _switchProc.StartInfo.RedirectStandardInput = true;
+           _switchProc.StartInfo.RedirectStandardOutput = true;
+           _switchProc.StartInfo.RedirectStandardError = true;
+           _switchProc.StartInfo.UseShellExecute = false;
+           _switchProc.StartInfo.CreateNoWindow = true;
+           _switchProc.Start();
+       }));
+        }
+
+        private void RunResetScript()
+        {
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                _tbPb.Text = "Reseting configuration";
+            }));
+
+            RunProc(_rstFlag);
+        }
+
+        private void _chkbReset_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _rstFlag = false;
+        }
+
+        private void _chkbReset_Checked(object sender, RoutedEventArgs e)
+        {
+            _rstFlag = true;
         }
     }
 }

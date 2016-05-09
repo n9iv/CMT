@@ -38,7 +38,7 @@ namespace C_SwitchConfigurator
 
             if (this.LogIn() == -1)
             {
-                Console.WriteLine("Login to C-Switch is failed");
+                Console.WriteLine("Login to C-Switch failed");
                 return -1;
             }
                 

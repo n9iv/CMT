@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configurator>
+  <Serial>
+    <PortName>COM3</PortName>
+  </Serial>
+  <Switch>
+    <Username>cisco</Username>
+    <Password>cisco</Password>
+  </Switch>
+</Configurator>

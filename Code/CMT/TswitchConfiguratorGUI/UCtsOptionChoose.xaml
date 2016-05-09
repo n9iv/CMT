@@ -10,31 +10,14 @@
             <TextBlock FontSize="40" HorizontalAlignment="Center" Margin="10">T-Switch Configurator<LineBreak/></TextBlock>
             <TextBlock FontSize="35">Choose one of the T-Switch configuration below:</TextBlock>
             <RadioButton Margin="10" Name="_rbaaa" Content="aaaaaa" FontSize="30" Checked="_rbaaa_Checked"/>
-            <RadioButton Margin="10" Name="_rbbbbb" Content="bbbbb" FontSize="30"/>
+            <RadioButton Margin="10" Name="_rbbbbb" Content="bbbbb" FontSize="30" Checked="_rbbbbb_Checked"/>
             <StackPanel Name="_sp" Orientation="Horizontal">
                 <TextBlock FontSize="20" Margin="10">MN:</TextBlock>
-                <TextBox Width="60" Height="25" Text="1" TextAlignment="Center" Margin="10,0,0,0"  Name="_tbMN" IsEnabled="False" TextChanged="_tbMN_TextChanged"/>
-                <StackPanel Name="_spBtnMN" Orientation="Vertical" VerticalAlignment="Center" IsEnabled="False">
-                    <Button x:FieldModifier="private" Name="_cmdUpMN" Height="auto" Width="auto" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="_cmdUpMN_Click">
-                        <Image Source="../Resources/UP.png" Width="20" Height="10" Stretch="Fill" />
-                    </Button>
-                    <Button x:FieldModifier="private"  Name="_cmdDownMN" Height="auto" Width="auto" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="_cmdDownMN_Click">
-                        <Image Source="../Resources/Down.png"  Width="20"  Height="10" Stretch="Fill" />
-                    </Button>
+                <ComboBox Width="60" Height="25" Text="1" Margin="10,0,0,0"  Name="_cbMN" IsEnabled="False" SelectionChanged="_cbMN_SelectionChanged"/>
 
-                </StackPanel>
                 <TextBlock FontSize="20" Margin="40,10,10,10">BN:</TextBlock>
-                <TextBox Width="60" Height="25" Text="1" TextAlignment="Center" Margin="10,0,0,0"  Name="_tbBN" IsEnabled="False" TextChanged="_tbBN_TextChanged"/>
-                <StackPanel Name="_spBtnBN" Orientation="Vertical" VerticalAlignment="Center" IsEnabled="False">
-                    <Button x:FieldModifier="private" Name="_cmdUpBN" Height="auto" Width="auto" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="_cmdUpBN_Click">
-                        <Image Source="../Resources/UP.png" Width="20" Height="10" Stretch="Fill" />
-                    </Button>
-                    <Button x:FieldModifier="private"  Name="_cmdDownBN" Height="auto" Width="auto" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="_cmdDownBN_Click">
-                        <Image Source="../Resources/Down.png" Width="20"  Height="10" Stretch="Fill" />
-                    </Button>
-
-                </StackPanel>
-            </StackPanel>
+            <ComboBox Width="60" Height="25" Text="1" Margin="10,0,0,0"  Name="_cbBN" IsEnabled="False" SelectionChanged="_cbBN_SelectionChanged"/>
+        </StackPanel>
         </StackPanel>
 
     </Grid>

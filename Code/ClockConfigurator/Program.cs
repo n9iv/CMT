@@ -67,6 +67,8 @@ namespace ClockConfigurator
                 return res;
             }
 
+            if (XMLparser.Parse() == -1)
+                return -1;
             config = new Configure(port, path);
             if (config.Init() == -1)
                 return -1;

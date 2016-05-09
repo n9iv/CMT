@@ -4,6 +4,6 @@
     <StartArguments>s 4 4 TswitchScript.txt</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>s 4 4 TswitchScript.txt</StartArguments>
+    <StartArguments>s 4 2 Scripts\T-Switch</StartArguments>
   </PropertyGroup>
 </Project>

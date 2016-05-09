@@ -142,7 +142,7 @@ namespace CMT
         {
             _typeList.Clear();
             _typeList.Add(typeof(UCclockConfigurator));
-            _typeList.Add(typeof(UCinstruction));
+           // _typeList.Add(typeof(UCinstruction));
             _typeList.Add(typeof(FinalWin));
         }
 
@@ -167,7 +167,7 @@ namespace CMT
         private void SetBNapp()
         {
             _typeList.Clear();
-            _typeList.Add(typeof(UCbnAppInstruction));
+            //_typeList.Add(typeof(UCbnAppInstruction));
             _typeList.Add(typeof(UCrunBNapp));
         }
     }
