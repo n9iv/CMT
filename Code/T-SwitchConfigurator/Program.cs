@@ -146,7 +146,7 @@ namespace T_SwitchConfigurator
                 return -1;
             }
 
-            if (XMLparser.Parse() == -1)
+            if (XMLparser.Parse(type) == -1)
                 return -1;
             sw = new Switch(port, MN, BN, path);
             switch (type)

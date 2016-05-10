@@ -33,32 +33,11 @@ namespace CMT.BN_App
             string str;
             Process BNappProc = new Process();
 
-            BNappProc.StartInfo.FileName = "ClockConfigurator.exe";
-            BNappProc.StartInfo.Arguments = "";
-            BNappProc.StartInfo.RedirectStandardInput = true;
-            BNappProc.StartInfo.RedirectStandardOutput = true;
-            BNappProc.StartInfo.RedirectStandardError = true;
-            BNappProc.StartInfo.UseShellExecute = false;
-            BNappProc.StartInfo.CreateNoWindow = true;
-            //BNappProc.Start();
-            //BNappProc.WaitForExit();
-            //res = BNappProc.ExitCode;
+            BNappProc.StartInfo.FileName = "run_bn-app.lnk";
+            BNappProc.Start();
+            BNappProc.WaitForExit();
 
-            //BNappProc.Close();
-
-            if (res != -1)
-            {
-                _tbConf.Foreground = Brushes.Green;
-                str = "BN-APP succeeded!";
-            }
-
-            else
-            {
-                str = "BN-APP failed!";
-                _tbConf.Foreground = Brushes.Red;
-            }
-
-            _tbConf.Text = str;
+            BNappProc.Close();
         }
     }
 }

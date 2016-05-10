@@ -10,3 +10,10 @@ C:\Users\Administrator\CMT\ClockConfigurator\bin\Debug\ClockConfigurator.pdb
 C:\Users\Administrator\CMT\ClockConfigurator\obj\Debug\ClockConfigurator.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\CMT\ClockConfigurator\obj\Debug\ClockConfigurator.exe
 C:\Users\Administrator\CMT\ClockConfigurator\obj\Debug\ClockConfigurator.pdb
+D:\CMT\ClockConfigurator\bin\Debug\Configurator.xml
+D:\CMT\ClockConfigurator\bin\Debug\ClockConfigurator.exe.config
+D:\CMT\ClockConfigurator\bin\Debug\ClockConfigurator.exe
+D:\CMT\ClockConfigurator\bin\Debug\ClockConfigurator.pdb
+D:\CMT\ClockConfigurator\obj\Debug\ClockConfigurator.csprojResolveAssemblyReference.cache
+D:\CMT\ClockConfigurator\obj\Debug\ClockConfigurator.exe
+D:\CMT\ClockConfigurator\obj\Debug\ClockConfigurator.pdb

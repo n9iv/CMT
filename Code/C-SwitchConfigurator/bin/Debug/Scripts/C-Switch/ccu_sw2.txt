@@ -1,0 +1,4 @@
+hostname test_sw2
+int vl 20
+ip address 194.0.BN.252 255.255.255.192
+end

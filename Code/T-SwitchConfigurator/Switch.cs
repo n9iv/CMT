@@ -20,13 +20,18 @@ namespace T_SwitchConfigurator
         {
             if (MN != 0)
             {
-                _val = MN;
                 _type = "MN";
+                _val = MN;
+                if (MN > 100)
+                {
+                    _val = 63 - (MN % 100);
+                }
             }
             if (BN != 0)
             {
-                _val = BN;
+                _val = 70 + BN;
                 _type = "BN";
+
             }
         }
 
@@ -34,11 +39,13 @@ namespace T_SwitchConfigurator
         {
             int res = 0;
 
-            if (base.LogIn() == -1)
+            if (base.Init() == -1)
                 return -1;
-            if (base.RunScript(_val,_type,false) < 0)
+            if (base.LogIn("s") == -1)
                 return -1;
-            if (base.SaveSettings() == false)
+            if (base.RunScript(_val, _type, false) < 0)
+                return -1;
+            if (base.SaveSettings() == -1)
                 return -1;
 
             return res;

@@ -58,7 +58,7 @@ namespace C_SwitchConfigurator
                     }
                     if (CheckValue(val) == -1)
                         return res;
-                    path = args[1];
+                    path = args[2];
                     break;
             }
 

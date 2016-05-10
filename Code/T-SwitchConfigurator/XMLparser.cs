@@ -11,7 +11,7 @@ namespace T_SwitchConfigurator
     {
         public static string portName;
         public static string switchUserName;
-        public static string switcPassword;
+        public static string switchPassword;
         private static string _xmlFileName = "Configurator.xml";
         private static XmlDocument _xmlDoc;
 
@@ -31,14 +31,18 @@ namespace T_SwitchConfigurator
             portName = portName.ToUpper();
         }
 
-        private static void ParseSwitch()
+        private static void ParseInfo(string type)
         {
-            XmlNodeList nodes = _xmlDoc.DocumentElement.SelectNodes("/Configurator/Switch");
+            string str = "Switch";
+
+            if (type == "r")
+                str = "Router";
+            XmlNodeList nodes = _xmlDoc.DocumentElement.SelectNodes("/Configurator/" + str);
 
             foreach (XmlNode node in nodes)
             {
                 switchUserName = node.SelectSingleNode("Username").InnerText;
-                switcPassword = node.SelectSingleNode("Password").InnerText;
+                switchPassword = node.SelectSingleNode("Password").InnerText;
             }
         }
 
@@ -57,12 +61,12 @@ namespace T_SwitchConfigurator
             return 0;
         }
 
-        public static int Parse()
+        public static int Parse(string type)
         {
             if (CreateXML() == -1)
                 return -1;
             ParseSerial();
-            ParseSwitch();
+            ParseInfo(type);
             return 0;
         }
     }

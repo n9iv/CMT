@@ -141,6 +141,7 @@ namespace C_SwitchConfigurator
             {
                 if (data != "\n")
                 {
+                    data = data.Replace("\n", "");
                     foreach (char ch in dataArray)
                     {
                         _spCswitch.Write(ch.ToString());
