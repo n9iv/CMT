@@ -10,3 +10,10 @@ C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\bin\Release\ClockConfigurator.pd
 C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\obj\Release\ClockConfigurator.csprojResolveAssemblyReference.cache
 C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\obj\Release\ClockConfigurator.exe
 C:\Users\arthurs\Git\CMT\Code\ClockConfigurator\obj\Release\ClockConfigurator.pdb
+D:\CMT\ClockConfigurator\bin\Release\Configurator.xml
+D:\CMT\ClockConfigurator\bin\Release\ClockConfigurator.exe.config
+D:\CMT\ClockConfigurator\bin\Release\ClockConfigurator.exe
+D:\CMT\ClockConfigurator\bin\Release\ClockConfigurator.pdb
+D:\CMT\ClockConfigurator\obj\Release\ClockConfigurator.csprojResolveAssemblyReference.cache
+D:\CMT\ClockConfigurator\obj\Release\ClockConfigurator.exe
+D:\CMT\ClockConfigurator\obj\Release\ClockConfigurator.pdb

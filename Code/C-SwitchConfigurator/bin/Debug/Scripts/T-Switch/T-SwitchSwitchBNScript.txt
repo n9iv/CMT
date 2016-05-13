@@ -1,0 +1,5 @@
+hostname techaya_port1
+int vlan 20
+ip address 194.0.BN.253 255.255.255.192
+descripion test
+end

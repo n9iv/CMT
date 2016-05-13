@@ -73,42 +73,6 @@ namespace T_SwitchConfigurator
             _spSwitch.Close();
         }
 
-        private int ParsePortFile()
-        {
-            string port, tmp;
-            int portNum;
-            bool isNumeric;
-            try
-            {
-                using (StreamReader fileRead = File.OpenText("SerialConfiguration.txt"))
-                {
-                    port = fileRead.ReadLine();
-                    tmp = port.Substring(0, 3);
-
-                    if ((tmp != "com") && (tmp != "COM") && (tmp != "Com"))
-                    {
-                        Console.WriteLine("Check syntex in file");
-                        return -1;
-                    }
-                    tmp = port.Substring(3);
-                    isNumeric = Int32.TryParse(tmp, out portNum);
-                    if (!isNumeric)
-                    {
-                        Console.WriteLine("Syntex error, after the word 'com' comes numeric value");
-                        return -1;
-                    }
-                }
-
-                _port = port.ToUpper();
-                return 1;
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("SerialConfiguration.txt does not exist");
-                return -1;
-            }
-        }
-
         public void ReadData(out String data, string token)
         {
             string tmp = null;
@@ -120,7 +84,8 @@ namespace T_SwitchConfigurator
                 tmp = tmp.Replace("\n", "");
                 if (token.Length > 0)
                     tmp = tmp.Replace(token, "");
-                Console.WriteLine(tmp);
+                if ((tmp != "") && (tmp != "\n"))
+                    Console.WriteLine(tmp + " - read");
             }
             catch (TimeoutException exp)
             {
@@ -145,7 +110,7 @@ namespace T_SwitchConfigurator
                 }
                 _spSwitch.Write("\n");
                 if (data != "\n")
-                    Console.WriteLine(data);
+                    Console.WriteLine(data + " - written");
             }
             catch (NullReferenceException ex)
             {

@@ -4,6 +4,6 @@
     <StartArguments>COM13 Scripts\C-SwitchScript</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>COM13 Scripts\C-SwitchScript.txt</StartArguments>
+    <StartArguments>COM4 1 Scripts\C-Switch\ccu_sw1.txt</StartArguments>
   </PropertyGroup>
 </Project>

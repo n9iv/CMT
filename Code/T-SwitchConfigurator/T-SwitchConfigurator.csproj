@@ -69,7 +69,7 @@
     <Compile Include="XMLparser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configurator.xml">

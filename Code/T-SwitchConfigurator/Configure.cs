@@ -16,116 +16,156 @@ namespace T_SwitchConfigurator
         private string _password;
         private SerialConfiguration _Tswitch;
         private string _switchIP;
+        private const int PACKLOSS = 3;
+        private const int TIMEINTERVAL = 100;
 
-        protected Configure(string port, string path) 
+        protected Configure(string port, string path)
         {
             _path = path;
             _Tswitch = new SerialConfiguration(port);
             _userName = XMLparser.switchUserName;
-            _password = XMLparser.switcPassword;
+            _password = XMLparser.switchPassword;
         }
 
         public int Init()
         {
-            int resVal;
-            resVal = _Tswitch.init();
+            if (_Tswitch.init() == -1)
+                return -1;
+            if (_Tswitch.Open() == -1)
+                return -1;
 
-            return resVal;
-
+            return 0;
         }
 
-        protected virtual int RunScript(int val,string type, bool router)
+        protected virtual int RunScript(int val, string type, bool router)
         {
             int resVal = 0;
             string line, rcv = null;
             string[] tokens;
             _path = GetFilePath(type, router);
             StreamReader script = File.OpenText(_path);
-
-            if (_Tswitch.Open() == -1)
-                return -1;
-
+            Console.WriteLine("\nStart run script:");
             while ((line = script.ReadLine()) != null)
             {
                 //configure
                 line = line.Replace(type, val.ToString());
-               _Tswitch.SendData(line);
-                Thread.Sleep(200);
-
+                _Tswitch.SendData(line);
+                Thread.Sleep(TIMEINTERVAL);
+                if (line.Contains("ip "))
+                {
+                    tokens = line.Split(' ');
+                    _switchIP = tokens[2];
+                }
                 //Check configured value
-                tokens = line.Split(' ');
-                _Tswitch.SendData(tokens[0]);
-                _Tswitch.ReadData(out rcv,"");
-         
+                //tokens = line.Split(' ');
+                //_Tswitch.SendData(tokens[0]);
+                //_Tswitch.ReadData(out rcv,"");
+
             }
             script.Close();
-            _Tswitch.Close();
             return resVal;
         }
 
-        protected int LogIn()
+        protected int LogIn(string type)
         {
+
             int isLogIn = 0;
-            string rcv;
+            string rcv, data;
+            Console.WriteLine("Login:");
 
             _Tswitch.Flush();
             _Tswitch.SendData("\n");
             Thread.Sleep(200);
+            //_Tswitch.SendData("\n");
+            //Thread.Sleep(200);
             _Tswitch.ReadData(out rcv, "");
-            if (rcv != "Username: ")
+            if (rcv != "User Name:")
                 return -1;
             _Tswitch.SendData(_userName);
             Thread.Sleep(200);
-            _Tswitch.ReadData(out rcv, _userName);
-            if (rcv != "Password: ")
+            data = _userName;
+            if (type == "r")
+            {
+                _Tswitch.ReadData(out rcv, "_userName");
+                if (rcv != "Password:")
+                    return -1;
+                _Tswitch.SendData(_password);
+                Thread.Sleep(200);
+                data = _password;
+            }
+            _Tswitch.ReadData(out rcv, data);
+            if (rcv.Contains("#") == false)
                 return -1;
-            _Tswitch.SendData(_password);
+            if (type == "r")
+            {
+                _Tswitch.SendData("en");
+                if (rcv != "Password:")
+                    return -1;
+                _Tswitch.SendData(_password);
+                Thread.Sleep(200);
+                data = _password;
+            }
+            _Tswitch.SendData("conf t");
             Thread.Sleep(200);
-            _Tswitch.ReadData(out rcv, "");
-            if (rcv != "Switch#")
+            _Tswitch.ReadData(out rcv, "conf t");
+            if (rcv.Contains("(config)#") == false)
                 return -1;
 
             return isLogIn;
         }
 
-        protected bool SaveSettings()
+        protected int SaveSettings()
         {
-            bool isSaved = false;
             string rcv;
-            UInt16 attempts = 0;
-
-            while ((attempts < 3) && (!isSaved))
+            Console.WriteLine("\nSave settings:");
+            _Tswitch.Flush();
+            _Tswitch.SendData("wr");
+            Thread.Sleep(TIMEINTERVAL);
+            _Tswitch.ReadData(out rcv, "");
+            if (rcv.Contains("?") == false)
+                return -1;
+            Thread.Sleep(TIMEINTERVAL);
+            _Tswitch.SendData("y");
+            Thread.Sleep(4000);
+            _Tswitch.ReadData(out rcv, "");
+            while (!rcv.Contains("#"))
             {
-                _Tswitch.SendData("WR");
-                _Tswitch.SendData("Y");
-                //_Tswitch.ReadData(out rcv);
-
-                //if (rcv == "Copy Succeded")
-                //    isSaved = true;
-
-                attempts++;
+                Thread.Sleep(TIMEINTERVAL);
+                _Tswitch.ReadData(out rcv, "");
             }
 
-            return isSaved;
+            return VerifyConfig();
         }
 
         protected int VerifyConfig()
         {
-            Ping p = new Ping();
-            PingReply pingState;
+            int packetsRcv;
+            string rcv;
+            string[] tokens;
 
-            pingState = p.Send(_switchIP);
+            _Tswitch.Flush();
+            _Tswitch.SendData("ping " + _switchIP);
+            Thread.Sleep(2000);
+            _Tswitch.ReadData(out rcv, "");
 
-            if (pingState.Status.ToString().Equals("Success"))
-                return 0;
-            return -1;
+            char[] sep = { ',', ' ' };
+            tokens = rcv.Split(sep);
+            int.TryParse(tokens[17], out packetsRcv);
+            Console.WriteLine("Received packets: {0}", packetsRcv);
+            if (packetsRcv < 4 - PACKLOSS)
+            {
+                Console.WriteLine("\nConfiguration failed");
+                return -1;
+            }
+            Console.WriteLine("\nConfiguration succeeded");
+            return 0;
         }
 
         private string GetFilePath(string type, bool router)
         {
             string scriptPath = _path;
 
-            switch(type)
+            switch (type)
             {
                 case "MN":
                     if (router)

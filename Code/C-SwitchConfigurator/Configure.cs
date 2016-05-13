@@ -49,84 +49,9 @@ namespace C_SwitchConfigurator
             while ((line = script.ReadLine()) != null)
             {
                 //configure
-
-                //if (isMFU)
-                //{
-                //    if (line == "[MFU]")
-                //        continue;
-                //    if (line == "[else]")
-                //        skip = true;
-                //}
-                //else
-                //{
-                //    if (line == "[MFU]")
-                //        skip = true;
-                //    if (line == "[else]")
-                //    {
-                //        skip = false;
-                //        continue;
-                //    }
-
-                //}
-                //if (line == "[end]")
-                //{
-                //    skip = false;
-                //    continue;
-                //}
-
-                //if (skip)
-                //    continue;
-
-                //if (!isMFU)
-                //{
-                //    line = line.Replace("{0}", (70 + val).ToString());
-                //}
-                //else
-                //{
-                //    line = line.Replace("{0}", val.ToString());
-                //}
-                //_cSwitch.SendData(line);
-                //// _clock.Flush();
-
-                ////Check configured value
-                //tokens = line.Split(' ');
-
-                //// if the line is RTR do not check the configuration
-                //if (tokens[0] == "RTR")
-                //{
-                //    _cSwitch.Flush();
-                //    continue;
-                //}
-
-                //_cSwitch.Flush();
-                //_cSwitch.SendData(tokens[0]);
-                //Thread.Sleep(200);
-                //_cSwitch.ReadData(out rcv, tokens[0]);
-                //if (!isMFU)
-                //{
-                //    rcv = rcv.Replace("0" + (70 + val).ToString(), (70 + val).ToString());
-                //    if (tokens.Length > 3)
-                //        line = tokens[0] + " " + tokens[1] + tokens[2] + tokens[3];
-                //}
-                //if (rcv != line)
-                //{
-                //    resVal = -1;
-                //    Console.WriteLine("{0}: configured value - {1}  received value - {2}", tokens[0], line, rcv);
-                //}
-                //else
-                //{
-                //    Console.WriteLine("value is properly configured.\n");
-
-                //}
                 line = line.Replace("BN", (70 + val).ToString());
                 _cSwitch.SendData(line);
-                _cSwitch.ReadData(out rcv, "");
-                if (line == "exit")
-                {
-                    Thread.Sleep(200);
-                    _cSwitch.SendData("\r\n");
-                    //_cSwitch.Flush();
-                }
+                Thread.Sleep(100);
             }
 
             script.Close();
@@ -140,20 +65,37 @@ namespace C_SwitchConfigurator
             string rcv;
 
             _cSwitch.Flush();
-            _cSwitch.SendData("\n");
-            Thread.Sleep(200);
+            _cSwitch.SendData("\r\n");
+            Thread.Sleep(500);
+            //_cSwitch.ReadData(out rcv, "");
+            //if (rcv != "Username: ")
+            //    return -1;
+            //_cSwitch.SendData(_userName);
+            //Thread.Sleep(200);
+            //_cSwitch.ReadData(out rcv, _userName);
+            //if (rcv != "Password: ")
+            //    return -1;
+            //_cSwitch.SendData(_password);
+            //Thread.Sleep(200);
+            //_cSwitch.ReadData(out rcv, "");
             _cSwitch.ReadData(out rcv, "");
-            if (rcv != "Username: ")
+            if (rcv.Contains(">") == false)
                 return -1;
-            _cSwitch.SendData(_userName);
+            _cSwitch.Flush();
+            _cSwitch.SendData("en");
             Thread.Sleep(200);
-            _cSwitch.ReadData(out rcv, _userName);
-            if (rcv != "Password: ")
+            _cSwitch.ReadData(out rcv, "en");
+            if (rcv.Contains("Password: ") == false)
                 return -1;
             _cSwitch.SendData(_password);
             Thread.Sleep(200);
             _cSwitch.ReadData(out rcv, "");
-            if (rcv != "Switch#")
+            if (rcv.Contains("#") == false)
+                return -1;
+            _cSwitch.SendData("conf t");
+            Thread.Sleep(200);
+            _cSwitch.ReadData(out rcv, "conf t");
+            if (rcv.Contains("(config)#") == false)
                 return -1;
 
             return isLogIn;
