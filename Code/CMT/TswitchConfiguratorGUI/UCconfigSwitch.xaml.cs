@@ -74,11 +74,12 @@ namespace CMT.TswitchConfiguratorGUI
             }
 
             RunProc(false);
+            Thread.Sleep(5000);
             _switchProc.WaitForExit();
             res = _switchProc.ExitCode;
             _switchProc.Close();
 
-            if (res != -1)
+            if (res == (int)ErrorCodes.Success)
             {
                 b = Brushes.Green;
                 str = "Configuration succeeded!";
@@ -86,7 +87,7 @@ namespace CMT.TswitchConfiguratorGUI
 
             else
             {
-                str = "Configuration failed!";
+                str = Configurator.GetErrorMsg((ErrorCodes)res);
                 b = Brushes.Red;
             }
             this.Dispatcher.Invoke((Action)(() =>
@@ -106,9 +107,9 @@ namespace CMT.TswitchConfiguratorGUI
        {
            _switchProc.StartInfo.FileName = "T-SwitchConfigurator.exe";
            if (flag)
-               _switchProc.StartInfo.Arguments = "s r " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchSwitchScript.txt";
+               _switchProc.StartInfo.Arguments = "reset s " + _MN.ToString() + " " + _BN.ToString() + @" T-SwitchConfigurator\Scripts";
            else
-               _switchProc.StartInfo.Arguments = "s " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchSwitchScript.txt";
+               _switchProc.StartInfo.Arguments = "s " + _MN.ToString() + " " + _BN.ToString() + @" T-SwitchConfigurator\Scripts";
            _switchProc.StartInfo.RedirectStandardInput = true;
            _switchProc.StartInfo.RedirectStandardOutput = true;
            _switchProc.StartInfo.RedirectStandardError = true;

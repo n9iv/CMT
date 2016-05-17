@@ -10,12 +10,25 @@ namespace ClockConfigurator
 {
     class Configure
     {
+        public enum ErrorCodes
+        {
+            Success = 0,
+            Failed = -1,
+            SPConnectionFailed = -2,
+            ReadSerialFailed = -3,
+            WritreSerialFailed = -4,
+            ConfigurationFailed = -5,
+            XMLPortNameMissing = -6,
+            XMLFileMissing = -7
+        };
+
         private string _path;
+        private string _scriptPath = @"\ClockScript.txt";
         private SerialConfiguration _clock;
 
         public Configure(string port, string path)
         {
-            _path = path;
+            _path = path + _scriptPath;
             _clock = new SerialConfiguration(port);
         }
 
@@ -29,10 +42,11 @@ namespace ClockConfigurator
             int resVal = 0;
             bool isMFU = true, skip = false;
             StreamReader script = File.OpenText(_path);
+            Configure.ErrorCodes ret;
             string line, rcv = null;
             string[] tokens;
-            if (_clock.Open() == -1)
-                return -1;
+            if ((ret = _clock.Open()) != Configure.ErrorCodes.Success)
+                return (int)ret;
             if (val > 0)
             {
                 isMFU = false;
@@ -76,7 +90,11 @@ namespace ClockConfigurator
                 {
                     line = line.Replace("{0}", val.ToString());
                 }
-                _clock.SendData(line);
+                if (_clock.SendData(line) != Configure.ErrorCodes.Success)
+                {
+                    resVal = (int)Configure.ErrorCodes.WritreSerialFailed;
+                    break;
+                }
                 // _clock.Flush();
 
                 //Check configured value
@@ -90,9 +108,17 @@ namespace ClockConfigurator
                 }
 
                 _clock.Flush();
-                _clock.SendData(tokens[0]);
+                if (_clock.SendData(tokens[0]) != Configure.ErrorCodes.Success)
+                {
+                    resVal = (int)Configure.ErrorCodes.WritreSerialFailed;
+                    break;
+                }
                 Thread.Sleep(200);
-                _clock.ReadData(out rcv, tokens[0]);
+                if (_clock.ReadData(out rcv, tokens[0]) != Configure.ErrorCodes.Success)
+                {
+                    resVal = (int)Configure.ErrorCodes.ReadSerialFailed;
+                    break;
+                }
                 if (!isMFU)
                 {
                     rcv = rcv.Replace("0" + (70 + val).ToString(), (70 + val).ToString());
@@ -101,12 +127,13 @@ namespace ClockConfigurator
                 }
                 if (rcv != line)
                 {
-                    resVal = -1;
-                    Console.WriteLine("{0}: configured value - {1}  received value - {2}", tokens[0], line, rcv);
+                    resVal = (int)Configure.ErrorCodes.ConfigurationFailed;
+                    Log.Write(tokens[0] + ": configured value - " + line +"  received value - " + rcv);
+                    break;
                 }
                 else
                 {
-                    Console.WriteLine("value is properly configured.\n");
+                    Log.Write("value is properly configured.\n");
 
                 }
             }

@@ -107,6 +107,7 @@
     <Compile Include="ClockConfiguratorGUI\UCclockConfigurator.xaml.cs">
       <DependentUpon>UCclockConfigurator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Configurator.cs" />
     <Compile Include="CswitchConfiguratorGUI\UCconfigCSwitch.xaml.cs">
       <DependentUpon>UCconfigCSwitch.xaml</DependentUpon>
     </Compile>
@@ -116,6 +117,7 @@
     <Compile Include="CswitchConfiguratorGUI\UCcSwitchInstruction.xaml.cs">
       <DependentUpon>UCcSwitchInstruction.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Navigate.cs" />
     <Compile Include="TswitchConfiguratorGUI\UCconfigRouter.xaml.cs">
       <DependentUpon>UCconfigRouter.xaml</DependentUpon>
     </Compile>

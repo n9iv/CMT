@@ -25,12 +25,17 @@ namespace CMT.CswitchConfiguratorGUI
         private Process _cSwitchProc;
         private Thread _ConfThread;
         private int _val;
+        private string _type;
+        private bool _rstFlag = false;
 
-        public UCconfigCSwitch(int val)
+        public UCconfigCSwitch(int type, int val)
         {
             InitializeComponent();
             _val = val;
-            UCstruct.isNxtEnabled = false;
+            if (type == 0)
+                _type = "r";
+            else
+                _type = "m";
         }
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
@@ -39,14 +44,13 @@ namespace CMT.CswitchConfiguratorGUI
             _ConfThread = new Thread(start);
             _cSwitchProc = new Process();
 
-            _cSwitchProc.StartInfo.FileName = "C-SwitchConfigurator.exe";
-            _cSwitchProc.StartInfo.Arguments = _val.ToString() + " Scripts\\C-SwitchScript.txt";
-            _cSwitchProc.StartInfo.RedirectStandardInput = true;
-            _cSwitchProc.StartInfo.RedirectStandardOutput = true;
-            _cSwitchProc.StartInfo.RedirectStandardError = true;
-            _cSwitchProc.StartInfo.UseShellExecute = false;
-            _cSwitchProc.StartInfo.CreateNoWindow = true;
-            _cSwitchProc.Start();
+            if (_rstFlag)
+                RunResetScript();
+            else
+            {
+                RunProc(false);
+                _tbPb.Text = "Applying new configuration";
+            }
             _ConfThread.Start();
 
             _btnConfig.IsEnabled = false;
@@ -63,12 +67,21 @@ namespace CMT.CswitchConfiguratorGUI
             int res = -1;
             string str;
             Brush b = Brushes.Red;
+            if (_rstFlag)
+            {
+                _cSwitchProc.WaitForExit();
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    _tbPb.Text = "Applying new configuration";
+                }));
+            }
 
+            RunProc(false);
             _cSwitchProc.WaitForExit();
             res = _cSwitchProc.ExitCode;
             _cSwitchProc.Close();
 
-            if (res != -1)
+            if (res == (int)ErrorCodes.Success)
             {
                 b = Brushes.Green;
                 str = "Configuration succeeded!";
@@ -76,7 +89,7 @@ namespace CMT.CswitchConfiguratorGUI
 
             else
             {
-                str = "Configuration failed!";
+                str = Configurator.GetErrorMsg((ErrorCodes)res);
                 b = Brushes.Red;
             }
             this.Dispatcher.Invoke((Action)(() =>
@@ -88,6 +101,44 @@ namespace CMT.CswitchConfiguratorGUI
                 _tbPb.Visibility = System.Windows.Visibility.Hidden;
                 _pb.Visibility = System.Windows.Visibility.Hidden;
             }));
+        }
+
+        private void RunProc(bool flag)
+        {
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                _cSwitchProc.StartInfo.FileName = "C-SwitchConfigurator.exe";
+                if (flag)
+                    _cSwitchProc.StartInfo.Arguments = "reset " + _type.ToString() + " " + _val.ToString() + @" C-SwitchConfigurator\Scripts\";
+                else
+                    _cSwitchProc.StartInfo.Arguments = _type.ToString() + " " + _val.ToString() + @" C-SwitchConfigurator\Scripts\";
+                _cSwitchProc.StartInfo.RedirectStandardInput = true;
+                _cSwitchProc.StartInfo.RedirectStandardOutput = true;
+                _cSwitchProc.StartInfo.RedirectStandardError = true;
+                _cSwitchProc.StartInfo.UseShellExecute = false;
+                _cSwitchProc.StartInfo.CreateNoWindow = true;
+                _cSwitchProc.Start();
+            }));
+        }
+
+        private void RunResetScript()
+        {
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                _tbPb.Text = "Reseting configuration";
+            }));
+
+            RunProc(_rstFlag);
+        }
+
+        private void _chkbReset_Checked(object sender, RoutedEventArgs e)
+        {
+            _rstFlag = true;
+        }
+
+        private void _chkbReset_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _rstFlag = false;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace CMT.TswitchConfiguratorGUI
     /// </summary>
     public partial class USswitchInstruction : UserControl
     {
-        private string _fileName = "SwitchInstructions.html";
+        private string _fileName = "TSwitchInstructions.html";
         public USswitchInstruction(int mn, int bn)
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace CMT.TswitchConfiguratorGUI
         {
             var process = Process.GetCurrentProcess(); // Or whatever method you are using
             string fullPath = process.MainModule.FileName;
-            string fileName = "Instructions\\" + _fileName;
+            string fileName = "T-SwitchConfigurator\\Instructions\\" + _fileName;
             fullPath = fullPath.Replace("CMT.exe", fileName);
             if (!File.Exists(fullPath))
             {

@@ -34,7 +34,6 @@ namespace CMT.TswitchConfiguratorGUI
             InitializeComponent();
             _MN = mn;
             _BN = bn;
-            UCstruct.isNxtEnabled = false;
         }
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
@@ -80,7 +79,7 @@ namespace CMT.TswitchConfiguratorGUI
             res = _routerProc.ExitCode;
             _routerProc.Close();
 
-            if (res != -1)
+            if (res == (int)ErrorCodes.Success)
             {
                 b = Brushes.Green;
                 str = "Configuration succeeded!";
@@ -88,7 +87,7 @@ namespace CMT.TswitchConfiguratorGUI
 
             else
             {
-                str = "Configuration failed!";
+                str = Configurator.GetErrorMsg((ErrorCodes)res);
                 b = Brushes.Red;
             }
             this.Dispatcher.Invoke((Action)(() =>
@@ -108,9 +107,9 @@ namespace CMT.TswitchConfiguratorGUI
             {
                 _routerProc.StartInfo.FileName = "T-SwitchConfigurator.exe";
                 if (flag)
-                    _routerProc.StartInfo.Arguments = "r r " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchRouterScript.txt";
+                    _routerProc.StartInfo.Arguments = "reset r " + _MN.ToString() + " " + _BN.ToString() + @" T-SwitchConfigurator\Scripts";
                 else
-                    _routerProc.StartInfo.Arguments = "r " + _MN.ToString() + " " + _BN.ToString() + " Scripts\\T-SwitchRouterScript.txt";
+                    _routerProc.StartInfo.Arguments = "r " + _MN.ToString() + " " + _BN.ToString() + @" T-SwitchConfigurator\Scripts";
                 _routerProc.StartInfo.RedirectStandardInput = true;
                 _routerProc.StartInfo.RedirectStandardOutput = true;
                 _routerProc.StartInfo.RedirectStandardError = true;

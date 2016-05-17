@@ -21,76 +21,39 @@ namespace CMT
     /// </summary>
     public partial class UCclockConfigurator : UserControl
     {
-        private Int16 _val;
+        private int _val;
+        private string[] _batteryValues = { "1", "2", "3" };
 
         public UCclockConfigurator()
         {
             InitializeComponent();
-        }
-
-        private void _cmdUp_Click(object sender, RoutedEventArgs e)
-        {
-            int val = Int32.Parse(_tbBatVal.Text);
-            if (val < 3)
-                val += 1;
-            _tbBatVal.Text = val.ToString();
-        }
-
-        private void _cmdDown_Click(object sender, RoutedEventArgs e)
-        {
-            int val = Int32.Parse(_tbBatVal.Text);
-            if (val > 1)
-                val -= 1;
-            _tbBatVal.Text = val.ToString();
+            _cbBatVal.ItemsSource = _batteryValues;
         }
 
         private void _rbCCU_Checked(object sender, RoutedEventArgs e)
         {
-            _spBtn.IsEnabled = true;
-            _tbBatVal.IsEnabled = true;
-            _val = Int16.Parse(_tbBatVal.Text);
-            MainWindow.val[0] = _val;
-            EnableNext();
+            _sp.Visibility = System.Windows.Visibility.Visible;
+            if(_cbBatVal.SelectedItem == null)
+            {
+                Navigate.SetNextEnable(this, false);
+            }
+
         }
 
         private void _rbMFU_Checked(object sender, RoutedEventArgs e)
         {
-            if ((_tbBatVal != null) && (_spBtn != null))
-            {
-                _tbBatVal.IsEnabled = false;
-                _spBtn.IsEnabled = false;
-            }
+            _sp.Visibility = System.Windows.Visibility.Hidden;
             _val = 0;
             MainWindow.val[0] = _val;
-            EnableNext();
+            Navigate.SetNextEnable(this, true);
         }
 
-        private void EnableNext()
+        private void _cbBatVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Window win = Application.Current.Windows[0];
-            MainWindow main = (MainWindow)win;
-            main._btnNext.IsEnabled = true;
-        }
-
-        private void _tbBatVal_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if ((Int16.Parse(_tbBatVal.Text) < 1) || (Int16.Parse(_tbBatVal.Text) > 3))
-                {
-                    MessageBox.Show("Invalid value. The value should be between 1-3", "Invalid Argument", MessageBoxButton.OK);
-                    _tbBatVal.Text = "1";
-                    return;
-                }
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("The value is not in correct format", "Invalid Argument", MessageBoxButton.OK);
-                _tbBatVal.Text = "1";
-                return;
-            }
-            _val = Int16.Parse(_tbBatVal.Text);
+            string selectedVal = (string)_cbBatVal.SelectedItem.ToString();
+            int.TryParse(selectedVal, out _val);
             MainWindow.val[0] = _val;
+            Navigate.SetNextEnable(this, true);
         }
     }
 }

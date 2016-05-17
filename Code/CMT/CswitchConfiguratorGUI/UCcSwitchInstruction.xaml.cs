@@ -26,11 +26,12 @@ namespace CMT.CswitchConfiguratorGUI
         private string _fileName = "C-SwitchInstructions.html";
         private string _fileName1 = "C-SwitchInstructions.htm";
 
-        public UCcSwitchInstruction(int val)
+        public UCcSwitchInstruction(int type, int val)
         {
             InitializeComponent();
             _val = val;
-            MainWindow.val[0] = _val;
+            MainWindow.val[0] = type;
+            MainWindow.val[1] = _val;
         }
 
          private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -55,7 +56,7 @@ namespace CMT.CswitchConfiguratorGUI
         {
             var process = Process.GetCurrentProcess(); // Or whatever method you are using
             string fullPath = process.MainModule.FileName;
-            string fileName = "Instructions\\" + name;
+            string fileName = "C-SwitchConfigurator\\Instructions\\" + name;
             fullPath = fullPath.Replace("CMT.exe", fileName);
             return fullPath;
         }

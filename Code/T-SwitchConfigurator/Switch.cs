@@ -37,17 +37,21 @@ namespace T_SwitchConfigurator
 
         public int SwitchConfig()
         {
-            int res = 0;
+            int res = (int)ErrorCodes.Success;
 
-            if (base.Init() == -1)
-                return -1;
-            if (base.LogIn("s") == -1)
-                return -1;
-            if (base.RunScript(_val, _type, false) < 0)
-                return -1;
-            if (base.SaveSettings() == -1)
-                return -1;
-
+            if ((res = base.Init()) != (int)ErrorCodes.Success)
+                return res;
+            while (true)
+            {
+                if ((res = base.LogIn("s")) != (int)ErrorCodes.Success)
+                    break;
+                if ((res = base.RunScript(_val, _type, false)) != (int)ErrorCodes.Success)
+                    break;
+                if ((res = base.SaveSettings()) != (int)ErrorCodes.Success)
+                    break;
+                break;
+            }
+            Tswitch.Close();
             return res;
         }
 

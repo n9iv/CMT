@@ -36,18 +36,18 @@ namespace CMT.TswitchConfiguratorGUI
         {
             if ((_cbMN != null) && (_cbBN != null))
             {
-                _cbMN.IsEnabled = true;
-                _cbBN.IsEnabled = false;
+                _spMN.Visibility = System.Windows.Visibility.Visible;
+                _spBN.Visibility = System.Windows.Visibility.Hidden;
                 MainWindow.val[1] = 0;
             }
 
             if (_cbMN.SelectedItem == null)
             {
-                EnableNext(false);
+                Navigate.SetNextEnable(this,false);
             }
             else
             {
-                EnableNext(true);
+                Navigate.SetNextEnable(this,true);
                 int.TryParse((string)_cbMN.SelectedItem, out MainWindow.val[0]);
             }
         }
@@ -56,33 +56,20 @@ namespace CMT.TswitchConfiguratorGUI
         {
             if ((_cbMN != null) && (_cbBN != null))
             {
-                _cbMN.IsEnabled = false;
-                _cbBN.IsEnabled = true;
+                _spMN.Visibility = System.Windows.Visibility.Hidden;
+                _spBN.Visibility = System.Windows.Visibility.Visible;
                 MainWindow.val[0] = 0;
             }
 
             if (_cbBN.SelectedItem == null)
             {
-                EnableNext(false);
+                Navigate.SetNextEnable(this, false);
             }
             else
             {
-                EnableNext(true);
+                Navigate.SetNextEnable(this, true);
                 int.TryParse((string)_cbBN.SelectedItem, out MainWindow.val[1]);
             }
-        }
-
-        private void EnableNext(bool enable)
-        {
-            Window win = Application.Current.Windows[0];
-            MainWindow main = (MainWindow)win;
-            main._btnNext.IsEnabled = enable;
-        }
-
-        public void Next()
-        {
-            UCstruct.usNext = new UCconfigSwitch(_MN, _BN);
-            UCstruct.isNxtEnabled = true;
         }
 
         private void _cbMN_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,7 +79,7 @@ namespace CMT.TswitchConfiguratorGUI
                 string s = (string)_cbMN.SelectedItem.ToString();
                 int.TryParse(s, out _MN);
                 MainWindow.val[0] = _MN;
-                EnableNext(true);
+                Navigate.SetNextEnable(this, true);
             }
         }
 
@@ -103,7 +90,7 @@ namespace CMT.TswitchConfiguratorGUI
                 string s = (string)_cbBN.SelectedItem.ToString();
                 int.TryParse(s, out _BN);
                 MainWindow.val[1] = _BN;
-                EnableNext(true);
+                Navigate.SetNextEnable(this, true);
             }
         }
     }

@@ -24,7 +24,6 @@ namespace CMT.BN_App
         public UCrunBNapp()
         {
             InitializeComponent();
-            UCstruct.isNxtEnabled = false;
         }
 
         private void _btnRun_Click(object sender, RoutedEventArgs e)

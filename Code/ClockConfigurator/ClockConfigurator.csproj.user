@@ -7,7 +7,7 @@
     </StartProgram>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>COM3 1 Scripts\ClockScript.txt</StartArguments>
+    <StartArguments>2 ClockConfigurator\Scripts</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <StartArguments>COM3 4 C:\\Users\\arthurs\\Desktop\\\\ClockScript.txt</StartArguments>

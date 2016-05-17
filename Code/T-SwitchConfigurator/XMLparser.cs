@@ -12,7 +12,7 @@ namespace T_SwitchConfigurator
         public static string portName;
         public static string switchUserName;
         public static string switchPassword;
-        private static string _xmlFileName = "Configurator.xml";
+        private static string _xmlFileName = @"T-SwitchConfigurator\T-SwitchConfigurator.xml";
         private static XmlDocument _xmlDoc;
 
         static XMLparser()
@@ -46,6 +46,19 @@ namespace T_SwitchConfigurator
             }
         }
 
+        private static void ParseLog()
+        {
+            XmlNodeList nodes = _xmlDoc.DocumentElement.SelectNodes("/Configurator/Log");
+
+            foreach (XmlNode node in nodes)
+            {
+                int num;
+
+                int.TryParse(node.SelectSingleNode("NumLogsToSave").InnerText, out num);
+                Log.noLogToSave = num;
+            }
+        }
+
         private static int CreateXML()
         {
             try
@@ -55,19 +68,20 @@ namespace T_SwitchConfigurator
             catch (System.IO.FileNotFoundException)
             {
                 Console.WriteLine("Configurator.xml file does not exist");
-                return -1;
+                return (int)ErrorCodes.XMLFileMissing;
             }
 
-            return 0;
+            return (int)ErrorCodes.Success;
         }
 
         public static int Parse(string type)
         {
-            if (CreateXML() == -1)
-                return -1;
+            if (CreateXML() != (int)ErrorCodes.Success)
+                return (int)ErrorCodes.XMLFileMissing;
             ParseSerial();
             ParseInfo(type);
-            return 0;
+            ParseLog();
+            return (int)ErrorCodes.Success;
         }
     }
 }

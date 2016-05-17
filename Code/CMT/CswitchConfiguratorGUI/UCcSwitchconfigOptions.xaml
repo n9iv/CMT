@@ -7,19 +7,14 @@
              d:DesignHeight="1700" d:DesignWidth="1700">
     <Grid>
         <StackPanel Margin="10" Width="1000">
-            <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="10">C-Switch Configurator<LineBreak/></TextBlock>
-            <TextBlock FontSize="25">Select BN value:</TextBlock>
-            <StackPanel Name="_sp" Orientation="Horizontal">
-                <TextBlock FontSize="20" Margin="10">BN:</TextBlock>
-                <TextBox Width="60" Height="25" Text="1" TextAlignment="Center" Margin="10,0,0,0"  Name="_tbBN" TextChanged="_tbBN_TextChanged" />
-                <StackPanel Name="_spBtn" Orientation="Vertical" VerticalAlignment="Center" >
-                    <Button x:FieldModifier="private" Name="_cmdUp" Height="auto" Width="auto" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="_cmdUp_Click">
-                        <Image Source="../Resources/UP.png"  Width="20" Height="10" Stretch="Fill" />
-                    </Button>
-                    <Button x:FieldModifier="private"  Name="_cmdDown" Height="auto" Width="auto" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="_cmdDown_Click">
-                        <Image Source="../Resources/Down.png"  Width="20"  Height="10" Stretch="Fill" />
-                    </Button>
-
+            <TextBlock FontSize="40" HorizontalAlignment="Center" Margin="10">C-Switch Configurator<LineBreak/></TextBlock>
+            <TextBlock FontSize="35">Choose one of the C-Switch configuration below:</TextBlock>
+            <StackPanel Margin="10" Orientation="Vertical">
+                <RadioButton Name="_rbMain" FontSize="30" Margin="0,10,10,10" Checked="_rbMain_Checked">Main</RadioButton>
+                <RadioButton Name="_rbRed" FontSize="30" Margin="0,10,10,10" Checked="_rbRed_Checked">Redundancy</RadioButton>
+                <StackPanel Name="_sp" Margin="10" Visibility="Hidden" Orientation="Horizontal">
+                    <TextBlock FontSize="20">Select BN value:</TextBlock>
+                    <ComboBox Width="60" Height="25" Text="1"  Margin="10,0,0,0" Name="_cbBN" SelectionChanged="_cbBN_SelectionChanged" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
