@@ -1,0 +1,3 @@
+10:31:03:	T-SwitchConfigurator.vshost.exe s 3 0 T-SwitchConfigurator\Scripts
+
+10:31:03:	Serial port Gets invalid parameters

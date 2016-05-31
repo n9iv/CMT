@@ -7,4 +7,10 @@
     <Username>cisco</Username>
     <Password>cisco</Password>
   </Switch>
+<<<<<<< HEAD
+=======
+  <Log>
+    <NumLogsToSave>10</NumLogsToSave>
+  </Log>
+>>>>>>> origin/master
 </Configurator>

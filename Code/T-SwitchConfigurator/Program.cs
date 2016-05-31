@@ -147,7 +147,10 @@ namespace T_SwitchConfigurator
                 return Close((int)ErrorCodes.Failed);
             }
 
+<<<<<<< HEAD
             XMLparser.ParseInfo(type);
+=======
+>>>>>>> origin/master
             sw = new Switch(port, MN, BN, path);
             switch (type)
             {

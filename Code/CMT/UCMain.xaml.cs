@@ -105,7 +105,11 @@ namespace CMT
             var proc = Process.GetCurrentProcess();
             string path = proc.MainModule.FileName;
             string fdPath;
+<<<<<<< HEAD
             if (str.Contains("BNET") == true)
+=======
+            if (str.Contains("BN-APP") == true)
+>>>>>>> origin/master
                 fdPath = @"BN-APP\";
             else
                 fdPath = str.Replace(" ", "") + @"\";

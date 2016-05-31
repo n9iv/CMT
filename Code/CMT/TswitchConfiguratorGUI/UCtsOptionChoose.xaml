@@ -10,20 +10,36 @@
             <TextBlock FontSize="40" HorizontalAlignment="Center" Margin="10">T-Switch Configurator<LineBreak/></TextBlock>
             <TextBlock FontSize="35">Choose one of the T-Switch configuration below:</TextBlock>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10" >
+<<<<<<< HEAD
                 <RadioButton Name="_rbMFU" Checked="_rbMFU_Checked">
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <TextBlock Text="MFU" FontSize="30"></TextBlock>
                         <StackPanel  Name="_spMN" Orientation="Horizontal" Margin="40,0,0,0" Visibility="Hidden">
                             <TextBlock FontSize="20" Height="25">MFU ID:</TextBlock>
+=======
+                <RadioButton Name="_rbaaa" Checked="_rbaaa_Checked">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="aaaaaa" FontSize="30"></TextBlock>
+                        <StackPanel  Name="_spMN" Orientation="Horizontal" Margin="40,0,0,0" Visibility="Hidden">
+                            <TextBlock FontSize="20" Height="25">MN:</TextBlock>
+>>>>>>> origin/master
                             <ComboBox Width="60" Height="25" Text="1" Margin="10,0,0,0" Name="_cbMN"  SelectionChanged="_cbMN_SelectionChanged"/>
                         </StackPanel>
                     </StackPanel>
                 </RadioButton>
+<<<<<<< HEAD
                 <RadioButton Name="_rbCCU" Checked="_rbCCU_Checked">
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <TextBlock Text="CCU" FontSize="30"></TextBlock>
                         <StackPanel Name="_spBN" Orientation="Horizontal" Margin="40,0,0,0" Visibility="Hidden">
                             <TextBlock FontSize="20" Height="25">Battery Number:</TextBlock>
+=======
+                <RadioButton Name="_rbbbbb" Checked="_rbbbbb_Checked">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="bbbbb" FontSize="30"></TextBlock>
+                        <StackPanel Name="_spBN" Orientation="Horizontal" Margin="40,0,0,0" Visibility="Hidden">
+                            <TextBlock FontSize="20" Height="25">BN:</TextBlock>
+>>>>>>> origin/master
                             <ComboBox Width="60" Height="25" Text="1" Margin="10,0,0,0" Name="_cbBN" SelectionChanged="_cbBN_SelectionChanged"/>
                         </StackPanel>
                     </StackPanel>

@@ -32,8 +32,11 @@ namespace C_SwitchConfigurator
         private string _mainPath = @"\ccu_sw1.txt";
         private string _redundancyPath = @"\ccu_sw2.txt";
         private string _resetPath;
+<<<<<<< HEAD
         private const string _userNameRep = "USER_NAME";
         private const string _passRep = "USER_PASS";
+=======
+>>>>>>> origin/master
 
         public Configure(string port, string path, bool isMain)
         {
@@ -71,8 +74,11 @@ namespace C_SwitchConfigurator
             {
                 //configure
                 line = line.Replace("BN", (70 + val).ToString());
+<<<<<<< HEAD
                 line = line.Replace(_userNameRep, _userName);
                 line = line.Replace(_passRep, _password);
+=======
+>>>>>>> origin/master
                 if (_cSwitch.SendData(line) != ErrorCodes.WritreSerialFailed)
                 {
                     resVal = (int)ErrorCodes.WritreSerialFailed;

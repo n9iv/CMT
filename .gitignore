@@ -1,6 +1,8 @@
 # VS files
 *.obj
 *.xps
+*.pdb
+*.exe
 
 # Windows image file caches
 Thumbs.db
