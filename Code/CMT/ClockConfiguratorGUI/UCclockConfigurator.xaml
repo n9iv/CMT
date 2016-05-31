@@ -11,18 +11,9 @@
             <TextBlock FontSize="30">Choose one of the clock configuration below:</TextBlock>
             <RadioButton Margin="10" x:Name="_rbMFU" Content="MFU" FontSize="25" Checked="_rbMFU_Checked"/>
             <RadioButton Margin="10" Name="_rbCCU" Content="CCU" FontSize="25" Checked="_rbCCU_Checked"/>
-            <StackPanel Name="_sp" Orientation="Horizontal">
-                <TextBlock FontSize="20" Margin="10">Insert battery value:</TextBlock>
-                <TextBox Width="60" Height="25" Text="1" TextAlignment="Center" Margin="10,0,0,0"  Name="_tbBatVal" IsEnabled="False" TextChanged="_tbBatVal_TextChanged"/>
-                <StackPanel Name="_spBtn" Orientation="Vertical" VerticalAlignment="Center" IsEnabled="False">
-                    <Button x:FieldModifier="private" Name="_cmdUp" Height="auto" Width="auto" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="_cmdUp_Click">
-                        <Image Source="../Resources/UP.png"  Width="20" Height="10" Stretch="Fill" />
-                    </Button>
-                    <Button x:FieldModifier="private"  Name="_cmdDown" Height="auto" Width="auto" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="_cmdDown_Click">
-                        <Image Source="../Resources/Down.png"  Width="20"  Height="10" Stretch="Fill" />
-                    </Button>
-
-                </StackPanel>
+            <StackPanel Name="_sp" Orientation="Horizontal" Visibility="Hidden">
+                <TextBlock FontSize="20" Margin="10">Choose battery value:</TextBlock>
+                <ComboBox Width="60" Height="25" Text="1" Margin="10,0,0,0"  Name="_cbBatVal" SelectionChanged="_cbBatVal_SelectionChanged"/>
             </StackPanel>
         </StackPanel>
 

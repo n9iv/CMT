@@ -4,12 +4,12 @@
     <StartArguments>s 2 0 Scripts\T-Switch</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>s 4 2 Scripts\T-Switch</StartArguments>
+    <StartArguments>s 3 0 T-SwitchConfigurator\Scripts</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartArguments>s 2 0 Scripts\T-Switch</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <StartArguments>s 2 0 Scripts\T-Switch</StartArguments>
+    <StartArguments>reset s 2 0 T-SwitchConfigurator\Scripts</StartArguments>
   </PropertyGroup>
 </Project>

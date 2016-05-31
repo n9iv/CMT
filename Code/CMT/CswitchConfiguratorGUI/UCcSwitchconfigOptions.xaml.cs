@@ -21,51 +21,38 @@ namespace CMT.CswitchConfiguratorGUI
     public partial class UCcSwitchconfigOptions : UserControl
     {
         private int _val;
+        private const int REDUNDANCY = 0;
+        private const int MAIN = 1;
+        private string[] _BNarray = { "1", "2", "3" };
 
         public UCcSwitchconfigOptions()
         {
             InitializeComponent();
+            _cbBN.ItemsSource = _BNarray;
 
         }
 
-        private void _tbBN_TextChanged(object sender, TextChangedEventArgs e)
+        private void _rbMain_Checked(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if ((Int16.Parse(_tbBN.Text) < 1) || (Int16.Parse(_tbBN.Text) > 3))
-                {
-                    MessageBox.Show("Invalid value. The BN value should be between 1-3", "Invalid Argument", MessageBoxButton.OK);
-                    _tbBN.Text = "1";
-                    return;
-                }
-            }
+            if(MainWindow.val == null)
+                MainWindow.val = new int[2];
+            MainWindow.val[0] = MAIN;
+            _sp.Visibility = System.Windows.Visibility.Visible;
+        }
 
-            catch (FormatException ex)
-            {
-                MessageBox.Show("The value is not in correct format", "Invalid Argument", MessageBoxButton.OK);
-                _tbBN.Text = "1";
-                return;
-            }
-            _val = Int16.Parse(_tbBN.Text);
+        private void _rbRed_Checked(object sender, RoutedEventArgs e)
+        {
             if (MainWindow.val == null)
-                MainWindow.val = new int[1];
-            MainWindow.val[0] = _val;
+                MainWindow.val = new int[2];
+            MainWindow.val[0] = REDUNDANCY;
+            _sp.Visibility = System.Windows.Visibility.Visible;
         }
 
-        private void _cmdUp_Click(object sender, RoutedEventArgs e)
+        private void _cbBN_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int val = Int32.Parse(_tbBN.Text);
-            if (val < 3)
-                val += 1;
-            _tbBN.Text = val.ToString();
-        }
-
-        private void _cmdDown_Click(object sender, RoutedEventArgs e)
-        {
-            int val = Int32.Parse(_tbBN.Text);
-            if (val > 1)
-                val -= 1;
-            _tbBN.Text = val.ToString();
+            string str = (string)_cbBN.SelectedItem.ToString();
+            int.TryParse(str, out MainWindow.val[1]);
+            Navigate.SetNextEnable(this, true);
         }
     }
 }

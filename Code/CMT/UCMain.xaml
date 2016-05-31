@@ -10,10 +10,10 @@
             <TextBlock Margin="10" Text="Please choose one of the options below:" HorizontalAlignment="Left"  FontSize="25" />
             <DockPanel Margin="10" Width="auto" Height="auto">
                 <StackPanel DockPanel.Dock="Left" Margin="10" >
-                    <RadioButton Margin="10" Content="Clock Configurator" Name="_rbClockConf" FontSize="25" Checked="_rbClockConf_Checked" />
-                    <RadioButton Margin="10" Content="T-Switch Configurator" Name="_rbTswitchConf" FontSize="25" Checked="_rbTswitchConf_Checked" />
-                    <RadioButton Margin="10" Content="C-Switch Configurator" Name="_rbCswitchConf" FontSize="25" Checked="_rbCswitchConf_Checked" />
-                    <RadioButton Margin="10" Content="Client BN-APP" Name="_rbClientSN" FontSize="25" Checked="_rbClientSN_Checked" />
+                    <RadioButton Margin="10" Content="Rubidium Clock Configuration" Name="_rbClockConf" FontSize="25" Checked="_rbClockConf_Checked" />
+                    <RadioButton Margin="10" Content="Cabin Ethernet Switch Configuration" Name="_rbTswitchConf" FontSize="25" Checked="_rbTswitchConf_Checked" />
+                    <RadioButton Margin="10" Content="Shelter Ethernet Switch Configuration" Name="_rbCswitchConf" FontSize="25" Checked="_rbCswitchConf_Checked" />
+                    <RadioButton Margin="10" Content="BNET Configuration" Name="_rbClientSN" FontSize="25" Checked="_rbClientSN_Checked" />
                 </StackPanel>
                 <Image x:Name="_iImageMain" Margin="70,0,0,0" DockPanel.Dock="Right" Height="500" Width="800" Stretch="UniformToFill" />
             </DockPanel>

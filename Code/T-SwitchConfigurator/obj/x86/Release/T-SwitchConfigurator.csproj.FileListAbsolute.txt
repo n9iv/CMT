@@ -16,11 +16,9 @@ C:\Users\arthurs\Git\CMT\Code\T-SwitchConfigurator\obj\x86\Release\T-SwitchConfi
 C:\Users\arthurs\Git\CMT\Code\T-SwitchConfigurator\bin\x86\Release\T-SwitchConfigurator.exe
 C:\Users\arthurs\Git\CMT\Code\T-SwitchConfigurator\bin\x86\Release\T-SwitchConfigurator.pdb
 C:\Users\arthurs\Git\CMT\Code\T-SwitchConfigurator\obj\x86\Release\T-SwitchConfigurator.csprojResolveAssemblyReference.cache
-C:\Users\arthurs\Git\CMT\Code\T-SwitchConfigurator\bin\x86\Release\Configurator.xml
 D:\CMT\T-SwitchConfigurator\bin\x86\Release\T-SwitchConfigurator.exe.config
 D:\CMT\T-SwitchConfigurator\obj\x86\Release\T-SwitchConfigurator.exe
 D:\CMT\T-SwitchConfigurator\obj\x86\Release\T-SwitchConfigurator.pdb
 D:\CMT\T-SwitchConfigurator\bin\x86\Release\T-SwitchConfigurator.exe
 D:\CMT\T-SwitchConfigurator\bin\x86\Release\T-SwitchConfigurator.pdb
 D:\CMT\T-SwitchConfigurator\obj\x86\Release\T-SwitchConfigurator.csprojResolveAssemblyReference.cache
-D:\CMT\T-SwitchConfigurator\bin\x86\Release\Configurator.xml

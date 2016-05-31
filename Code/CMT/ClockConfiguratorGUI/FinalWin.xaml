@@ -9,9 +9,9 @@
         <Grid>
         <StackPanel HorizontalAlignment="Center" Height="1500">
             <TextBlock FontSize="30" Margin ="10" HorizontalAlignment="Center">Configuration<LineBreak/><LineBreak/><LineBreak/></TextBlock>
-            <TextBlock FontSize="20" HorizontalAlignment="Center">Press the follow button to configurate the clock<LineBreak/></TextBlock>
+            <TextBlock FontSize="20" HorizontalAlignment="Center">Press the following button to configurate the clock<LineBreak/></TextBlock>
             <ToggleButton Name="_btnConfig" FontSize="30" Height="60" Width="250" Click="_btnConfig_Click">Configure</ToggleButton>
-            <TextBlock x:Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40" FontSize="30" Height="60" Width="350"/>
+            <TextBlock x:Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40" FontSize="30" Height="60" Width="600"/>
             <TextBlock x:Name="_tbPb" HorizontalAlignment="Center" Text="Configuring, please wait..." Visibility="Hidden" TextAlignment="Center" Margin="0,0,40,0" FontSize="20" Height="60" Width="350"/>
             <ProgressBar Name="_pb"  Visibility="Hidden" Height="50"/>
         </StackPanel>

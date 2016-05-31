@@ -22,11 +22,16 @@ namespace T_SwitchConfigurator
 
         public int init()
         {
-            int resVal = 1;
+            int resVal = (int)ErrorCodes.Success;
 
             if (_port == "")
             {
                 _port = XMLparser.portName;
+
+                if (_port == "")
+                {
+                    return (int)ErrorCodes.XMLFieldMissing;
+                }
             }
 
             _spSwitch = new SerialPort();
@@ -43,29 +48,29 @@ namespace T_SwitchConfigurator
             try
             {
                 _spSwitch.Open();
-                Console.WriteLine("T-Switch communication is oppened\n");
-                return 0;
-   
+                Log.Write("T-Switch communication is oppened\n");
+                return (int)ErrorCodes.Success;
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-              if (ex is ArgumentException)
-              {
-                  Console.WriteLine("The name does not begin with 'COM'");
-              }
+                if (ex is ArgumentException)
+                {
+                    Log.Write("The name does not begin with 'COM'");
+                }
 
-              if (ex is InvalidOperationException)
-              {
-                  Console.WriteLine("The serial port is already oppened");
-              }
+                if (ex is InvalidOperationException)
+                {
+                    Log.Write("The serial port is already oppened");
+                }
 
-              if (ex is IOException)
-              {
-                  Console.WriteLine("Serial port Gets invalid parameters");
-              }
-              return -1;
+                if (ex is IOException)
+                {
+                    Log.Write("Serial port Gets invalid parameters");
+                }
+                return (int)ErrorCodes.SPConnectionFailed;
             }
-     
+
         }
 
         public void Close()
@@ -73,7 +78,7 @@ namespace T_SwitchConfigurator
             _spSwitch.Close();
         }
 
-        public void ReadData(out String data, string token)
+        public ErrorCodes ReadData(out String data, string token)
         {
             string tmp = null;
             try
@@ -85,21 +90,31 @@ namespace T_SwitchConfigurator
                 if (token.Length > 0)
                     tmp = tmp.Replace(token, "");
                 if ((tmp != "") && (tmp != "\n"))
-                    Console.WriteLine(tmp + " - read");
+                    Log.Write(tmp + " - read");
             }
             catch (TimeoutException exp)
             {
-                Console.WriteLine("Read from serial is failed!");
+                data = null;
+                Log.Write("Read from serial is failed!");
+                return ErrorCodes.ReadSerialFailed;
             }
 
             data = tmp;
+            return ErrorCodes.Success;
         }
 
-        public void SendData(string data)
+        public ErrorCodes SendData(string data, bool sendChsr = false)
         {
             char[] dataArray = data.ToCharArray();
+
             try
             {
+                if (sendChsr)
+                {
+                    _spSwitch.Write(dataArray[0].ToString());
+                    return ErrorCodes.Success;
+                }
+
                 if (data != "\n")
                 {
                     foreach (char ch in dataArray)
@@ -110,12 +125,14 @@ namespace T_SwitchConfigurator
                 }
                 _spSwitch.Write("\n");
                 if (data != "\n")
-                    Console.WriteLine(data + " - written");
+                    Log.Write(data + " - written");
             }
             catch (NullReferenceException ex)
             {
-                Console.WriteLine("Check the data to be send or serial connection.");
+                Log.Write("Check the data to be send or serial connection.");
+                return ErrorCodes.WritreSerialFailed;
             }
+            return ErrorCodes.Success;
         }
 
         public void Flush()

@@ -11,8 +11,8 @@
             <RowDefinition Height="328*"/>
         </Grid.RowDefinitions>
         <StackPanel Width="1300" Margin="100,0" Grid.RowSpan="2">
-            <TextBlock FontSize="30" Margin="10" HorizontalAlignment="Center" >Clock Configuration Instruction<LineBreak/></TextBlock>
-            <TextBlock Margin="40,0,0,20" HorizontalAlignment="left" Grid.Row="0" FontSize="20">Follow the instruction:</TextBlock>
+            <TextBlock FontSize="30" Margin="10" HorizontalAlignment="Center" >Clock Configuration Instructions<LineBreak/></TextBlock>
+            <TextBlock Margin="40,0,0,20" HorizontalAlignment="left" Grid.Row="0" FontSize="20">Follow the instructions:</TextBlock>
             <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Auto" Name="_wbInstruction" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="400"/>
         </StackPanel>
 

@@ -1,0 +1,203 @@
+
+hostname R_MFU
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable password cisco
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization exec default local
+!
+!
+!
+!
+!
+aaa session-id common
+bsd-client server url https://cloudsso.cisco.com/as/token.oauth2
+no process cpu extended history
+no process cpu autoprofile hog
+clock timezone EST -5 0
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+ip multicast-routing
+!
+!
+!
+no ip domain lookup
+ip domain name vigilant.com
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CISCO5921-K9 sn 9HD12330HM7
+!
+spanning-tree portfast bpduguard
+spanning-tree uplinkfast
+spanning-tree backbonefast
+username USER_NAME privilege 15 secret USER_PASS
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ no ip address
+!
+interface Ethernet0/0
+ no ip address
+ ip mtu 1496
+no sh
+!
+interface Ethernet0/0.99
+ encapsulation dot1Q 99
+ ip address 194.0.MN.254 255.255.255.0
+ ip pim dense-mode
+ ip policy route-map RF
+!
+interface Ethernet0/0.190
+ description FO
+ encapsulation dot1Q 190
+ ip address 190.200.0.MN 255.255.255.0
+ ip pim dense-mode
+ ip ospf network broadcast
+ ip ospf dead-interval 10
+ ip ospf hello-interval 2
+ ip ospf 1 area 0
+!
+interface Ethernet0/1
+ description External Port #12
+ ip address 192.0.MN.254 255.255.255.0
+ ip mtu 1496
+  no sh
+ ip pim dense-mode
+ ip igmp join-group 234.10.0.2
+ ip igmp join-group 234.0.0.249
+ ip igmp join-group 234.0.0.1
+ ip igmp join-group 228.12.12.12
+ ip igmp join-group 228.10.10.10
+ ip igmp join-group 228.10.10.9
+ ip igmp join-group 234.0.0.209  
+ duplex auto
+ speed auto
+ no cdp enable
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ no cdp enable
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ no cdp enable
+!
+interface Ethernet1/0
+ description TAP Interface
+ ip address 192.168.150.155 255.255.255.0
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+!
+router ospf 1
+ passive-interface default
+ no passive-interface Ethernet0/0.190
+ network 190.200.0.0 0.0.0.255 area 0
+ network 194.0.MN.0 0.0.0.255 area 0
+!
+ip forward-protocol nd
+ip pim bidir-enable
+!
+!
+no ip http server
+no ip http secure-server
+ip route 10.0.0.0 255.255.0.0 192.0.MN.1
+ip route 194.0.0.0 255.255.192.0 192.0.MN.1 180
+ip route 194.0.64.0 255.255.192.0 192.0.MN.1 180
+!
+no service-routing capabilities-manager
+!
+route-map RF permit 10
+ match ip address 102
+ set ip next-hop 192.0.MN.1
+!
+!
+access-list 102 permit udp any range 14000 14999 any
+access-list 102 permit icmp any any
+access-list 102 permit tcp any any eq 22
+access-list 102 deny   ip any any
+!
+!
+!
+control-plane
+!
+ !
+ !
+ !
+ !
+ip routing 
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ password cisco
+ transport input all
+!
+!
+end

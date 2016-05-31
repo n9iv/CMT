@@ -8,10 +8,10 @@ namespace T_SwitchConfigurator
 {
     class Switch : Configure
     {
-        public static string routeMN = "T-SwitchRouterMNScript.txt";
-        public static string routeBN = "T-SwitchRouterBNScript.txt";
-        public static string switchMN = "T-SwitchSwitchMNScript.txt";
-        public static string switchBN = "T-SwitchSwitchBNScript.txt";
+        public static string routeMN = "MFU_T_Rauter.txt";
+        public static string routeBN = "CCU_T_Rauter.txt";
+        public static string switchMN = "MFU_T_Switch.txt";
+        public static string switchBN = "CCU_T_Switch.txt";
         private int _val;
         private string _type;
 
@@ -35,26 +35,54 @@ namespace T_SwitchConfigurator
             }
         }
 
-        public int SwitchConfig()
+        public int SwitchConfig(bool reset)
         {
-            int res = 0;
+            int res = (int)ErrorCodes.Success;
 
-            if (base.Init() == -1)
-                return -1;
-            if (base.LogIn("s") == -1)
-                return -1;
-            if (base.RunScript(_val, _type, false) < 0)
-                return -1;
-            if (base.SaveSettings() == -1)
-                return -1;
+            if ((res = base.Init()) != (int)ErrorCodes.Success)
+                return res;
 
+            while (true)
+            {
+                if ((res = base.LogInSwitch("s")) != (int)ErrorCodes.Success)
+                    break;
+                if (reset)
+                {
+                    res = base.ResetSwitch();
+                    break;
+                }
+                if ((res = base.RunScriptSwitch(_val, _type, false)) != (int)ErrorCodes.Success)
+                    break;
+                if ((res = base.SaveSettings(false)) != (int)ErrorCodes.Success)
+                    break;
+                break;
+            }
+            Tswitch.Close();
             return res;
         }
 
-        public int RouterConfig()
+        public int RouterConfig(bool reset)
         {
             int res = 0;
-
+            if ((res = base.Init()) != (int)ErrorCodes.Success)
+                return res;
+            if (reset)
+            {
+                res = base.ResetRouter();
+            }
+            else
+            {
+                while (true)
+                {
+                    if ((res = base.LogInRouter("r")) != (int)ErrorCodes.Success)
+                        break;
+                    if ((res = base.RunScriptRouter(_val, _type, true)) != (int)ErrorCodes.Success)
+                        break;
+                    if ((res = base.SaveSettings(true)) != (int)ErrorCodes.Success)
+                        break;
+                    break;
+                }
+            }
             return res;
         }
     }

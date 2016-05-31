@@ -6,11 +6,39 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 namespace CMT
 {
-    class UCstruct
+    public class UCstruct
     {
-        public static UserControl usNext;
-        public delegate void _func();
-        public static _func func;
-        public static bool isNxtEnabled = true;
+        private Type _userControl;
+        private bool _isEnabled;
+
+        public Type userControl
+        {
+            get
+            {
+                return _userControl;
+            }
+            set
+            {
+                _userControl = value;
+            }
+        }
+
+        public bool isEnabled
+        {
+            get
+            {
+                return _isEnabled;
+            }
+            set
+            {
+                _isEnabled = value;
+            }
+        }
+
+        public UCstruct(Type uc, bool enable)
+        {
+            _isEnabled = enable;
+            _userControl = uc;
+        }
     }
 }

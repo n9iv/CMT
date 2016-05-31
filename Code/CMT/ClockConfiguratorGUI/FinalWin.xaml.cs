@@ -33,8 +33,6 @@ namespace CMT.ClockConfiguratorGUI
             InitializeComponent();
             _val = val;
             _win = (MainWindow)Application.Current.Windows[0];
-            UCstruct.isNxtEnabled = false;
-
         }
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
@@ -73,7 +71,7 @@ namespace CMT.ClockConfiguratorGUI
             res = _clockProc.ExitCode;
             _clockProc.Close();
 
-            if (res != -1)
+            if (res == (int)ErrorCodes.Success)
             {
                 b = Brushes.Green;
                 str = "Configuration succeeded!";
@@ -81,7 +79,7 @@ namespace CMT.ClockConfiguratorGUI
 
             else
             {
-                str = "Configuration failed!";
+                str = Configurator.GetErrorMsg((ErrorCodes)res);
                 b = Brushes.Red;
             }
             this.Dispatcher.Invoke((Action)(() =>

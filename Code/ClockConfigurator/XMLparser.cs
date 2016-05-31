@@ -12,7 +12,7 @@ namespace ClockConfigurator
         public static string portName;
         public static string switchUserName;
         public static string switcPassword;
-        private static string _xmlFileName = "Configurator.xml";
+        private static string _xmlFileName = @"ClockConfigurator\ClockConfigurator.xml";
         private static XmlDocument _xmlDoc;
 
         static XMLparser()
@@ -42,8 +42,22 @@ namespace ClockConfigurator
             }
         }
 
-        private static int CreateXML()
+        private static void ParseLog()
         {
+            XmlNodeList nodes = _xmlDoc.DocumentElement.SelectNodes("/Configurator/Log");
+
+            foreach (XmlNode node in nodes)
+            {
+                int num;
+
+                int.TryParse(node.SelectSingleNode("NumLogsToSave").InnerText, out num);
+                Log.noLogToSave = num;
+            }
+        }
+
+        private static Configure.ErrorCodes CreateXML()
+        {
+            Configure.ErrorCodes ret = Configure.ErrorCodes.Success;
             try
             {
                 _xmlDoc.Load(_xmlFileName);
@@ -51,19 +65,25 @@ namespace ClockConfigurator
             catch (System.IO.FileNotFoundException)
             {
                 Console.WriteLine("Configurator.xml file does not exist");
-                return -1;
+                return Configure.ErrorCodes.XMLFileMissing;
+            }
+            catch (XmlException e)
+            {
+                Console.WriteLine(e.Message);
+                return Configure.ErrorCodes.XMLFileMissing;
             }
 
-            return 0;
+            return ret;
         }
 
-        public static int Parse()
+        public static Configure.ErrorCodes Parse()
         {
-            if (CreateXML() == -1)
-                return -1;
+            if (CreateXML() != Configure.ErrorCodes.Success)
+                return Configure.ErrorCodes.XMLFileMissing;
             ParseSerial();
             ParseSwitch();
-            return 0;
+            ParseLog();
+            return Configure.ErrorCodes.Success;
         }
     }
 }

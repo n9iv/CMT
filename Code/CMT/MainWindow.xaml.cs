@@ -92,7 +92,8 @@ namespace CMT
             if (_cUserCtrlMain.Content is Main)
             {
                 if (_userControlList.Count > 0)
-                    if ((_userControlList[1].GetType() != Main._typeList[0]) && (_userControlList.Count > 1))
+                    //If another option is selected, clear the control list for new navigation
+                    if ((_userControlList[1].GetType() != Main._typeList[0].userControl) && (_userControlList.Count > 1))
                     {
                         _userControlList.Clear();
                     }
@@ -115,15 +116,15 @@ namespace CMT
 
             else
             {
-                indx = Main._typeList.FindIndex(x => x == objType);
+                indx = Main._typeList.FindIndex(x => x.userControl == objType);
 
                 if (indx >= 0)
                 {
-                    objType = Main._typeList[indx + 1];
+                    objType = Main._typeList[indx + 1].userControl;
                 }
                 else
                 {
-                    objType = Main._typeList[0];
+                    objType = Main._typeList[0].userControl;
                 }
                 obj = (UserControl)GetInstance(objType, val);
             }
@@ -136,11 +137,10 @@ namespace CMT
                 _userControlList.Add((UserControl)obj);
             if (indx == Main._typeList.Count - 1)
                 _btnNext.IsEnabled = false;
-            if (UCstruct.isNxtEnabled == false)
-            {
-                _btnNext.IsEnabled = false;
-                UCstruct.isNxtEnabled = true;
-            }
+
+            
+            _btnNext.IsEnabled = Main._typeList.Find(x => x.userControl == _cUserCtrlMain.Content.GetType()).isEnabled;
+       
             if (_btnBack.IsEnabled == false)
                 _btnBack.IsEnabled = true;
             if (_btnMainPage.IsEnabled == false)

@@ -124,11 +124,9 @@ C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Release\CswitchConfiguratorGUI\UCcSwit
 C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Release\CswitchConfiguratorGUI\UCcSwitchInstruction.baml
 C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Release\CswitchConfiguratorGUI\UCcSwitchconfigOptions.g.cs
 C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Release\CswitchConfiguratorGUI\UCcSwitchInstruction.g.cs
-C:\Users\arthurs\Git\CMT\Code\CMT\bin\x86\Release\Configurator.xml
 D:\CMT\CMT\bin\x86\Release\CMT.exe.config
 D:\CMT\CMT\obj\x86\Release\CMT.exe
 D:\CMT\CMT\obj\x86\Release\CMT.pdb
-D:\CMT\CMT\bin\x86\Release\Configurator.xml
 D:\CMT\CMT\bin\x86\Release\CMT.exe
 D:\CMT\CMT\bin\x86\Release\CMT.pdb
 D:\CMT\CMT\bin\x86\Release\C-SwitchConfigurator.exe

@@ -24,13 +24,10 @@ namespace CMT.BN_App
         public UCrunBNapp()
         {
             InitializeComponent();
-            UCstruct.isNxtEnabled = false;
         }
 
         private void _btnRun_Click(object sender, RoutedEventArgs e)
         {
-            int res = -1;
-            string str;
             Process BNappProc = new Process();
 
             BNappProc.StartInfo.FileName = "run_bn-app.lnk";

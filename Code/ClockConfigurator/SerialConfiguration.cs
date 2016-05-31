@@ -22,11 +22,13 @@ namespace ClockConfigurator
 
         public int init()
         {
-            int resVal = 1;
+            int resVal = 0;
 
             if (_port == "")
             {
                 _port = XMLparser.portName;
+                if (_port == "")
+                    return (int)Configure.ErrorCodes.XMLPortNameMissing;
             }
 
             _spClock = new SerialPort();
@@ -38,12 +40,12 @@ namespace ClockConfigurator
             return resVal;
         }
 
-        public int Open()
+        public Configure.ErrorCodes Open()
         {
             try
             {
                 _spClock.Open();
-                Console.WriteLine("Clock communication is oppened\n");
+                Log.Write("Clock communication is oppened\n");
                 this.Flush();
                 return 0;
             }
@@ -51,20 +53,20 @@ namespace ClockConfigurator
             {
                 if (ex is ArgumentException)
                 {
-                    Console.WriteLine("The name does not begin with 'COM'");
+                    Log.Write("The name does not begin with 'COM'");
                 }
 
                 if (ex is InvalidOperationException)
                 {
-                    Console.WriteLine("The serial port is already oppened");
+                    Log.Write("The serial port is already oppened");
                 }
 
                 if (ex is IOException)
                 {
-                    Console.WriteLine("Serial port Gets invalid parameters");
+                    Log.Write("Serial port Gets invalid parameters");
                 }
 
-                return -1;
+                return Configure.ErrorCodes.SPConnectionFailed;
             }
 
         }
@@ -73,12 +75,13 @@ namespace ClockConfigurator
         {
             _spClock.Dispose();
             _spClock.Close();
-            Console.WriteLine("Clock communication is closed\n");
+            Log.Write("Clock communication is closed\n");
         }
 
-        public void ReadData(out String data, string token)
+        public Configure.ErrorCodes ReadData(out String data, string token)
         {
             string tmp = null;
+            Configure.ErrorCodes res = Configure.ErrorCodes.Success;
             try
             {
                 tmp = _spClock.ReadExisting();
@@ -86,16 +89,20 @@ namespace ClockConfigurator
                 tmp = tmp.Replace("\r", "");
                 tmp = tmp.Replace("\n", "");
                 tmp = tmp.Replace("> ", "");
-                Console.WriteLine("{0} is read", tmp);
+                Log.Write(tmp + " - read");
+
             }
             catch (TimeoutException exp)
             {
-                Console.WriteLine("Read from serial is failed!");
+                Log.Write("Read from serial is failed!");
+                data = null;
+                return Configure.ErrorCodes.ReadSerialFailed;
             }
             data = tmp;
+            return Configure.ErrorCodes.Success;
         }
 
-        public void SendData(string data)
+        public Configure.ErrorCodes SendData(string data)
         {
             char[] dataArray = data.ToCharArray();
             try
@@ -106,11 +113,13 @@ namespace ClockConfigurator
                     Thread.Sleep(100);
                 }
                 _spClock.Write("\n");
-                Console.WriteLine("{0} is written", data);
+                Log.Write( data + " - written");
+                return Configure.ErrorCodes.Success;
             }
             catch (NullReferenceException ex)
             {
-                Console.WriteLine("Check the data to be send or serial connection.");
+                Log.Write("Check the data to be send or serial connection.");
+                return Configure.ErrorCodes.WritreSerialFailed;
             }
         }
 
