@@ -1,3 +1,0 @@
-11:18:02:	T-SwitchConfigurator.exe s 4 0 T-SwitchConfigurator\Scripts
-
-11:18:02:	Serial port Gets invalid parameters

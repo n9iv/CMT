@@ -10,3 +10,9 @@ D:\CMT\C-SwitchConfigurator\obj\Debug\C-SwitchConfigurator.pdb
 D:\CMT\C-SwitchConfigurator\bin\Debug\C-SwitchConfigurator.exe
 D:\CMT\C-SwitchConfigurator\bin\Debug\C-SwitchConfigurator.pdb
 D:\CMT\C-SwitchConfigurator\obj\Debug\C-SwitchConfigurator.csprojResolveAssemblyReference.cache
+C:\Users\arthurs\Desktop\CMT\C-SwitchConfigurator\bin\Debug\C-SwitchConfigurator.exe.config
+C:\Users\arthurs\Desktop\CMT\C-SwitchConfigurator\bin\Debug\C-SwitchConfigurator.exe
+C:\Users\arthurs\Desktop\CMT\C-SwitchConfigurator\bin\Debug\C-SwitchConfigurator.pdb
+C:\Users\arthurs\Desktop\CMT\C-SwitchConfigurator\obj\Debug\C-SwitchConfigurator.csprojResolveAssemblyReference.cache
+C:\Users\arthurs\Desktop\CMT\C-SwitchConfigurator\obj\Debug\C-SwitchConfigurator.exe
+C:\Users\arthurs\Desktop\CMT\C-SwitchConfigurator\obj\Debug\C-SwitchConfigurator.pdb

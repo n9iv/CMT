@@ -28,11 +28,7 @@ namespace T_SwitchConfigurator
             {
                 _port = XMLparser.portName;
 
-<<<<<<< HEAD
                 if (_port == "")
-=======
-                if(_port == "")
->>>>>>> origin/master
                 {
                     return (int)ErrorCodes.XMLFieldMissing;
                 }
@@ -54,15 +50,10 @@ namespace T_SwitchConfigurator
                 _spSwitch.Open();
                 Log.Write("T-Switch communication is oppened\n");
                 return (int)ErrorCodes.Success;
-<<<<<<< HEAD
 
-=======
-   
->>>>>>> origin/master
             }
             catch (Exception ex)
             {
-<<<<<<< HEAD
                 if (ex is ArgumentException)
                 {
                     Log.Write("The name does not begin with 'COM'");
@@ -78,23 +69,6 @@ namespace T_SwitchConfigurator
                     Log.Write("Serial port Gets invalid parameters");
                 }
                 return (int)ErrorCodes.SPConnectionFailed;
-=======
-              if (ex is ArgumentException)
-              {
-                  Log.Write("The name does not begin with 'COM'");
-              }
-
-              if (ex is InvalidOperationException)
-              {
-                  Log.Write("The serial port is already oppened");
-              }
-
-              if (ex is IOException)
-              {
-                  Log.Write("Serial port Gets invalid parameters");
-              }
-              return (int)ErrorCodes.SPConnectionFailed;
->>>>>>> origin/master
             }
 
         }
@@ -129,11 +103,7 @@ namespace T_SwitchConfigurator
             return ErrorCodes.Success;
         }
 
-<<<<<<< HEAD
         public ErrorCodes SendData(string data, bool sendChsr = false)
-=======
-        public ErrorCodes SendData(string data)
->>>>>>> origin/master
         {
             char[] dataArray = data.ToCharArray();
 
@@ -142,6 +112,7 @@ namespace T_SwitchConfigurator
                 if (sendChsr)
                 {
                     _spSwitch.Write(dataArray[0].ToString());
+                    Log.Write(data + " - written");
                     return ErrorCodes.Success;
                 }
 
@@ -154,7 +125,7 @@ namespace T_SwitchConfigurator
                     }
                 }
                 _spSwitch.Write("\n");
-                if (data != "\n")
+                if ((data != "\n") && (data != "\r\n"))
                     Log.Write(data + " - written");
             }
             catch (NullReferenceException ex)

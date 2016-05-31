@@ -1,0 +1,3 @@
+17:44:52:434:	C-SwitchConfigurator.exe m 2 C-SwitchConfigurator\Scripts\
+
+17:44:52:439:	Serial port Gets invalid parameters

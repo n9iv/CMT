@@ -19,3 +19,9 @@ D:\CMT\T-SwitchConfigurator\bin\Debug\T-SwitchConfigurator.pdb
 D:\CMT\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.csprojResolveAssemblyReference.cache
 D:\CMT\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.exe
 D:\CMT\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.pdb
+C:\Users\arthurs\Desktop\CMT\T-SwitchConfigurator\bin\Debug\T-SwitchConfigurator.exe.config
+C:\Users\arthurs\Desktop\CMT\T-SwitchConfigurator\bin\Debug\T-SwitchConfigurator.exe
+C:\Users\arthurs\Desktop\CMT\T-SwitchConfigurator\bin\Debug\T-SwitchConfigurator.pdb
+C:\Users\arthurs\Desktop\CMT\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.csprojResolveAssemblyReference.cache
+C:\Users\arthurs\Desktop\CMT\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.exe
+C:\Users\arthurs\Desktop\CMT\T-SwitchConfigurator\obj\Debug\T-SwitchConfigurator.pdb

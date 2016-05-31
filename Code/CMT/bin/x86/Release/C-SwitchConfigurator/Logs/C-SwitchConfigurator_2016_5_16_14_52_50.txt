@@ -1,3 +1,0 @@
-14:52:50:	C-SwitchConfigurator.vshost.exe m 2 C-SwitchConfigurator\Scripts
-
-14:52:50:	Serial port Gets invalid parameters

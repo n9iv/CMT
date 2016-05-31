@@ -52,7 +52,7 @@ namespace ClockConfigurator
 
         public static void Write(string msg)
         {
-            string str = string.Format("{0:HH:mm:ss}", DateTime.Now);
+            string str = string.Format("{0:HH:mm:ss:fff}", DateTime.Now);
 
             str = string.Format("{0}:\t{1}", str, msg);
 

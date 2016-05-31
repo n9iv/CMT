@@ -25,13 +25,16 @@ namespace CMT
     {
         private BitmapImage _image;
         private Dictionary<string, string> _imagesPath;
+        private Dictionary<string, string> _foldersPath;
         public static List<UCstruct> _typeList;
 
         public Main()
         {
             _imagesPath = new Dictionary<string, string>();
-            SetImagesPath();
+            _foldersPath = new Dictionary<string, string>();  
             InitializeComponent();
+            SetImagesPath();
+            SetConfiguratorFolderPath();
         }
 
         private void _rbClockConf_Checked(object sender, RoutedEventArgs e)
@@ -103,16 +106,13 @@ namespace CMT
         {
             string imagePath = _imagesPath[str];
             var proc = Process.GetCurrentProcess();
+            string confFolder = _foldersPath[str];
             string path = proc.MainModule.FileName;
             string fdPath;
-<<<<<<< HEAD
             if (str.Contains("BNET") == true)
-=======
-            if (str.Contains("BN-APP") == true)
->>>>>>> origin/master
                 fdPath = @"BN-APP\";
             else
-                fdPath = str.Replace(" ", "") + @"\";
+                fdPath = confFolder.Replace(" ", "") + @"\";
             fdPath += @"MainPagePic\";
             imagePath = path.Replace("CMT.exe", fdPath + imagePath);
             if (File.Exists(imagePath))
@@ -124,10 +124,10 @@ namespace CMT
 
         private void SetImagesPath()
         {
-            _imagesPath.Add("Rubidium Clock Configuration", "Clock.png");
-            _imagesPath.Add("Cabin Ethernet Switch Configuration", "T-Switch.png");
-            _imagesPath.Add("Shelter Ethernet Switch Configuration", "C-Switch.png");
-            _imagesPath.Add("BNET Configuration", "BN-App.png");
+            _imagesPath.Add(_rbClockConf.Content.ToString(), "Clock.png");
+            _imagesPath.Add(_rbTswitchConf.Content.ToString(), "T-Switch.png");
+            _imagesPath.Add(_rbCswitchConf.Content.ToString(), "C-Switch.png");
+            _imagesPath.Add(_rbClientSN.Content.ToString(), "BN-App.png");
         }
 
         private void EnableNext()
@@ -135,6 +135,14 @@ namespace CMT
             Window win = Application.Current.Windows[0];
             MainWindow main = (MainWindow)win;
             main._btnNext.IsEnabled = true;
+        }
+
+        private void SetConfiguratorFolderPath()
+        {
+            _foldersPath.Add(_rbClockConf.Content.ToString(), "ClockConfigurator");
+            _foldersPath.Add(_rbTswitchConf.Content.ToString(), "T-SwitchConfigurator");
+            _foldersPath.Add(_rbCswitchConf.Content.ToString(), "C-SwitchConfigurator");
+            _foldersPath.Add(_rbClientSN.Content.ToString(), "BN-APP");
         }
     }
 }

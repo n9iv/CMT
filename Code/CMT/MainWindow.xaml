@@ -5,12 +5,13 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="52*"/>
-            <ColumnDefinition Width="445*"/>
+            <ColumnDefinition Width="104*"/>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="863*"/>
         </Grid.ColumnDefinitions>
 
-        <UserControl Name="_cUserCtrlMain" Margin="0,0,0,55" Grid.ColumnSpan="2" />
-        <UserControl Name="_cUserCtrlBtn" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="auto" Height="55" Background="Silver" Grid.ColumnSpan="2">
+        <UserControl Name="_cUserCtrlMain" Margin="0,0,0,55" Grid.ColumnSpan="3" />
+        <UserControl Name="_cUserCtrlBtn" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="auto" Height="55" Background="Silver" Grid.ColumnSpan="3">
             <Canvas VerticalAlignment="Center" Margin="10">
                 <Button Name="_btnMainPage" Content="Main Page" IsEnabled="False" FontSize="15" Height="25" Width="100" Canvas.Left="4" Canvas.Top="-14" Click="_btnMainPage_Click"/>
                 <WrapPanel Canvas.Right="0" VerticalAlignment="Top" Canvas.Top="-19">

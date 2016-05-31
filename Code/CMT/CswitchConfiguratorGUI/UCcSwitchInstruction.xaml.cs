@@ -23,8 +23,8 @@ namespace CMT.CswitchConfiguratorGUI
     public partial class UCcSwitchInstruction : UserControl
     {
         private int _val;
-        private string _fileName = "C-SwitchInstructions.html";
-        private string _fileName1 = "C-SwitchInstructions.htm";
+        private string _fileName = "CSwitchInstructions.html";
+        private string _fileName1 = "CSwitchInstructions.htm";
 
         public UCcSwitchInstruction(int type, int val)
         {

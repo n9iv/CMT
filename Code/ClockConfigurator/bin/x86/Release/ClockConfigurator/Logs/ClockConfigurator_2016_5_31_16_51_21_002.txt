@@ -1,0 +1,3 @@
+16:51:21:	ClockConfigurator.exe COM3 4 C:\\Users\\arthurs\\Desktop\\\\ClockScript.txt
+
+16:51:21:	Incorrect value. The value should be between 0-3

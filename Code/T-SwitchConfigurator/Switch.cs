@@ -38,7 +38,6 @@ namespace T_SwitchConfigurator
         public int SwitchConfig(bool reset)
         {
             int res = (int)ErrorCodes.Success;
-<<<<<<< HEAD
 
             if ((res = base.Init()) != (int)ErrorCodes.Success)
                 return res;
@@ -55,18 +54,6 @@ namespace T_SwitchConfigurator
                 if ((res = base.RunScriptSwitch(_val, _type, false)) != (int)ErrorCodes.Success)
                     break;
                 if ((res = base.SaveSettings(false)) != (int)ErrorCodes.Success)
-=======
-
-            if ((res = base.Init()) != (int)ErrorCodes.Success)
-                return res;
-            while (true)
-            {
-                if ((res = base.LogIn("s")) != (int)ErrorCodes.Success)
-                    break;
-                if ((res = base.RunScript(_val, _type, false)) != (int)ErrorCodes.Success)
-                    break;
-                if ((res = base.SaveSettings()) != (int)ErrorCodes.Success)
->>>>>>> origin/master
                     break;
                 break;
             }

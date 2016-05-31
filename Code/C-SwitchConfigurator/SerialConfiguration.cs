@@ -118,7 +118,7 @@ namespace C_SwitchConfigurator
                     }
                 }
                 _spCswitch.Write("\n");
-                if (data != "\n")
+                if ((data != "\n") && (data != "\r\n"))
                     Log.Write(data + " - written");
             }
             catch (NullReferenceException ex)

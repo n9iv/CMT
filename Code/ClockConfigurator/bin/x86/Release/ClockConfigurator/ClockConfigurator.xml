@@ -1,16 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configurator>
   <Serial>
-    <PortName>COM1</PortName>
+    <PortName>COM3</PortName>
   </Serial>
   <Switch>
-    <Username>admin</Username>
-    <Password></Password>
-  </Switch>
-  <Router>
-    <Username>admin</Username>
+    <Username>cisco</Username>
     <Password>cisco</Password>
-  </Router>
+  </Switch>
   <Log>
     <NumLogsToSave>10</NumLogsToSave>
   </Log>
