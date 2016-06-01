@@ -1,0 +1,12 @@
+17:19:03:627:	C-SwitchConfigurator.exe m 1 C-SwitchConfigurator\Scripts\
+
+17:19:03:645:	C-Switch communication is oppened
+
+17:19:03:646:	LogIn
+17:19:04:059:	Password: Password:  - read
+17:19:19:661:	% Bad secretsCCU_SW1>*Jun  1 14:07:41.853: %PKI-6-AUTOSAVE: Running configuration saved to NVRAMCompressed configuration from 5286 bytes to 2528 bytes[OK]*Jun  1 14:07:50.169: %SSH-5-DISABLED: SSH 1.99 has been disabled*Jun  1 14:07:50.170: %SSH-5-ENABLED: SSH 1.99 has been enabledCCU_SW1>CCU_SW1>CCU_SW1> - read
+17:19:20:062:	en - written
+17:19:20:263:	Password:  - read
+17:19:20:263:	Login to C-Switch failed
+17:19:20:265:	C-Switch communication is closed
+

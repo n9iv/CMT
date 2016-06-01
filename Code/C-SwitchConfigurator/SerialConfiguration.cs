@@ -88,9 +88,10 @@ namespace C_SwitchConfigurator
                 //tmp = tmp.Replace(token + "\n\r\n", "");
                 tmp = tmp.Replace("\r", "");
                 tmp = tmp.Replace("\n", "");
-                if(token.Length > 0)
+                if (token.Length > 0)
                     tmp = tmp.Replace(token, "");
-                Log.Write(tmp + " - read");
+                if ((tmp != "\n") && (tmp != "\r\n") && (tmp != ""))
+                    Log.Write(tmp + " - read");
             }
             catch (TimeoutException exp)
             {
@@ -110,15 +111,14 @@ namespace C_SwitchConfigurator
             {
                 if (data != "\n")
                 {
-                    data = data.Replace("\n", "");
                     foreach (char ch in dataArray)
                     {
                         _spCswitch.Write(ch.ToString());
-                        Thread.Sleep(100);
+                        Thread.Sleep(200);
                     }
                 }
                 _spCswitch.Write("\n");
-                if ((data != "\n") && (data != "\r\n"))
+                if ((data != "\n") && (data != "\r\n") && (data != ""))
                     Log.Write(data + " - written");
             }
             catch (NullReferenceException ex)

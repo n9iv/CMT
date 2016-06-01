@@ -46,7 +46,6 @@ namespace CMT.TswitchConfiguratorGUI
                 RunResetScript();
             else
             {
-                RunProc(false);
                 _tbPb.Text = "Applying new configuration";
             }
             _ConfThread.Start();
@@ -74,7 +73,6 @@ namespace CMT.TswitchConfiguratorGUI
             }
 
             RunProc(false);
-            Thread.Sleep(5000);
             _switchProc.WaitForExit();
             res = _switchProc.ExitCode;
             _switchProc.Close();
@@ -110,8 +108,6 @@ namespace CMT.TswitchConfiguratorGUI
                _switchProc.StartInfo.Arguments = "reset s " + _MN.ToString() + " " + _BN.ToString() + @" T-SwitchConfigurator\Scripts";
            else
                _switchProc.StartInfo.Arguments = "s " + _MN.ToString() + " " + _BN.ToString() + @" T-SwitchConfigurator\Scripts";
-           _switchProc.StartInfo.RedirectStandardInput = true;
-           _switchProc.StartInfo.RedirectStandardOutput = true;
            _switchProc.StartInfo.RedirectStandardError = true;
            _switchProc.StartInfo.UseShellExecute = false;
            _switchProc.StartInfo.CreateNoWindow = true;

@@ -10,7 +10,7 @@
     <StartArguments>2 ClockConfigurator\Scripts</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <StartArguments>COM3 0 ClockConfigurator\Scripts</StartArguments>
+    <StartArguments>0 ClockConfigurator\Scripts</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartArguments>2 ClockConfigurator\Scripts</StartArguments>

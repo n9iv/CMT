@@ -13,9 +13,8 @@
             <ColumnDefinition Width="14*"/>
             <ColumnDefinition Width="12*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Width="1500" Margin="53,0,37,0" Grid.Column="1">
-            <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center" >Router Configuration Instructions<LineBreak/></TextBlock>
-            <TextBlock Margin="40,0,0,20" HorizontalAlignment="left" Grid.Row="0" FontSize="20">Follow the instructions:</TextBlock>
+        <StackPanel Width="1000" Margin="53,0,37,0" Grid.Column="1">
+            <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center" >Cabin Ethernet Switch Configuration - Stage 2<LineBreak/></TextBlock>
             <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Auto" Name="_wbInstruction" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="400"/>
         </StackPanel>
     </Grid>

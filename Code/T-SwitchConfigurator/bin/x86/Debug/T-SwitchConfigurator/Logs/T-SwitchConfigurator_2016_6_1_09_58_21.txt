@@ -1,0 +1,3 @@
+09:58:21:465:	T-SwitchConfigurator.exe reset s 3 0 T-SwitchConfigurator\Scripts
+
+09:58:21:466:	Check script files.

@@ -7,9 +7,9 @@
              d:DesignHeight="1700" d:DesignWidth="1700">
     <Grid>
         <StackPanel Margin="10" Width="1000">
-            <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="10">Clock Configurator<LineBreak/></TextBlock>
-            <TextBlock FontSize="30">Choose one of the clock configuration below:</TextBlock>
-            <RadioButton Margin="10" x:Name="_rbMFU" Content="MFU" FontSize="25" Checked="_rbMFU_Checked"/>
+            <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="10">Rubidium Clock Configuration<LineBreak/></TextBlock>
+            <TextBlock FontSize="30">Select the battery unit this rubidium clock will be configured for:</TextBlock>
+            <RadioButton Margin="10" x:Name="_rbMFU" Content="MFU/RADAR/MSV/FSV" FontSize="25" Checked="_rbMFU_Checked"/>
             <RadioButton Margin="10" Name="_rbCCU" Content="CCU" FontSize="25" Checked="_rbCCU_Checked"/>
             <StackPanel Name="_sp" Orientation="Horizontal" Visibility="Hidden">
                 <TextBlock FontSize="20" Margin="10">Choose battery value:</TextBlock>

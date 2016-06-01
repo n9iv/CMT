@@ -22,4 +22,3 @@ D:\CMT\T-SwitchConfigurator\obj\x86\Debug\T-SwitchConfigurator.pdb
 D:\CMT\T-SwitchConfigurator\bin\x86\Debug\T-SwitchConfigurator.exe
 D:\CMT\T-SwitchConfigurator\bin\x86\Debug\T-SwitchConfigurator.pdb
 D:\CMT\T-SwitchConfigurator\obj\x86\Debug\T-SwitchConfigurator.csprojResolveAssemblyReference.cache
-D:\CMT\T-SwitchConfigurator\bin\x86\Debug\Configurator.xml

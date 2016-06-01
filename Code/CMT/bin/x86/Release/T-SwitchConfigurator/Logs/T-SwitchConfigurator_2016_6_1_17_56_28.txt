@@ -1,0 +1,11 @@
+17:56:28:269:	T-SwitchConfigurator.exe s 4 0 T-SwitchConfigurator\Scripts
+
+17:56:28:272:	T-Switch communication is oppened
+
+17:56:28:273:	Login Switch:
+17:56:28:519:	User Name:User Name:authentication failedpress ENTER key to retry authentication - read
+17:56:28:759:	User Name:User Name:User Name: - read
+17:56:29:059:	admin - written
+17:56:29:220:	vigilant - written
+17:56:29:540:	Spyder - written
+17:56:29:781:	adminPassword:********authentication failedpress ENTER key to retry authenticationSpyderUser Name:User Name:User Name: - read

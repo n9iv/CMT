@@ -7,4 +7,6 @@
     <Username>cisco</Username>
     <Password>cisco</Password>
   </Switch>
-</Configurator>
+<Log>
+    <NumLogsToSave>10</NumLogsToSave>
+  </Log></Configurator>

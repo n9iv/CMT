@@ -7,9 +7,9 @@
                   d:DesignHeight="800" d:DesignWidth="800">
     <Grid>
         <StackPanel HorizontalAlignment="Center" Height="1500">
-            <TextBlock FontSize="35" Margin ="10" HorizontalAlignment="Center">BN-APP<LineBreak/><LineBreak/><LineBreak/></TextBlock>
-            <TextBlock FontSize="20" HorizontalAlignment="Center">Press the follow button to run BN-APP<LineBreak/></TextBlock>
-            <Button Name="_btnRun" FontSize="30" Height="60" Width="250" Click="_btnRun_Click" >BN-APP</Button>
+            <TextBlock FontSize="35" Margin ="10" HorizontalAlignment="Center">BNET Configuration<LineBreak/><LineBreak/><LineBreak/></TextBlock>
+            <TextBlock FontSize="20" HorizontalAlignment="Center">Click the follow button to run BNET Configuration tool<LineBreak/></TextBlock>
+            <Button Name="_btnRun" FontSize="30" Height="60" Width="auto" Click="_btnRun_Click" >BNET Configuration Tool</Button>
             <TextBlock Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40" FontSize="30" Height="60" Width="350"></TextBlock>
         </StackPanel>
     </Grid>

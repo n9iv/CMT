@@ -1,0 +1,35 @@
+19:40:02:165:	ClockConfigurator.exe 2 ClockConfigurator\Scripts
+
+19:40:02:301:	Clock communication is oppened
+
+19:40:02:821:	RTR 0 - written
+19:40:03:323:	STM 0 - written
+19:40:03:624:	STM - written
+19:40:03:825:	STM 0 - read
+19:40:03:825:	value is properly configured.
+
+19:40:04:325:	STS G - written
+19:40:04:626:	STS - written
+19:40:04:826:	STS G - read
+19:40:04:826:	value is properly configured.
+
+19:40:10:127:	SNP I,194.000.72.199, 255.255.255.192, 194.000.72.254 - written
+19:40:10:428:	SNP - written
+19:40:10:628:	SNP I,194.000.072.199,255.255.255.192,194.000.072.254 - read
+19:40:10:628:	value is properly configured.
+
+19:40:11:628:	STZ +00:00 - written
+19:40:11:929:	STZ - written
+19:40:12:129:	STZ +00:00 - read
+19:40:12:129:	value is properly configured.
+
+19:40:12:629:	NTP 1 - written
+19:40:12:930:	NTP - written
+19:40:13:130:	NTP 1 - read
+19:40:13:130:	value is properly configured.
+
+19:40:13:630:	RTR 1 - written
+19:40:14:132:	RTR 1 - written
+19:40:14:633:	RTR 1 - written
+19:40:14:744:	Clock communication is closed
+

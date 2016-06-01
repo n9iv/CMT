@@ -1,0 +1,3 @@
+18:54:51:712:	ClockConfigurator.vshost.exe 3 0 ClockConfigurator\Scripts
+
+18:54:51:743:	The name does not begin with 'COM'

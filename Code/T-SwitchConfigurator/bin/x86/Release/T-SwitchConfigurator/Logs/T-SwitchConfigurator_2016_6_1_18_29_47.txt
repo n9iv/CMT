@@ -1,0 +1,12 @@
+18:29:47:942:	T-SwitchConfigurator.vshost.exe reset s 3 0 T-SwitchConfigurator\Scripts
+
+18:29:47:942:	T-Switch communication is oppened
+
+18:29:47:958:	Login Switch:
+18:30:03:339:	Boot1 Checksum Test...............................PASSBoot2 Checksum Test...............................PASSFlash Image Validation Test.......................PASSBOOT Software Version 1.0.2.0 Built  12-Aug-2013  12:30:46Networking device with CPU based on arm926ejs core. 256 MByte SDRAM. I-Cache 16 KB. D-Cache 16 KB. L2 Cache 256 KB. Cache Enabled.MAC Address   :  1c:51:b5:00:1f:e5.Autoboot in 2 seconds - press RETURN or Esc. to abort and enter prom.Preparing to decompress...  0% 50% 100%Decompressing SW from image-2   0%   1%   2%   3%   4% - read
+18:30:18:346:	   5%   6%   7%   8%   9%  10%  11%  12%  13%  14%  15%  16%  17%  18%  19%  20%  21%  22%  23%  24%  25%  26%  27%  28%  29%  30%  31%  32%  33%  34%  35%  36%  37%  38%  39%  40%  41%  42%  43%  44%  45%  46%  47%  48%  49%  50%  51%  52%  53%  54%  55%  56%  57%  58%  59%  60%  61%  62%  63%  64%  65%  66%  67%  68%  69%  70%  71%  72%  73%  74%  75%  76%  77%  78%  79%  80%  81%  82%  83% 100%OKRunning from RAM...1G ports detected: 12****************************************************************************** Running  SW  Ver. 3.5.0.30_nobit  Date  20-Apr-2015  Time  10:32:31 ******************************************************************************HW version is  Base Mac address is: 1c:51:b5:00:1f:e5Dram size is  : 256M bytesDram first block size is  : 208896K bytesDram first PTR is  : 0x3000000Dram second block size is  : 4096K bytesDram second PTR is  : 0xFC00000Flash size is: 32M - read
+18:30:48:361:	01-Oct-2006 10:32:55 %CDB-I-LOADCONFIG: Loading running configuration.01-Oct-2006 10:32:57 %CDB-I-LOADCONFIG: Loading startup configuration.Device configuration:Slot 1 - MT-9012-------------------------------------- Unit Standalone                --------------------------------------01-Oct-2006 10:33:05 %Entity-I-SEND-ENT-CONF-CHANGE-TRAP: entity configuration change trap. - read
+18:31:03:368:	Tapi Version: v1.9.6Core Version: v1.9.601-Oct-2006 10:33:15 %INIT-I-InitCompleted: Initialization task is completed - read
+18:31:33:383:	01-Oct-2006 10:33:36 %SNMP-I-CDBITEMSNUM: Number of running configuration items loaded: 14401-Oct-2006 10:33:36 %SNMP-I-CDBITEMSNUM: Number of startup configuration items loaded: 144User Name: - read
+18:31:33:851:	admin - written
+18:31:34:163:	rd: - read

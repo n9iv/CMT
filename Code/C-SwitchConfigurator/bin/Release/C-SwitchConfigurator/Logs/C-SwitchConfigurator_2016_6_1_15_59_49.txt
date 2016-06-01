@@ -1,0 +1,11 @@
+15:59:49:866:	C-SwitchConfigurator.vshost.exe m 1 C-SwitchConfigurator\Scripts
+
+15:59:49:884:	C-Switch communication is oppened
+
+15:59:49:886:	LogIn
+15:59:50:093:	Switch(config)#Switch(config)# - read
+15:59:50:694:	conf t - written
+15:59:50:895:	Switch(config)#                    ^% Invalid input detected at '^' marker.Switch(config)# - read
+15:59:52:497:	hostname CCU_SW1 - written
+15:59:52:500:	C-Switch communication is closed
+

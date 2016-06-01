@@ -1,0 +1,10 @@
+16:01:38:824:	C-SwitchConfigurator.vshost.exe m 1 C-SwitchConfigurator\Scripts
+
+16:01:38:841:	C-Switch communication is oppened
+
+16:01:38:842:	LogIn
+16:01:39:250:	CCU_SW1(config)#CCU_SW1(config)#CCU_SW1(config)# - read
+16:01:40:451:	conf t - written
+16:01:40:652:	CCU_SW1(config)#                     ^% Invalid input detected at '^' marker.CCU_SW1(config)# - read
+16:01:44:915:	hostname CCU_SW1 - written
+16:02:09:073:	hostname CCU_SW1 - written

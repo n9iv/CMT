@@ -7,8 +7,8 @@
              d:DesignHeight="700" d:DesignWidth="700">
     <Grid>
         <StackPanel Margin="10" Width="1000">
-            <TextBlock FontSize="40" HorizontalAlignment="Center" Margin="10">T-Switch Configurator<LineBreak/></TextBlock>
-            <TextBlock FontSize="35">Choose one of the T-Switch configuration below:</TextBlock>
+            <TextBlock FontSize="40" HorizontalAlignment="Center" Margin="10">Cabin Ethernet Switch Configuration<LineBreak/></TextBlock>
+            <TextBlock FontSize="35">Select the battery unit this Cabin Ethernet Switch will be configured for:</TextBlock>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10" >
                 <RadioButton Name="_rbMFU" Checked="_rbMFU_Checked">
                     <StackPanel Orientation="Horizontal" Margin="10">

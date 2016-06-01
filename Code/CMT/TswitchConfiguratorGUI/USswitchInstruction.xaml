@@ -6,9 +6,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="1500" d:DesignWidth="1700" Loaded="UserControl_Loaded">
     <Grid>
-        <StackPanel Width="1500" Margin="100,0" Grid.RowSpan="2">
-            <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center" >Switch Configuration Instructions<LineBreak/></TextBlock>
-            <TextBlock Margin="40,0,0,20" HorizontalAlignment="left" Grid.Row="0" FontSize="20">Follow the instructions:</TextBlock>
+        <StackPanel Width="1000" Margin="100,0" Grid.RowSpan="2">
+            <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center" >Cabin Ethernet Switch Configuration - Stage 1<LineBreak/></TextBlock>
             <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Auto" Name="_wbInstruction" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="400"/>
         </StackPanel>
     </Grid>

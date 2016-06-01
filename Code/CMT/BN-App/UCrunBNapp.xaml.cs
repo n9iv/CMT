@@ -30,7 +30,7 @@ namespace CMT.BN_App
         {
             Process BNappProc = new Process();
 
-            BNappProc.StartInfo.FileName = "run_bn-app.lnk";
+            BNappProc.StartInfo.FileName = @"BN-APP\run_bn-app.lnk";
             BNappProc.Start();
             BNappProc.WaitForExit();
 

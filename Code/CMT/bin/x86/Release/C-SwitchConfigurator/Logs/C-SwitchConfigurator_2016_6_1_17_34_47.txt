@@ -1,0 +1,265 @@
+17:34:47:207:	C-SwitchConfigurator.exe m 1 C-SwitchConfigurator\Scripts\
+
+17:34:47:225:	C-Switch communication is oppened
+
+17:34:47:226:	LogIn
+17:34:47:632:	Switch#Switch# - read
+17:34:48:832:	conf t - written
+17:34:49:032:	Switch#Enter configuration commands, one per line.  End with CNTL/Z.Switch(config)# - read
+17:34:52:234:	hostname CCU_SW1 - written
+17:34:52:635:	! - written
+17:34:56:236:	boot-start-marker - written
+17:34:59:436:	boot-end-marker - written
+17:34:59:837:	! - written
+17:35:00:237:	! - written
+17:35:05:037:	vrf definition Mgmt-vrf - written
+17:35:05:637:	 ! - written
+17:35:09:839:	 address-family ipv4 - written
+17:35:14:039:	 exit-address-family - written
+17:35:14:639:	 ! - written
+17:35:18:839:	 address-family ipv6 - written
+17:35:23:039:	 exit-address-family - written
+17:35:23:439:	! - written
+17:35:27:641:	enable secret Spyder - written
+17:35:28:041:	! - written
+17:35:37:046:	username vigilant privilege 15 secret Spyder - written
+17:35:40:446:	no aaa new-model - written
+17:35:47:047:	switch 1 provision ws-c3650-24ts - written
+17:35:47:448:	! - written
+17:35:51:475:	no ip domain-lookup - written
+17:35:55:278:	ip device tracking - written
+17:35:55:678:	! - written
+17:35:56:079:	! - written
+17:36:01:881:	no ip igmp snooping vlan 190 - written
+17:36:07:481:	no ip igmp snooping vlan 10 - written
+17:36:07:881:	! - written
+17:36:17:482:	crypto pki trustpoint TP-self-signed-1719429079 - written
+17:36:22:084:	 enrollment selfsigned - written
+17:36:33:284:	 subject-name cn=IOS-Self-Signed-Certificate-1719429079 - written
+17:36:37:885:	 revocation-check none - written
+17:36:45:486:	 rsakeypair TP-self-signed-1719429079 - written
+17:36:45:886:	! - written
+17:36:46:287:	! - written
+17:36:57:290:	crypto pki certificate chain TP-self-signed-1719429079 - written
+17:36:57:690:	! - written
+17:36:58:090:	! - written
+17:36:58:490:	! - written
+17:37:00:091:	vlan 14 - written
+17:37:01:091:	exit - written
+17:37:01:491:	! - written
+17:37:01:891:	! - written
+17:37:02:291:	! - written
+17:37:02:691:	! - written
+17:37:03:091:	! - written
+17:37:09:493:	diagnostic bootup level minimal - written
+17:37:09:893:	! - written
+17:37:14:498:	spanning-tree mode mst - written
+17:37:20:703:	spanning-tree extend system-id - written
+17:37:21:103:	! - written
+17:37:27:508:	spanning-tree mst configuration - written
+17:37:31:713:	 instance 10 vlan 10 - written
+17:37:35:916:	 instance 11 vlan 11 - written
+17:37:40:118:	 instance 12 vlan 12 - written
+17:37:44:319:	 instance 13 vlan 13 - written
+17:37:48:520:	 instance 14 vlan 14 - written
+17:37:52:920:	 instance 15 vlan 190 - written
+17:37:53:320:	! - written
+17:37:53:720:	! - written
+17:38:02:323:	spanning-tree vlan 10-14,190 priority 8192 - written
+17:38:02:723:	! - written
+17:38:04:926:	redundancy - written
+17:38:06:926:	 mode sso - written
+17:38:07:326:	! - written
+17:38:07:726:	! - written
+17:38:08:126:	! - written
+17:38:16:326:	class-map match-any non-client-nrt-class - written
+17:38:21:128:	  match non-client-nrt  - written
+17:38:21:528:	! - written
+17:38:27:328:	policy-map port_child_policy - written
+17:38:32:933:	 class non-client-nrt-class - written
+17:38:39:538:	    bandwidth remaining ratio 10 - written
+17:38:39:938:	! - written
+17:38:40:338:	! - written
+17:38:40:740:	! - written
+17:38:41:141:	! - written
+17:38:41:541:	! - written
+17:38:41:941:	! - written
+17:38:46:743:	interface Port-channel1 - written
+17:38:54:943:	 switchport trunk allowed vlan 10-14,190 - written
+17:38:59:545:	 switchport mode trunk - written
+17:39:02:145:	 duplex full - written
+17:39:07:545:	 spanning-tree cost 300000 - written
+17:39:07:945:	! - written
+17:39:13:746:	interface GigabitEthernet0/0 - written
+17:39:18:746:	 vrf forwarding Mgmt-vrf - written
+17:39:21:746:	 no ip address - written
+17:39:25:346:	 negotiation auto - written
+17:39:25:747:	! - written
+17:39:31:949:	interface GigabitEthernet1/0/1 - written
+17:39:35:353:	 description MC2 - written
+17:39:40:754:	 switchport access vlan 12 - written
+17:39:45:555:	 spanning-tree portfast - written
+17:39:45:955:	! - written
+17:39:52:157:	interface GigabitEthernet1/0/2 - written
+17:39:55:557:	 description RC2 - written
+17:40:00:963:	 switchport access vlan 12 - written
+17:40:05:765:	 spanning-tree portfast - written
+17:40:06:166:	! - written
+17:40:12:366:	interface GigabitEthernet1/0/3 - written
+17:40:15:966:	 description mDRS - written
+17:40:21:367:	 switchport access vlan 12 - written
+17:40:26:168:	 spanning-tree portfast - written
+17:40:26:569:	! - written
+17:40:32:770:	interface GigabitEthernet1/0/4 - written
+17:40:36:570:	 description RmDRS - written
+17:40:41:972:	 switchport access vlan 12 - written
+17:40:46:772:	 spanning-tree portfast - written
+17:40:47:173:	! - written
+17:40:53:373:	interface GigabitEthernet1/0/5 - written
+17:40:56:773:	 description ICS - written
+17:41:02:174:	 switchport access vlan 12 - written
+17:41:06:974:	 spanning-tree portfast - written
+17:41:07:374:	! - written
+17:41:13:574:	interface GigabitEthernet1/0/6 - written
+17:41:17:175:	 description RICS - written
+17:41:22:576:	 switchport access vlan 12 - written
+17:41:27:376:	 spanning-tree portfast - written
+17:41:27:776:	! - written
+17:41:33:984:	interface GigabitEthernet1/0/7 - written
+17:41:37:985:	 description COP_C2 - written
+17:41:43:385:	 switchport access vlan 12 - written
+17:41:48:185:	 spanning-tree portfast - written
+17:41:48:588:	! - written
+17:41:54:789:	interface GigabitEthernet1/0/8 - written
+17:41:58:989:	 description printer - written
+17:42:04:390:	 switchport access vlan 13 - written
+17:42:09:191:	 spanning-tree portfast - written
+17:42:09:592:	! - written
+17:42:15:792:	interface GigabitEthernet1/0/9 - written
+17:42:20:593:	 description to ccu_sw2 - written
+17:42:28:795:	 switchport trunk allowed vlan 10-14,190 - written
+17:42:33:395:	 switchport mode trunk - written
+17:42:38:395:	 channel-group 1 mode on - written
+17:42:38:795:	! - written
+17:42:45:197:	interface GigabitEthernet1/0/10 - written
+17:42:49:997:	 description to ccu_sw2 - written
+17:42:58:197:	 switchport trunk allowed vlan 10-14,190 - written
+17:43:02:799:	 switchport mode trunk - written
+17:43:07:799:	 channel-group 1 mode on - written
+17:43:08:199:	! - written
+17:43:14:599:	interface GigabitEthernet1/0/11 - written
+17:43:18:400:	 description cabin - written
+17:43:26:600:	 switchport trunk allowed vlan 10-14,190 - written
+17:43:31:200:	 switchport mode trunk - written
+17:43:36:401:	 spanning-tree cost 10000 - written
+17:43:36:801:	! - written
+17:43:43:201:	interface GigabitEthernet1/0/12 - written
+17:43:47:001:	 description cabin - written
+17:43:51:601:	 switchport mode trunk - written
+17:43:53:602:	 shutdown - written
+17:43:54:003:	! - written
+17:44:00:403:	interface GigabitEthernet1/0/13 - written
+17:44:04:603:	 description Printer - written
+17:44:10:005:	 switchport access vlan 13 - written
+17:44:14:806:	 spanning-tree portfast - written
+17:44:15:206:	! - written
+17:44:21:606:	interface GigabitEthernet1/0/14 - written
+17:44:25:006:	 description OC  - written
+17:44:30:408:	 switchport access vlan 13 - written
+17:44:35:208:	 switchport mode access - written
+17:44:40:008:	 spanning-tree portfast - written
+17:44:40:410:	! - written
+17:44:46:813:	interface GigabitEthernet1/0/15 - written
+17:44:50:215:	 description OC  - written
+17:44:55:616:	 switchport access vlan 13 - written
+17:45:00:617:	  spanning-tree portfast - written
+17:45:01:019:	! - written
+17:45:07:420:	interface GigabitEthernet1/0/16 - written
+17:45:10:822:	 description OC  - written
+17:45:16:222:	 switchport access vlan 13 - written
+17:45:21:224:	  spanning-tree portfast - written
+17:45:21:624:	! - written
+17:45:28:025:	interface GigabitEthernet1/0/17 - written
+17:45:33:429:	 switchport access vlan 11 - written
+17:45:33:829:	! - written
+17:45:40:240:	interface GigabitEthernet1/0/18 - written
+17:45:43:441:	 description VT - written
+17:45:48:642:	switchport access vlan 11 - written
+17:45:49:042:	! - written
+17:45:55:444:	interface GigabitEthernet1/0/19 - written
+17:45:55:844:	! - written
+17:46:02:246:	interface GigabitEthernet1/0/20 - written
+17:46:02:646:	! - written
+17:46:09:046:	interface GigabitEthernet1/0/21 - written
+17:46:09:446:	! - written
+17:46:15:848:	interface GigabitEthernet1/0/22 - written
+17:46:20:648:	 description RADAR RJ45 - written
+17:46:26:048:	 switchport access vlan 10 - written
+17:46:26:449:	! - written
+17:46:32:850:	interface GigabitEthernet1/0/23 - written
+17:46:38:050:	 description MonitorRmDRS - written
+17:46:38:450:	! - written
+17:46:44:850:	interface GigabitEthernet1/0/24 - written
+17:46:45:250:	! - written
+17:46:51:451:	interface GigabitEthernet1/1/1 - written
+17:46:54:851:	 description RDR - written
+17:47:00:252:	 switchport access vlan 10 - written
+17:47:05:053:	 switchport mode access - written
+17:47:05:454:	! - written
+17:47:11:654:	interface GigabitEthernet1/1/2 - written
+17:47:14:859:	 description FO - written
+17:47:20:659:	  switchport access vlan 190 - written
+17:47:25:460:	 switchport mode access - written
+17:47:30:260:	 spanning-tree portfast - written
+17:47:30:660:	! - written
+17:47:36:860:	interface GigabitEthernet1/1/3 - written
+17:47:40:060:	 description FO - written
+17:47:45:869:	  switchport access vlan 190 - written
+17:47:50:669:	 switchport mode access - written
+17:47:55:469:	 spanning-tree portfast - written
+17:47:55:869:	! - written
+17:47:56:270:	! - written
+17:48:02:471:	interface GigabitEthernet1/1/4 - written
+17:48:05:671:	 description FO - written
+17:48:11:472:	  switchport access vlan 190 - written
+17:48:16:274:	 switchport mode access - written
+17:48:21:074:	 spanning-tree portfast - written
+17:48:21:474:	! - written
+17:48:21:874:	! - written
+17:48:25:074:	interface Vlan1 - written
+17:48:28:074:	 no ip address - written
+17:48:30:074:	 shutdown - written
+17:48:30:474:	! - written
+17:48:33:875:	interface Vlan14 - written
+17:48:37:275:	 description MNG - written
+17:48:45:485:	 ip address 194.0.71.251 255.255.255.192 - written
+17:48:45:887:	! - written
+17:48:52:289:	ip default-gateway 194.0.71.253 - written
+17:48:55:290:	ip http server - written
+17:49:01:093:	ip http authentication local - written
+17:49:05:494:	ip http secure-server - written
+17:49:05:894:	! - written
+17:49:06:294:	! - written
+17:49:06:694:	! - written
+17:49:09:495:	line vty 0 15 - written
+17:49:12:095:	 login local - written
+17:49:13:095:	exit - written
+17:49:13:495:	! - written
+17:49:28:307:	monitor session 1 source interface Gi1/0/1 , Gi1/0/5 , Gi1/0/11 , Gi1/1/2 - written
+17:49:37:507:	monitor session 1 destination remote vlan 92  - written
+17:49:37:907:	! - written
+17:49:38:307:	! - written
+17:49:38:707:	! - written
+17:49:44:912:	monitor session 2 source vl 12 - written
+17:49:55:515:	monitor session 2 destination interface Gi1/0/23 -24 - written
+17:49:55:915:	! - written
+17:49:56:915:	end  - written
+17:49:57:115:	
+Save settings:
+17:49:57:517:	wr - written
+17:49:59:519:	hostname CCU_SW1CCU_SW1(config)#!CCU_SW1(config)#boot-start-markerCCU_SW1(config)#boot-end-markerCCU_SW1(config)#!CCU_SW1(config)#!CCU_SW1(config)#vrf definition Mgmt-vrfCCU_SW1(config-vrf)# !CCU_SW1(config-vrf)# address-family ipv4CCU_SW1(config-vrf-af)# exit-address-familyCCU_SW1(config-vrf)# !CCU_SW1(config-vrf)# address-family ipv6CCU_SW1(config-vrf-af)# exit-address-familyCCU_SW1(config-vrf)#!CCU_SW1(config-vrf)#enable secret SpyderCCU_SW1(config)#!CCU_SW1(config)#username vigilant privilege 15 secret SpyderCCU_SW1(config)#no aaa new-modelCCU_SW1(config)#switch 1 provision ws-c3650-24tsCCU_SW1(config)#!CCU_SW1(config)#no ip domain-lookupCCU_SW1(config)#ip device trackingCCU_SW1(config)#!CCU_SW1(config)#!CCU_SW1(config)#no ip igmp snooping vlan 190CCU_SW1(config)#no ip igmp snooping vlan 10CCU_SW1(config)#!CCU_SW1(config)#crypto pki trustpoint TP-self-signed-1719429079CCU_SW1(ca-trustpoint)# enrollment selfsignedCCU_SW1(ca-trustpoint)# subject-name cn=IOS-Self-Signed-Certificate-171942907$me cn=IOS-Self-Signed-Certificate-1719429079         CCU_SW1(ca-trustpoint)# revocation-check noneCCU_SW1(ca-trustpoint)# rsakeypair TP-self-signed-1719429079CCU_SW1(ca-trustpoint)#!CCU_SW1(ca-trustpoint)#!CCU_SW1(ca-trustpoint)#crypto pki certificate chain TP-self-signed-1719429079CCU_SW1(config-cert-chain)#!CCU_SW1(config-cert-chain)#!CCU_SW1(config-cert-chain)#!CCU_SW1(config-cert-chain)#vlan 14CCU_SW1(config-vlan)#exitCCU_SW1(config)#!CCU_SW1(config)#!CCU_SW1(config)#!CCU_SW1(config)#!CCU_SW1(config)#!CCU_SW1(config)#diagnostic bootup level minimalCCU_SW1(config)#!CCU_SW1(config)#spanning-tree mode mstCCU_SW1(config)#spanning-tree extend system-idCCU_SW1(config)#!CCU_SW1(config)#spanning-tree mst configurationCCU_SW1(config-mst)# instance 10 vlan 10CCU_SW1(config-mst)# instance 11 vlan 11CCU_SW1(config-mst)# instance 12 vlan 12CCU_SW1(config-mst)# instance 13 vlan 13CCU_SW1(config-mst)# instance 14 vlan 14CCU_SW1(config-mst)# instance 15 vlan 190CCU_SW1(config-mst)#!CCU_SW1(config-mst)#!CCU_SW1(config-mst)#spanning-tree vlan 10-14,190 priority 8192CCU_SW1(config)#!CCU_SW1(config)#redundancyCCU_SW1(config-red)# mode ssoCCU_SW1(config-red)#!CCU_SW1(config-red)#!CCU_SW1(config-red)#!CCU_SW1(config-red)#class-map match-any non-client-nrt-classCCU_SW1(config-cmap)#  match non-client-nrt CCU_SW1(config-cmap)#!CCU_SW1(config-cmap)#policy-map port_child_policyCCU_SW1(config-pmap)# class non-client-nrt-classCCU_SW1(config-pmap-c)#    bandwidth remaining ratio 10CCU_SW1(config-pmap-c)#!CCU_SW1(config-pmap-c)#!CCU_SW1(config-pmap-c)#!CCU_SW1(config-pmap-c)#!CCU_SW1(config-pmap-c)#!CCU_SW1(config-pmap-c)#!CCU_SW1(config-pmap-c)#interface Port-channel1CCU_SW1(config-if)# switchport trunk allowed vlan 10-14,190CCU_SW1(config-if)# switchport mode trunkCCU_SW1(config-if)# duplex fullCCU_SW1(config-if)# spanning-tree cost 300000CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet0/0CCU_SW1(config-if)# vrf forwarding Mgmt-vrfCCU_SW1(config-if)# no ip addressCCU_SW1(config-if)# negotiation autoCCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/1CCU_SW1(config-if)# description MC2CCU_SW1(config-if)# switchport access vlan 12CCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/1 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/2CCU_SW1(config-if)# description RC2CCU_SW1(config-if)# switchport access vlan 12CCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/2 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/3CCU_SW1(config-if)# description mDRSCCU_SW1(config-if)# switchport access vlan 12CCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/3 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/4CCU_SW1(config-if)# description RmDRSCCU_SW1(config-if)# switchport access vlan 12CCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/4 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/5CCU_SW1(config-if)# description ICSCCU_SW1(config-if)# switchport access vlan 12CCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/5 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/6CCU_SW1(config-if)# description RICSCCU_SW1(config-if)# switchport access vlan 12CCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/6 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/7CCU_SW1(config-if)# description COP_C2CCU_SW1(config-if)# switchport access vlan 12CCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/7 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/8CCU_SW1(config-if)# description printerCCU_SW1(config-if)# switchport access vlan 13CCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/8 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/9CCU_SW1(config-if)# description to ccu_sw2CCU_SW1(config-if)# switchport trunk allowed vlan 10-14,190CCU_SW1(config-if)# switchport mode trunkCCU_SW1(config-if)# channel-group 1 mode onCCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/10CCU_SW1(config-if)# description to ccu_sw2CCU_SW1(config-if)# switchport trunk allowed vlan 10-14,190CCU_SW1(config-if)# switchport mode trunkCCU_SW1(config-if)# channel-group 1 mode onCCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/11CCU_SW1(config-if)# description cabinCCU_SW1(config-if)# switchport trunk allowed vlan 10-14,190CCU_SW1(config-if)# switchport mode trunkCCU_SW1(config-if)# spanning-tree cost 10000CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/12CCU_SW1(config-if)# description cabinCCU_SW1(config-if)# switchport mode trunkCCU_SW1(config-if)# shutdownCCU_SW1(config-if)#!CCU_SW1(config-if)#interface Gigabi*Jun  1 14:32:31.613: %LINK-5-CHANGED: Interface GigabitEthernet1/0/12, changed state to administratively down*Jun  1 14:32:32.613: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/12, changed state to downtEthernet1/0/13CCU_SW1(config-if)# description PrinterCCU_SW1(config-if)# switchport access vlan 13CCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/13 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/14CCU_SW1(config-if)# description OC CCU_SW1(config-if)# switchport access vlan 13CCU_SW1(config-if)# switchport mode accessCCU_SW1(config-if)# spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/14 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/15CCU_SW1(config-if)# description OC CCU_SW1(config-if)# switchport access vlan 13CCU_SW1(config-if)#  spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/15 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/16CCU_SW1(config-if)# description OC CCU_SW1(config-if)# switchport access vlan 13CCU_SW1(config-if)#  spanning-tree portfast%Warning: portfast should only be enabled on ports connected to a single host. Connecting hubs, concentrators, switches, bridges, etc... to this interface  when portfast is enabled, can cause temporary bridging loops. Use with CAUTION%Portfast has been configured on GigabitEthernet1/0/16 but will only have effect when the interface is in a non-trunking mode.CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/17CCU_SW1(config-if)# switchport access vlan 11CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/18CCU_SW1(config-if)# description VTCCU_SW1(config-if)#switchport access vlan 11CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/19CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/20CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/21CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/22CCU_SW1(config-if)# description RADAR RJ45CCU_SW1(config-if)# switchport access vlan 10CCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEthernet1/0/23CCU_SW1(config-if)# description MonitorRmDRSCCU_SW1(config-if)#!CCU_SW1(config-if)#interface GigabitEtherne - read
+17:49:59:719:	t1/0/24CCU_SW1(config-if)#!CCU_SW1(config-if)#interface Giga - read
+17:50:03:322:	ping 194.0.71.251 - written
+17:50:10:322:	Compressed configuration from 5277 bytes to 2533 bytes[OK]CCU_SW1#ping 194.0.71.251Type escape sequence to abort.Sending 5, 100-byte ICMP Echos to 194.0.71.251, timeout is 2 seconds:... - read
+17:50:10:322:	
+Configuration failed

@@ -46,7 +46,6 @@ namespace CMT.TswitchConfiguratorGUI
                 RunResetScript();
             else
             {
-                RunProc(false);
                 _tbPb.Text = "Applying new configuration";
             }
             _ConfThread.Start();
@@ -110,8 +109,6 @@ namespace CMT.TswitchConfiguratorGUI
                     _routerProc.StartInfo.Arguments = "reset r " + _MN.ToString() + " " + _BN.ToString() + @" T-SwitchConfigurator\Scripts";
                 else
                     _routerProc.StartInfo.Arguments = "r " + _MN.ToString() + " " + _BN.ToString() + @" T-SwitchConfigurator\Scripts";
-                _routerProc.StartInfo.RedirectStandardInput = true;
-                _routerProc.StartInfo.RedirectStandardOutput = true;
                 _routerProc.StartInfo.RedirectStandardError = true;
                 _routerProc.StartInfo.UseShellExecute = false;
                 _routerProc.StartInfo.CreateNoWindow = true;

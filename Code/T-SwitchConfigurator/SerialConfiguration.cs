@@ -68,6 +68,8 @@ namespace T_SwitchConfigurator
                 {
                     Log.Write("Serial port Gets invalid parameters");
                 }
+                else
+                    Log.Write("Open Serial port failed");
                 return (int)ErrorCodes.SPConnectionFailed;
             }
 
@@ -121,7 +123,7 @@ namespace T_SwitchConfigurator
                     foreach (char ch in dataArray)
                     {
                         _spSwitch.Write(ch.ToString());
-                        Thread.Sleep(100);
+                        Thread.Sleep(20);
                     }
                 }
                 _spSwitch.Write("\n");

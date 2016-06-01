@@ -48,7 +48,7 @@ namespace CMT.CswitchConfiguratorGUI
                 RunResetScript();
             else
             {
-                RunProc(false);
+                //RunProc(false);
                 _tbPb.Text = "Applying new configuration";
             }
             _ConfThread.Start();
@@ -112,8 +112,6 @@ namespace CMT.CswitchConfiguratorGUI
                     _cSwitchProc.StartInfo.Arguments = "reset " + _type.ToString() + " " + _val.ToString() + @" C-SwitchConfigurator\Scripts\";
                 else
                     _cSwitchProc.StartInfo.Arguments = _type.ToString() + " " + _val.ToString() + @" C-SwitchConfigurator\Scripts\";
-                _cSwitchProc.StartInfo.RedirectStandardInput = true;
-                _cSwitchProc.StartInfo.RedirectStandardOutput = true;
                 _cSwitchProc.StartInfo.RedirectStandardError = true;
                 _cSwitchProc.StartInfo.UseShellExecute = false;
                 _cSwitchProc.StartInfo.CreateNoWindow = true;

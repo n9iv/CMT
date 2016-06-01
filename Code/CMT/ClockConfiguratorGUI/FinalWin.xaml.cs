@@ -43,9 +43,7 @@ namespace CMT.ClockConfiguratorGUI
 
             _tbConf.Text = "";
             _clockProc.StartInfo.FileName = "ClockConfigurator.exe";
-            _clockProc.StartInfo.Arguments = _val.ToString() + " Scripts\\ClockScript.txt";
-            _clockProc.StartInfo.RedirectStandardInput = true;
-            _clockProc.StartInfo.RedirectStandardOutput = true;
+            _clockProc.StartInfo.Arguments = _val.ToString() + @" ClockConfigurator\Scripts";
             _clockProc.StartInfo.RedirectStandardError = true;
             _clockProc.StartInfo.UseShellExecute = false;
             _clockProc.StartInfo.CreateNoWindow = true;

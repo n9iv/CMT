@@ -1,0 +1,11 @@
+17:21:24:376:	C-SwitchConfigurator.exe m 1 C-SwitchConfigurator\Scripts\
+
+17:21:24:393:	C-Switch communication is oppened
+
+17:21:24:395:	LogIn
+17:21:24:809:	CCU_SW1>CCU_SW1> - read
+17:21:25:209:	en - written
+17:21:25:409:	CCU_SW1>Password:  - read
+17:21:25:410:	Login to C-Switch failed
+17:21:25:412:	C-Switch communication is closed
+

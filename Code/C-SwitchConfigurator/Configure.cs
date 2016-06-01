@@ -26,8 +26,8 @@ namespace C_SwitchConfigurator
     {
         private string _path;
         private SerialConfiguration _cSwitch;
-        private string _userName = "cisco";
-        private string _password = "cisco";
+        private string _userName = XMLparser.switchUserName;
+        private string _password = XMLparser.switcPassword;
         private const int DELAYTIME = 200;
         private string _mainPath = @"\ccu_sw1.txt";
         private string _redundancyPath = @"\ccu_sw2.txt";
@@ -68,65 +68,6 @@ namespace C_SwitchConfigurator
                 return resVal;
             }
 
-            while ((line = script.ReadLine()) != null)
-            {
-                //configure
-                line = line.Replace("BN", (70 + val).ToString());
-                line = line.Replace(_userNameRep, _userName);
-                line = line.Replace(_passRep, _password);
-                if (_cSwitch.SendData(line) != ErrorCodes.WritreSerialFailed)
-                {
-                    resVal = (int)ErrorCodes.WritreSerialFailed;
-                    break;
-                }
-                Thread.Sleep(DELAYTIME);
-            }
-
-            script.Close();
-            if (resVal != (int)ErrorCodes.Success)
-                _cSwitch.Close();
-            return resVal;
-        }
-
-        private int LogIn()
-        {
-            int isLogIn = (int)ErrorCodes.Success;
-            string rcv;
-
-            _cSwitch.Flush();
-            if (_cSwitch.SendData("\r\n") != ErrorCodes.Success)
-                return (int)ErrorCodes.WritreSerialFailed;
-            Thread.Sleep(3 * DELAYTIME);
-            //_cSwitch.ReadData(out rcv, "");
-            //if (rcv != "Username: ")
-            //    return -1;
-            //_cSwitch.SendData(_userName);
-            //Thread.Sleep(200);
-            //_cSwitch.ReadData(out rcv, _userName);
-            //if (rcv != "Password: ")
-            //    return -1;
-            //_cSwitch.SendData(_password);
-            //Thread.Sleep(200);
-            //_cSwitch.ReadData(out rcv, "");
-            if (_cSwitch.ReadData(out rcv, "") != ErrorCodes.Success)
-                return (int)ErrorCodes.ReadSerialFailed;
-            if (rcv.Contains(">") == false)
-                return (int)ErrorCodes.LoginFailed;
-            _cSwitch.Flush();
-            if (_cSwitch.SendData("en") != ErrorCodes.Success)
-                return (int)ErrorCodes.WritreSerialFailed;
-            Thread.Sleep(DELAYTIME);
-            if (_cSwitch.ReadData(out rcv, "en") != ErrorCodes.Success)
-                return (int)ErrorCodes.ReadSerialFailed;
-            if (rcv.Contains("Password: ") == false)
-                return (int)ErrorCodes.LoginFailed;
-            if (_cSwitch.SendData(_password) != ErrorCodes.Success)
-                return (int)ErrorCodes.WritreSerialFailed;
-            Thread.Sleep(DELAYTIME);
-            if (_cSwitch.ReadData(out rcv, "") != ErrorCodes.Success)
-                return (int)ErrorCodes.ReadSerialFailed;
-            if (rcv.Contains("#") == false)
-                return (int)ErrorCodes.LoginFailed;
             _cSwitch.SendData("conf t");
             Thread.Sleep(DELAYTIME);
             if (_cSwitch.ReadData(out rcv, "conf t") != ErrorCodes.Success)
@@ -134,91 +75,118 @@ namespace C_SwitchConfigurator
             if (rcv.Contains("(config)#") == false)
                 return (int)ErrorCodes.LoginFailed;
 
+            while ((line = script.ReadLine()) != null)
+            {
+                //configure
+                if (line == "")
+                    continue;
+                line = line.Replace("BN", (70 + val).ToString());
+                line = line.Replace(_userNameRep, _userName);
+                line = line.Replace(_passRep, _password);
+                if (_cSwitch.SendData(line) != ErrorCodes.Success)
+                {
+                    resVal = (int)ErrorCodes.WritreSerialFailed;
+                    break;
+                }
+                if (line.Contains("ip address "))
+                {
+                    tokens = line.Split(' ');
+                    _switchIP = tokens[3];
+                }
+                Thread.Sleep(DELAYTIME);
+
+            }
+
+            script.Close();
+            if (resVal != (int)ErrorCodes.Success)
+                _cSwitch.Close();
+            else
+                resVal = SaveSettings();
+            return resVal;
+        }
+
+        private int LogIn()
+        {
+            int isLogIn = (int)ErrorCodes.Success;
+            string rcv;
+            Log.Write("LogIn");
+            _cSwitch.Flush();
+            if (_cSwitch.SendData("\r\n") != ErrorCodes.Success)
+                return (int)ErrorCodes.WritreSerialFailed;
+
+            if (_cSwitch.ReadData(out rcv, "") != ErrorCodes.Success)
+                return (int)ErrorCodes.ReadSerialFailed;
+            if(rcv.Contains("#"))
+            {
+                return (int)ErrorCodes.Success;
+            }
+            while (rcv.Contains(">") == false)
+            {
+                Thread.Sleep(15000);
+                _cSwitch.SendData("\r\n");
+                Thread.Sleep(DELAYTIME);
+                _cSwitch.ReadData(out rcv, "");
+            }
+            if (_cSwitch.SendData("en") != ErrorCodes.Success)
+                return (int)ErrorCodes.WritreSerialFailed;
+            Thread.Sleep(DELAYTIME);
+            if (_cSwitch.ReadData(out rcv, "en") != ErrorCodes.Success)
+                return (int)ErrorCodes.ReadSerialFailed;
+            if (rcv.Contains("Password:") == true)
+            {
+                _cSwitch.SendData(_password);
+                Thread.Sleep(DELAYTIME);
+                _cSwitch.ReadData(out rcv, "");
+            }
+            if (rcv.Contains("#") == false)
+                return (int)ErrorCodes.LoginFailed;
             return isLogIn;
         }
 
-        private int SaveSettings()
+        protected int SaveSettings()
         {
-            int isSaved = (int)ErrorCodes.Success;
             string rcv;
-            UInt16 attempts = 0;
-
-            while ((attempts < 3) && (isSaved == -1))
+            Log.Write("\nSave settings:");
+            _cSwitch.Flush();
+            if (_cSwitch.SendData("wr") != ErrorCodes.Success)
+                return (int)ErrorCodes.WritreSerialFailed;
+            Thread.Sleep(2000);
+            _cSwitch.ReadData(out rcv, "");
+            while (rcv.Contains("#"))
             {
-                _cSwitch.SendData("WR");
-                _cSwitch.SendData("Y");
+                Thread.Sleep(DELAYTIME);
                 _cSwitch.ReadData(out rcv, "");
-
-                if (rcv == "Copy Succeded")
-                    isSaved = 0;
-
-                attempts++;
             }
 
-            return isSaved;
+            return VerifyConfigForRouter();
         }
 
-        protected int ResetRouter()
+        public int ResetRouter()
         {
             string rcv;
+            int resVal;
 
-            _cSwitch.Flush();
-            //if (_Tswitch.SendData("\n") != ErrorCodes.Success)
-            //    return (int)ErrorCodes.WritreSerialFailed;
-            //Thread.Sleep(TIMEINTERVAL);
-            ////_Tswitch.SendData("\n");
-            ////Thread.Sleep(200);
-            //if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
-            //    return (int)ErrorCodes.ReadSerialFailed;
-            //while ((rcv.Contains("Router#") == false) && (rcv.Contains("MT9012C login:") == false))
-            //{
-            //    Thread.Sleep(15000);
-            //    _Tswitch.SendData("\r\n");
-            //    Thread.Sleep(TIMEINTERVAL);
-            //    _Tswitch.ReadData(out rcv, "");
-            //}
+            if ((resVal = _cSwitch.Open()) != (int)ErrorCodes.Success)
+                return resVal;
 
-            //Thread.Sleep(TIMEINTERVAL);
-            //if (rcv.Contains("MT9012C login:") == false)
-            //    return (int)ErrorCodes.LoginFailed;
-            //if (_Tswitch.SendData(_routerDefaultUser) != ErrorCodes.Success)
-            //    return (int)ErrorCodes.WritreSerialFailed;
-            //Thread.Sleep(TIMEINTERVAL);
-            //if (_Tswitch.ReadData(out rcv, _routerDefaultUser) != ErrorCodes.Success)
-            //    return (int)ErrorCodes.ReadSerialFailed;
-            //if (rcv.Contains("Password:") == false)
-            //    return (int)ErrorCodes.Failed;
-            //if (_Tswitch.SendData(_routerDefaultPass) != ErrorCodes.Success)
-            //    return (int)ErrorCodes.WritreSerialFailed;
-            //Thread.Sleep(TIMEINTERVAL);
-            //if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
-            //    return (int)ErrorCodes.ReadSerialFailed;
-            //while(rcv.Contains("[root@MT9012C ~]# ") == false)
-            //{
-            //    _Tswitch.SendData("\r\n");
-            //    _Tswitch.ReadData(out rcv, "");
-            //}
-            //Thread.Sleep(TIMEINTERVAL);
-            //if (_Tswitch.SendData("cisco") != ErrorCodes.Success)
-            //    return (int)ErrorCodes.WritreSerialFailed;
-            //Thread.Sleep(TIMEINTERVAL);
-            //while((rcv.Contains(">") == false) && (rcv.Contains("Username") == false))
-            //{
-            //    Thread.Sleep(2000);
-            //    _Tswitch.SendData("\r\n");
-            //    _Tswitch.ReadData(out rcv, "");
-            //}
-            //if (rcv.Contains("Username") == true)
-            //{
-
-            //}
-            //LogInRouter("r");
+            if (LogIn() != (int)ErrorCodes.Success)
+                return (int)ErrorCodes.Failed;
+            Log.Write("Reset Script");
             if (_cSwitch.SendData("write erase") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
+            Thread.Sleep(2000);
             _cSwitch.SendData("\n");
             Thread.Sleep(2000);
             _cSwitch.SendData("reload");
             Thread.Sleep(2000);
+            _cSwitch.SendData("yes");
+            Thread.Sleep(1000);
+            _cSwitch.ReadData(out rcv, "");
+            while (rcv.Contains("[confirm]") == false)
+            {
+                Thread.Sleep(DELAYTIME);
+                _cSwitch.ReadData(out rcv, "");
+            }
             _cSwitch.SendData("\n");
             Thread.Sleep(5000);
             _cSwitch.ReadData(out rcv, "");
@@ -231,18 +199,31 @@ namespace C_SwitchConfigurator
 
             if (_cSwitch.SendData("no") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
-            Thread.Sleep(150000);
+            Thread.Sleep(1000);
+            _cSwitch.ReadData(out rcv, "");
+            if (rcv.Contains("Would you like to terminate autoinstall"))
+            {
+                _cSwitch.SendData("\n");
+            }
+            Thread.Sleep(30000);
             Thread.Sleep(DELAYTIME);
             _cSwitch.SendData("\r\n");
             Thread.Sleep(DELAYTIME);
             if (_cSwitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
-            while (rcv.Contains("Router>") == false)
+            while (rcv.Contains(">") == false)
             {
-                return (int)ErrorCodes.Failed;
+                _cSwitch.SendData("\r\n");
+                Thread.Sleep(DELAYTIME);
+                _cSwitch.ReadData(out rcv, "");
             }
             _cSwitch.SendData("en");
-            return (int)ErrorCodes.Success;
+            Thread.Sleep(DELAYTIME);
+            _cSwitch.ReadData(out rcv, "");
+            _cSwitch.Close();
+            if (rcv.Contains("Switch#"))
+                return (int)ErrorCodes.Success;
+            return (int)ErrorCodes.Failed;
         }
 
         protected int VerifyConfigForRouter()
@@ -254,7 +235,7 @@ namespace C_SwitchConfigurator
             _cSwitch.Flush();
             if (_cSwitch.SendData("ping " + _switchIP) != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
-            Thread.Sleep(2000);
+            Thread.Sleep(10000);
             if (_cSwitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
 

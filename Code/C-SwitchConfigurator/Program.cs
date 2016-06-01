@@ -142,7 +142,10 @@ namespace C_SwitchConfigurator
             config = new Configure(port, path,isMain);
             if ((res = config.Init()) != (int)ErrorCodes.Success)
                 return Close(res);
-            res = config.RunScript(val);
+            if (reset)
+                res = config.ResetRouter();
+            else
+                res = config.RunScript(val);
             Log.Close();
             return res;
         }

@@ -11,13 +11,13 @@
         </Grid.ColumnDefinitions>
 
         <UserControl Name="_cUserCtrlMain" Margin="0,0,0,55" Grid.ColumnSpan="3" />
-        <UserControl Name="_cUserCtrlBtn" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="auto" Height="55" Background="Silver" Grid.ColumnSpan="3">
+        <UserControl Name="_cUserCtrlBtn" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="auto" Height="80" Background="Silver" Grid.ColumnSpan="3">
             <Canvas VerticalAlignment="Center" Margin="10">
-                <Button Name="_btnMainPage" Content="Main Page" IsEnabled="False" FontSize="15" Height="25" Width="100" Canvas.Left="4" Canvas.Top="-14" Click="_btnMainPage_Click"/>
-                <WrapPanel Canvas.Right="0" VerticalAlignment="Top" Canvas.Top="-19">
-                    <Button Name="_btnBack" Content="Back" IsEnabled="False" FontSize="15" Margin="5" Height="25" Width="100" Click="btnBack_onClick"></Button>
-                    <Button Name="_btnNext" Content="Next" IsEnabled="False" FontSize="15" Margin="5" Height="25" Width="100" Click="btnNext_onClick"></Button>
-                    <Button x:Name="_btnShtDown" Content="ShutDown" FontSize="15" Margin="5" Height="25" Width="100" Click="_btnShtDown_onClick"></Button>
+                <Button Name="_btnMainPage" Content="Main Page" IsEnabled="False" FontSize="15" Height="50" Width="100" Canvas.Left="5" Canvas.Top="-22" Click="_btnMainPage_Click"/>
+                <WrapPanel Canvas.Right="3" VerticalAlignment="Top" Canvas.Top="-27" Height="63">
+                    <Button Name="_btnBack" Content="Back" IsEnabled="False" FontSize="15" Margin="5" Height="50" Width="100" Click="btnBack_onClick"></Button>
+                    <Button Name="_btnNext" Content="Next" IsEnabled="False" FontSize="15" Margin="5" Height="50" Width="100" Click="btnNext_onClick"></Button>
+                    <Button x:Name="_btnShtDown" Content="ShutDown" FontSize="15" Margin="5" Height="50" Width="100" Click="_btnShtDown_onClick"></Button>
                 </WrapPanel>
             </Canvas>
 

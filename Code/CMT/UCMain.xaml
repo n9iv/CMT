@@ -6,8 +6,8 @@
              mc:Ignorable="d" Height="851" Width="888.441">
     <Grid>
         <StackPanel x:Name="_sp"  Width="1300">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30">Welcome to Configuration Management Tool of the O-Level Configuration Set<LineBreak></LineBreak></TextBlock>
-            <TextBlock Margin="10" Text="Please choose one of the options below:" HorizontalAlignment="Left"  FontSize="25" />
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30">Welcome to the Configuration Management Tool of the O-Level Configuration Set<LineBreak></LineBreak></TextBlock>
+            <TextBlock Margin="10" Text="Please select one of the options below:" HorizontalAlignment="Left"  FontSize="25" />
             <DockPanel Margin="10" Width="auto" Height="auto">
                 <StackPanel DockPanel.Dock="Left" Margin="10" >
                     <RadioButton Margin="10" Content="Rubidium Clock Configuration" Name="_rbClockConf" FontSize="25" Checked="_rbClockConf_Checked" />

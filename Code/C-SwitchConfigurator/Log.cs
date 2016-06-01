@@ -14,6 +14,7 @@ namespace C_SwitchConfigurator
         private static int _noLogsToSave;
         private static string _fdPath;
         private static bool _logCreationFailed = false;
+        private static string fullPath;
 
         public static int noLogToSave
         {
@@ -27,8 +28,8 @@ namespace C_SwitchConfigurator
         {
             _fdPath = confName + @"\Logs\";
             string fileName = confName + "_" + GetDateTime() + ".txt";
-            string fullPath = _fdPath + fileName;
-            if(CheckLogFolder(_fdPath) == false)
+            fullPath = _fdPath + fileName;
+            if (CheckLogFolder(_fdPath) == false)
             {
                 _logCreationFailed = true;
                 return;
@@ -39,6 +40,7 @@ namespace C_SwitchConfigurator
                 {
                     _logFile = File.Open(fullPath, FileMode.Create, FileAccess.Write);
                     _fileWrite = new StreamWriter(_logFile);
+                    Close();
                 }
                 else
                     _logCreationFailed = true;
@@ -52,13 +54,22 @@ namespace C_SwitchConfigurator
 
         public static void Write(string msg)
         {
+            if (!_logCreationFailed)
+            {
+                _logFile = File.Open(fullPath, FileMode.Append, FileAccess.Write);
+                _fileWrite = new StreamWriter(_logFile);
+            }
             string str = string.Format("{0:HH:mm:ss:fff}", DateTime.Now);
 
             str = string.Format("{0}:\t{1}", str, msg);
 
             Console.WriteLine(msg);
             if (!_logCreationFailed)
+            {
                 _fileWrite.WriteLine(str);
+                Close();
+            }
+
         }
 
         public static void Close()
