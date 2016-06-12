@@ -40,8 +40,18 @@ namespace ClockConfigurator
         public int RunScript(int val)
         {
             int resVal = 0;
+            StreamReader script = null;
             bool isMFU = true, skip = false;
-            StreamReader script = File.OpenText(_path);
+
+            try
+            {
+                script = File.OpenText(_path);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex.Message);
+                return (int)ErrorCodes.Failed;
+            }
             Configure.ErrorCodes ret;
             string line, rcv = null;
             string[] tokens;
@@ -128,7 +138,7 @@ namespace ClockConfigurator
                 if (rcv != line)
                 {
                     resVal = (int)Configure.ErrorCodes.ConfigurationFailed;
-                    Log.Write(tokens[0] + ": configured value - " + line +"  received value - " + rcv);
+                    Log.Write(tokens[0] + ": configured value - " + line + "  received value - " + rcv);
                     break;
                 }
                 else

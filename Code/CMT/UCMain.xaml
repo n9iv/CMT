@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="851" Width="888.441">
     <Grid>
-        <StackPanel x:Name="_sp"  Width="1300">
+        <StackPanel x:Name="_sp" Width="1300">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30">Welcome to the Configuration Management Tool of the O-Level Configuration Set<LineBreak></LineBreak></TextBlock>
             <TextBlock Margin="10" Text="Please select one of the options below:" HorizontalAlignment="Left"  FontSize="25" />
-            <DockPanel Margin="10" Width="auto" Height="auto">
+            <StackPanel Margin="10" Width="auto" Height="auto" Orientation="Horizontal">
                 <StackPanel DockPanel.Dock="Left" Margin="10" >
                     <RadioButton Margin="10" Content="Rubidium Clock Configuration" Name="_rbClockConf" FontSize="25" Checked="_rbClockConf_Checked" />
                     <RadioButton Margin="10" Content="Cabin Ethernet Switch Configuration" Name="_rbTswitchConf" FontSize="25" Checked="_rbTswitchConf_Checked" />
                     <RadioButton Margin="10" Content="Shelter Ethernet Switch Configuration" Name="_rbCswitchConf" FontSize="25" Checked="_rbCswitchConf_Checked" />
                     <RadioButton Margin="10" Content="BNET Configuration" Name="_rbClientSN" FontSize="25" Checked="_rbClientSN_Checked" />
                 </StackPanel>
-                <Image x:Name="_iImageMain" Margin="70,0,0,0" DockPanel.Dock="Right" Height="500" Width="800" Stretch="UniformToFill" />
-            </DockPanel>
+                <Image x:Name="_iImageMain" VerticalAlignment="Top" Margin="70,20,0,0" DockPanel.Dock="Right" Height="auto" Width="auto" Stretch="Uniform" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

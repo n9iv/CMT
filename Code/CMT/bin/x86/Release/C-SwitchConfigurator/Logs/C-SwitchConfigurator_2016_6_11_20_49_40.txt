@@ -1,0 +1,2 @@
+20:49:40:761:	C-SwitchConfigurator.exe m 2 C-SwitchConfigurator\Scripts\
+

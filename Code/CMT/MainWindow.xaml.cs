@@ -30,7 +30,7 @@ namespace CMT
         public static int[] val;
         public static List<UserControl> _userControlList;
         private string _adminUserName = "Administrator";
-        private bool _isAdmin = false;
+        private static bool _isAdmin = false;
 
         public MainWindow()
         {
@@ -167,7 +167,9 @@ namespace CMT
         private void _btnMainPage_Click(object sender, RoutedEventArgs e)
         {
             _cUserCtrlMain.Content = _userControlList[0];
+            _btnNext.IsEnabled = true;
             _btnMainPage.IsEnabled = false;
+            _btnBack.IsEnabled = false;
         }
 
         private void SetDefaultList()
@@ -244,6 +246,19 @@ namespace CMT
             {
                 e.Cancel = true;
             }
+        }
+
+        public static bool IsAdmin
+        {
+            get
+            {
+                return _isAdmin;
+            }
+        }
+
+        public void SetNavigateBar(bool enable)
+        {
+            _cUserCtrlBtn.IsEnabled = enable;
         }
     }
 }

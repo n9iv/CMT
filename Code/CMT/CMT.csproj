@@ -101,6 +101,9 @@
     <Compile Include="BN-App\UCrunBNapp.xaml.cs">
       <DependentUpon>UCrunBNapp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ClockConfiguratorGUI\FinalWin.xaml.cs">
       <DependentUpon>FinalWin.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BN-App\UCrunBNapp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CircularProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

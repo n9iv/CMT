@@ -8,12 +8,20 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" Height="1500">
             <TextBlock FontSize="40" Margin ="20" HorizontalAlignment="Center">Shelter Ethernet Switch Configuration<LineBreak/><LineBreak/></TextBlock>
-            <CheckBox Name="_chkbReset" Margin ="0,0,10,60" FontSize="18" HorizontalAlignment="Center" Checked="_chkbReset_Checked" Unchecked="_chkbReset_Unchecked">Reset configuration before applying new configuration (this will take several minutes)</CheckBox>
+            <CheckBox Name="_chkbReset" Margin ="0,0,10,60" IsChecked="True" Visibility="Hidden" FontSize="18" HorizontalAlignment="Center" Checked="_chkbReset_Checked" Unchecked="_chkbReset_Unchecked">Reset configuration before applying new configuration (this will take several minutes)</CheckBox>
             <TextBlock FontSize="20" HorizontalAlignment="Center">Click the following button to configurate the router<LineBreak/></TextBlock>
             <Button Name="_btnConfig" FontSize="30" Height="60" Width="250" Click="_btnConfig_Click" >Configure</Button>
             <TextBlock Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40" FontSize="30" Height="60" Width="600"></TextBlock>
-            <TextBlock x:Name="_tbPb" HorizontalAlignment="Center" Text="Configuring, please wait..." Visibility="Hidden" TextAlignment="Center" Margin="0,0,40,0" FontSize="20" Height="60" Width="350"/>
-            <ProgressBar Name="_pb" Maximum="100" Visibility="Hidden" Minimum="0" Height="50"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock x:Name="_tbPb" Visibility="Hidden" TextAlignment="Center" Margin="50,0,40,0" FontSize="20" Height="60" Width="400"/>
+                <Viewbox  Width="200" Height="200"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center">
+                    <UserControl Visibility="Hidden" Name="_ucPb"></UserControl>
+                </Viewbox>
+            </StackPanel>
+            <!--<ProgressBar Name="_pb" Maximum="100" Visibility="Hidden" Minimum="0" Height="50"/>-->
+
         </StackPanel>
     </Grid>
 </UserControl>

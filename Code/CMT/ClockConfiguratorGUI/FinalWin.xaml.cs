@@ -27,6 +27,7 @@ namespace CMT.ClockConfiguratorGUI
         private MainWindow _win;
         private Process _clockProc;
         private Thread _ConfThread;
+        private CircularProgressBar _circularPB;
 
         public FinalWin(int val)
         {
@@ -40,6 +41,7 @@ namespace CMT.ClockConfiguratorGUI
             ThreadStart start = new ThreadStart(WaitConfigurator);
             _ConfThread = new Thread(start);
             _clockProc = new Process();
+            SetEnableNavigators(false);
 
             _tbConf.Text = "";
             _clockProc.StartInfo.FileName = "ClockConfigurator.exe";
@@ -52,8 +54,10 @@ namespace CMT.ClockConfiguratorGUI
 
             _btnConfig.IsEnabled = false;
             _tbPb.Visibility = System.Windows.Visibility.Visible;
-            _pb.Visibility = System.Windows.Visibility.Visible;
-            _pb.IsIndeterminate = true;
+            _tbPb.Text = "Applying new configuration";
+            _circularPB = new CircularProgressBar();
+            _ucPb.Content = _circularPB;
+            _ucPb.Visibility = System.Windows.Visibility.Visible;
         }
 
         /// <summary>
@@ -85,10 +89,18 @@ namespace CMT.ClockConfiguratorGUI
                 _tbConf.Foreground = b;
                 _tbConf.Text = str;
                 _btnConfig.IsEnabled = true;
-                _pb.IsIndeterminate = false;
+                _circularPB.StopProgress();
+                _ucPb.Visibility = System.Windows.Visibility.Hidden;
                 _tbPb.Visibility = System.Windows.Visibility.Hidden;
-                _pb.Visibility = System.Windows.Visibility.Hidden;
+                SetEnableNavigators(true);
             }));
+        }
+
+        private void SetEnableNavigators(bool enable)
+        {
+            Window win = Application.Current.Windows[0];
+            MainWindow m = (MainWindow)win;
+            m.SetNavigateBar(enable);
         }
     }
 }

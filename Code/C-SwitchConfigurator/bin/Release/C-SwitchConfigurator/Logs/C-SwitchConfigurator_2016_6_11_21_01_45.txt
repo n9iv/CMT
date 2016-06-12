@@ -1,0 +1,3 @@
+21:01:45:500:	C-SwitchConfigurator.exe m 2 C-SwitchConfigurator\Scripts\
+
+21:01:45:509:	Serial port Gets invalid parameters

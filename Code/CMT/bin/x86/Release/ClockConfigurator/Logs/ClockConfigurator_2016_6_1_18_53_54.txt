@@ -1,3 +1,0 @@
-18:53:54:962:	ClockConfigurator.exe 0 Scripts\ClockScript.txt
-
-18:53:54:962:	Check directory path, there is no such directory!

@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Width="1000" Margin="53,0,37,0" Grid.Column="1">
             <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center" >Cabin Ethernet Switch Configuration - Stage 2<LineBreak/></TextBlock>
-            <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Auto" Name="_wbInstruction" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="400"/>
+            <WebBrowser Name="_wbInstruction" ScrollViewer.VerticalScrollBarVisibility="Auto"  HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="400"/>
         </StackPanel>
     </Grid>
 </UserControl>

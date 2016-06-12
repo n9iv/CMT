@@ -28,19 +28,25 @@ namespace CMT.TswitchConfiguratorGUI
         private Process _switchProc;
         private Thread _ConfThread;
         private bool _rstFlag = false;
+        private CircularProgressBar _circularPB;
 
         public UCconfigSwitch(int mn, int bn)
         {
             InitializeComponent();
             _MN = mn;
             _BN = bn;
+
+            if (MainWindow.IsAdmin)
+                _chkbReset.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void _btnConfig_Click(object sender, RoutedEventArgs e)
         {
             _switchProc = new Process();
             ThreadStart start = new ThreadStart(WaitConfigurator);
+            _tbConf.Text = "";
             _ConfThread = new Thread(start);
+            SetEnableNavigators(false);
 
             if (_rstFlag)
                 RunResetScript();
@@ -51,8 +57,9 @@ namespace CMT.TswitchConfiguratorGUI
             _ConfThread.Start();
             _btnConfig.IsEnabled = false;
             _tbPb.Visibility = System.Windows.Visibility.Visible;
-            _pb.Visibility = System.Windows.Visibility.Visible;
-            _pb.IsIndeterminate = true;
+            _circularPB = new CircularProgressBar();
+            _ucPb.Content = _circularPB;
+            _ucPb.Visibility = System.Windows.Visibility.Visible;
         }
 
         /// <summary>
@@ -66,6 +73,13 @@ namespace CMT.TswitchConfiguratorGUI
             if (_rstFlag)
             {
                 _switchProc.WaitForExit();
+                res = _switchProc.ExitCode;
+                if (res != (int)ErrorCodes.Success)
+                {
+                    str = Configurator.GetErrorMsg((ErrorCodes)res);
+                    EndConfigurate(b, str);
+                    return;
+                }
                 this.Dispatcher.Invoke((Action)(() =>
              {
                  _tbPb.Text = "Applying new configuration";
@@ -88,14 +102,20 @@ namespace CMT.TswitchConfiguratorGUI
                 str = Configurator.GetErrorMsg((ErrorCodes)res);
                 b = Brushes.Red;
             }
+            EndConfigurate(b, str);
+        }
+
+        private void EndConfigurate(Brush color, String msg)
+        {
             this.Dispatcher.Invoke((Action)(() =>
             {
-                _tbConf.Foreground = b;
-                _tbConf.Text = str;
+                _tbConf.Foreground = color;
+                _tbConf.Text = msg;
                 _btnConfig.IsEnabled = true;
-                _pb.IsIndeterminate = false;
+                _circularPB.StopProgress();
+                _ucPb.Visibility = System.Windows.Visibility.Hidden;
                 _tbPb.Visibility = System.Windows.Visibility.Hidden;
-                _pb.Visibility = System.Windows.Visibility.Hidden;
+                SetEnableNavigators(true);
             }));
         }
 
@@ -133,6 +153,13 @@ namespace CMT.TswitchConfiguratorGUI
         private void _chkbReset_Checked(object sender, RoutedEventArgs e)
         {
             _rstFlag = true;
+        }
+
+        private void SetEnableNavigators(bool enable)
+        {
+            Window win = Application.Current.Windows[0];
+            MainWindow m = (MainWindow)win;
+            m.SetNavigateBar(enable);
         }
     }
 }

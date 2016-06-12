@@ -1,8 +1,0 @@
-15:57:57:764:	C-SwitchConfigurator.vshost.exe m 1 C-SwitchConfigurator\Scripts
-
-15:58:31:634:	C-Switch communication is oppened
-
-15:58:32:054:	LogIn
-15:58:32:259:	Switch(config)#Switch(config)# - read
-15:58:34:039:	conf t - written
-15:58:35:304:	Switch(config)#                    ^% Invalid input detected at '^' marker.Switch(config)# - read

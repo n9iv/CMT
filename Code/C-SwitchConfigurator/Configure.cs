@@ -53,8 +53,18 @@ namespace C_SwitchConfigurator
 
         public int RunScript(int val)
         {
+            StreamReader script = null;
             int resVal = (int)ErrorCodes.Success;
-            StreamReader script = File.OpenText(_path);
+            try
+            {
+                script = File.OpenText(_path);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex.Message);
+                return (int)ErrorCodes.Failed;
+            }
+
             string line, rcv = null;
             string[] tokens;
 

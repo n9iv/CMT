@@ -70,8 +70,19 @@ namespace T_SwitchConfigurator
             int resVal = 0;
             string line, rcv = null;
             string[] tokens;
+            StreamReader script = null;
             _path = GetFilePath(type, router);
-            StreamReader script = File.OpenText(_path);
+
+            try
+            {
+                script = File.OpenText(_path);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex.Message);
+                return (int)ErrorCodes.Failed;
+            }
+
             Log.Write("\nStart write script:");
 
             Thread.Sleep(TIMEINTERVAL);
@@ -193,10 +204,20 @@ namespace T_SwitchConfigurator
             int resVal = 0;
             string line, rcv = null;
             string[] tokens;
+            StreamReader script = null;
             bool toTakeIp = false;
 
             _path = GetFilePath(type, router);
-            StreamReader script = File.OpenText(_path);
+            try
+            {
+                script = File.OpenText(_path);
+            }
+            catch(Exception ex)
+            {
+                Log.Write(ex.Message);
+                return (int)ErrorCodes.Failed;
+            }
+
             Log.Write("\nStart write script:");
             _Tswitch.SendData("conf t");
             Thread.Sleep(TIMEINTERVAL);

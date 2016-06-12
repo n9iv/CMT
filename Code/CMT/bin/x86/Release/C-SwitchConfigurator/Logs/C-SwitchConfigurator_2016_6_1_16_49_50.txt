@@ -1,8 +1,0 @@
-16:49:50:068:	C-SwitchConfigurator.exe m 1 C-SwitchConfigurator\Scripts\
-
-16:49:50:083:	C-Switch communication is oppened
-
-16:49:50:084:	LogIn
-16:49:50:492:	CCU_SW1(config-vrf)#CCU_SW1(config-vrf)# - read
-16:49:51:693:	conf t - written
-16:49:51:917:	CCU_SW1(config-vrf)#                    ^% Invalid input detected at '^' marker.CCU_SW1(config-vrf)# - read

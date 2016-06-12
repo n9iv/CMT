@@ -1,0 +1,3 @@
+22:06:10:514:	C-SwitchConfigurator.exe r 1 C-SwitchConfigurator\Scripts\
+
+22:06:10:523:	One of the script files is missing

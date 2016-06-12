@@ -171,3 +171,5 @@ D:\CMT\CMT\obj\x86\Release\CMT_MarkupCompile.cache
 D:\CMT\CMT\obj\x86\Release\CMT.g.resources
 D:\CMT\CMT\obj\x86\Release\CMT.Properties.Resources.resources
 D:\CMT\CMT\obj\x86\Release\CMT.csproj.GenerateResource.Cache
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Release\CircularProgressBar.baml
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Release\CircularProgressBar.g.cs
