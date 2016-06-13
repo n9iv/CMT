@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using CMT.CswitchConfiguratorGUI;
+using System.Security;
 
 namespace CMT
 {
@@ -54,6 +55,9 @@ namespace CMT
         {
             string msg = "The computer will shut down.\r\nDo you want to continue?";
             string cap = "Warning";
+
+            FlushMouseMessages();
+
             MessageBoxButton button = MessageBoxButton.YesNo;
 
             var res = MessageBox.Show(msg, cap, button,MessageBoxImage.Warning,MessageBoxResult.No);
@@ -88,6 +92,8 @@ namespace CMT
             Type objType = _cUserCtrlMain.Content.GetType();
             UserControl obj = null;
             int indx = -1, nxtIndx = -1;
+
+            FlushMouseMessages();
 
             if (_cUserCtrlMain.Content is Main)
             {
@@ -152,6 +158,8 @@ namespace CMT
             UserControl obj = (UserControl)_cUserCtrlMain.Content;
             int indx = -1;
 
+            FlushMouseMessages();
+
             indx = _userControlList.FindIndex(x => x == obj);
 
             _cUserCtrlMain.Content = _userControlList[indx - 1];
@@ -166,6 +174,8 @@ namespace CMT
 
         private void _btnMainPage_Click(object sender, RoutedEventArgs e)
         {
+            FlushMouseMessages();
+
             _cUserCtrlMain.Content = _userControlList[0];
             _btnNext.IsEnabled = true;
             _btnMainPage.IsEnabled = false;
@@ -259,6 +269,41 @@ namespace CMT
         public void SetNavigateBar(bool enable)
         {
             _cUserCtrlBtn.IsEnabled = enable;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NativeMessage
+        {
+            public IntPtr handle;
+            public uint msg;
+            public IntPtr wParam;
+            public IntPtr lParam;
+            public uint time;
+            public System.Drawing.Point p;
+        }
+
+        [SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("User32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern bool PeekMessage(out NativeMessage message,
+            IntPtr handle, uint filterMin, uint filterMax, uint flags);
+        private const UInt32 WM_MOUSEFIRST = 0x0200;
+        private const UInt32 WM_MOUSELAST = 0x020D;
+        public const int PM_REMOVE = 0x0001;
+
+        // Flush all pending mouse events.
+        private static void FlushMouseMessages()
+        {
+            NativeMessage msg;
+            // Repeat until PeekMessage returns false.
+            while (PeekMessage(out msg, IntPtr.Zero,
+                WM_MOUSEFIRST, WM_MOUSELAST, PM_REMOVE))
+                ;
+        }
+
+        public static void FlushClickEvent()
+        {
+            FlushMouseMessages();
         }
     }
 }

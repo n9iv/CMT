@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,7 +35,7 @@ namespace CMT.BN_App
             BNappProc.StartInfo.FileName = @"BN-APP\run_bn-app.lnk";
             BNappProc.Start();
             BNappProc.WaitForExit();
-
+            MainWindow.FlushClickEvent();
             BNappProc.Close();
         }
     }

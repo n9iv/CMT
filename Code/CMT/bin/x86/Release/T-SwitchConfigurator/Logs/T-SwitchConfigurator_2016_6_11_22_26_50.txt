@@ -1,3 +1,0 @@
-22:26:50:826:	T-SwitchConfigurator.exe s 5 0 T-SwitchConfigurator\Scripts
-
-22:26:50:835:	Check script files.
