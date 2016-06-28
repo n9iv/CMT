@@ -37,7 +37,8 @@ namespace CMT.CswitchConfiguratorGUI
             if(MainWindow.val == null)
                 MainWindow.val = new int[2];
             MainWindow.val[0] = MAIN;
-            _sp.Visibility = System.Windows.Visibility.Visible;
+            if (_cbBN.SelectedItem != null)
+                Navigate.SetNextEnable(this, true);
         }
 
         private void _rbRed_Checked(object sender, RoutedEventArgs e)
@@ -45,14 +46,18 @@ namespace CMT.CswitchConfiguratorGUI
             if (MainWindow.val == null)
                 MainWindow.val = new int[2];
             MainWindow.val[0] = REDUNDANCY;
-            _sp.Visibility = System.Windows.Visibility.Visible;
+            if (_cbBN.SelectedItem != null)
+                Navigate.SetNextEnable(this, true);
         }
 
         private void _cbBN_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string str = (string)_cbBN.SelectedItem.ToString();
+            if (MainWindow.val == null)
+                MainWindow.val = new int[2];
             int.TryParse(str, out MainWindow.val[1]);
-            Navigate.SetNextEnable(this, true);
+            if (((_rbMain.IsChecked.HasValue) && (_rbMain.IsChecked.Value)) || ((_rbRed.IsChecked.HasValue) && (_rbRed.IsChecked.Value)))
+                Navigate.SetNextEnable(this, true);
         }
     }
 }

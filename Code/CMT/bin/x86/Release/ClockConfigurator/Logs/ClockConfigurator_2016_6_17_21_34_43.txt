@@ -1,0 +1,3 @@
+21:34:43:789:	ClockConfigurator.exe 3 ClockConfigurator\Scripts
+
+21:34:43:793:	Serial port Gets invalid parameters

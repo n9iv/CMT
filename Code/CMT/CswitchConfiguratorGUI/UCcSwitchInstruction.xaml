@@ -8,7 +8,7 @@
     <Grid>
         <StackPanel Width="1000" Margin="100,0" Grid.RowSpan="2">
             <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center">Shelter Ethernet Switch Configuration<LineBreak/></TextBlock>
-            <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Auto" Name="_wbInstruction" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="400"/>
+            <WebBrowser ScrollViewer.VerticalScrollBarVisibility="auto" Name="_wbInstruction" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="400"/>
         </StackPanel>
     </Grid>
 </UserControl>
