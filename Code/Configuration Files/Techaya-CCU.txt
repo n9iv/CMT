@@ -1,3 +1,31 @@
+no voice vlan oui-interface
+no vlan 2
+no vlan 3
+no vlan 4
+no vlan 5
+no vlan 6
+no vlan 7
+no vlan 8
+no vlan 9
+no vlan 10
+no vlan 11
+no vlan 12
+no ip default-gateway
+!
+set system mode router
+           qos active
+           policy-based-vlans active
+           iscsi inactive
+           egress_acl active
+           openflow inactive
+
+@
+banner login 0
+
+version number 1
+
+0
+!
 spanning-tree mode mst
 spanning-tree priority 0
 spanning-tree mst 1 priority 4096
@@ -10,20 +38,21 @@ spanning-tree mst 15 priority 4096
 port jumbo-frame
 bridge multicast filtering
 vlan database
-vlan 10-14,99,111,114,120,190,193,195
+vlan 10-15,99,114,190
 exit
+ip routing 
 ip igmp snooping
 ip igmp snooping vlan 11
+no ip igmp snooping vlan 190
+no ip igmp snooping vlan 10
 ip igmp snooping vlan 11 mrouter interface gi1/1/12
 ip multicast-routing pim
 hostname Techaya_ccu
-line ssh
-password 7af78c911d5b48bea1dc2449d9d89513abeb4be5 encrypted
-exit
-username USER_NAME privilege 15 password USER_PASS
-ip ssh server
-ip ssh password-auth
-!
+
+username vigilant privilege 15 password Spyder
+
+enable secret Spyder
+
 interface vlan 1
  ip address 192.168.1.111 255.255.255.0
  ip address 192.168.101.254 255.255.255.0
@@ -49,14 +78,13 @@ interface vlan 114
  bridge multicast mode mac-group
 !
 interface gigabitethernet1/1/1
- description INS
- switchport mode trunk
- switchport trunk allowed vlan add 99
+ shutdown
+ spanning-tree portfast
 !
 interface gigabitethernet1/1/2
  description ToSwCCU1
  switchport mode trunk
- switchport trunk allowed vlan add 10-14,190
+ switchport trunk allowed vlan add 10-15,190
 !
 interface gigabitethernet1/1/3
  description ToSwCCU1_mirror
@@ -65,7 +93,7 @@ interface gigabitethernet1/1/4
  description ToSwCCU2
  spanning-tree cost 20000000
  switchport mode trunk
- switchport trunk allowed vlan add 10-14,190
+ switchport trunk allowed vlan add 10-15,190
 !
 interface gigabitethernet1/1/5
  description ToSwCCU2_mirror
@@ -77,10 +105,7 @@ interface gigabitethernet1/1/6
  switchport access vlan 14
 !
 interface gigabitethernet1/1/7
- description TEST
- spanning-tree portfast
- spanning-tree bpduguard enable
- switchport access vlan 14
+ shutdown
 !
 interface gigabitethernet1/1/8
  description INS
@@ -109,3 +134,7 @@ interface gigabitethernet1/1/12
 exit
 ip default-gateway 114.114.1.1
 ip pim rp-address 194.0.BN.254
+!!
+spanning-tree
+!!!!!!!!!!!!!!!
+end

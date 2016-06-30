@@ -8,7 +8,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" Height="1500">
             <TextBlock FontSize="35" Margin ="10" HorizontalAlignment="Center">BNET Configuration<LineBreak/><LineBreak/><LineBreak/></TextBlock>
-            <TextBlock FontSize="20" HorizontalAlignment="Center">Click the follow button to run BNET Configuration tool<LineBreak/></TextBlock>
+            <TextBlock FontSize="20" HorizontalAlignment="Center">Click the following button to run BNET Configuration tool<LineBreak/></TextBlock>
             <Button Name="_btnRun" FontSize="30" Height="60" Width="auto" Click="_btnRun_Click" >BNET Configuration Tool</Button>
             <TextBlock Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40" FontSize="30" Height="60" Width="350"></TextBlock>
         </StackPanel>

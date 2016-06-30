@@ -216,6 +216,28 @@ namespace CMT
                 this.Topmost = true;
                 ResizeMode = System.Windows.ResizeMode.NoResize;
             }
+            Init();
+        }
+
+        // Init the configurator object
+        private void Init()
+        {
+            try
+            {
+                Configurator.Init();
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                MessageBox.Show("ErrorMessages.xml file does not exist", "Error Message", MessageBoxButton.OK, MessageBoxImage.Error);
+                Application.Current.Windows[0].Close();
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Message");
+                Application.Current.Windows[0].Close();
+            }
+
         }
 
         //Disable resize window

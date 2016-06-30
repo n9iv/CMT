@@ -92,15 +92,14 @@ namespace CMT.TswitchConfiguratorGUI
             res = _routerProc.ExitCode;
             _routerProc.Close();
 
+            str = Configurator.GetErrorMsg((ErrorCodes)res);
             if (res == (int)ErrorCodes.Success)
             {
                 b = Brushes.Green;
-                str = "Configuration succeeded!";
             }
 
             else
             {
-                str = Configurator.GetErrorMsg((ErrorCodes)res);
                 b = Brushes.Red;
             }
             EndConfigurate(b, str);

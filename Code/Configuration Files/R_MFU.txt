@@ -5,41 +5,21 @@ boot-start-marker
 boot-end-marker
 !
 !
-enable password cisco
+enable secret Spyder
+
 !
 aaa new-model
 !
-!
-aaa authentication login default local
-aaa authorization exec default local
-!
-!
-!
-!
-!
-aaa session-id common
-bsd-client server url https://cloudsso.cisco.com/as/token.oauth2
-no process cpu extended history
-no process cpu autoprofile hog
-clock timezone EST -5 0
-mmi polling-interval 60
-no mmi auto-configure
-no mmi pvc
-mmi snmp-timeout 180
-!
-!
-!
-!
-!
-!
-!
-!
-
 
 !
+banner login 0
+
+version number 1
+
+0
+!
+
 ip multicast-routing
-!
-!
 !
 no ip domain lookup
 ip domain name vigilant.com
@@ -48,45 +28,17 @@ no ipv6 cef
 !
 multilink bundle-name authenticated
 !
-!
-!
-!
-!
-!
-!
-!
-!
-!
-license udi pid CISCO5921-K9 sn 9HD12330HM7
-!
 spanning-tree portfast bpduguard
 spanning-tree uplinkfast
 spanning-tree backbonefast
-username USER_NAME privilege 15 secret USER_PASS
+username vigilant privilege 15 secret Spyder
 !
 redundancy
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-interface Loopback0
- no ip address
 !
 interface Ethernet0/0
  no ip address
  ip mtu 1496
-no sh
+ no shutdown
 !
 interface Ethernet0/0.99
  encapsulation dot1Q 99
@@ -106,17 +58,17 @@ interface Ethernet0/0.190
 !
 interface Ethernet0/1
  description External Port #12
+ no shutdown
  ip address 192.0.MN.254 255.255.255.0
  ip mtu 1496
-  no sh
  ip pim dense-mode
  ip igmp join-group 234.10.0.2
  ip igmp join-group 234.0.0.249
+ ip igmp join-group 234.0.0.209
  ip igmp join-group 234.0.0.1
  ip igmp join-group 228.12.12.12
  ip igmp join-group 228.10.10.10
  ip igmp join-group 228.10.10.9
- ip igmp join-group 234.0.0.209  
  duplex auto
  speed auto
  no cdp enable
@@ -134,6 +86,7 @@ interface Ethernet0/3
 interface Ethernet1/0
  description TAP Interface
  ip address 192.168.150.155 255.255.255.0
+ shutdown
 !
 interface Ethernet1/1
  no ip address
@@ -183,7 +136,6 @@ control-plane
  !
  !
  !
-ip routing 
 !
 !
 !
@@ -196,8 +148,9 @@ line con 0
  logging synchronous
 line aux 0
 line vty 0 4
- password cisco
+ login local
  transport input all
 !
 !
 end
+

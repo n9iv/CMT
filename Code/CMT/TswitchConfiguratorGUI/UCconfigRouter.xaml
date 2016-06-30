@@ -7,11 +7,11 @@
              d:DesignHeight="800" d:DesignWidth="800">
     <Grid>
         <StackPanel HorizontalAlignment="Center" Height="1500">
-            <TextBlock FontSize="35" Margin ="20" HorizontalAlignment="Center">Cabin Ethernet Switch Configuration - Stage 2<LineBreak/><LineBreak/></TextBlock>
-            <CheckBox Name="_cbReset" Margin = "0,0,10,60" IsChecked="True" Visibility="Hidden" FontSize="18" HorizontalAlignment="Center" Unchecked="_cbReset_Unchecked" Checked="_cbReset_Checked">Reset configuration before applying new configuration (this will take several minutes)</CheckBox>
+            <TextBlock FontSize="35" Margin ="20" HorizontalAlignment="Center">Cabin Ethernet Switch Configuration - Stage 2<LineBreak/></TextBlock>
+            <CheckBox Name="_cbReset" Margin = "0,0,10,50" IsChecked="True" Visibility="Hidden" FontSize="18" HorizontalAlignment="Center" Unchecked="_cbReset_Unchecked" Checked="_cbReset_Checked">Reset configuration before applying new configuration (this will take several minutes)</CheckBox>
             <TextBlock FontSize="20" HorizontalAlignment="Center">Click the following button to configurate the router<LineBreak/></TextBlock>
             <Button Name="_btnConfig" FontSize="30" Height="60" Width="250" Click="_btnConfig_Click" >Configure</Button>
-            <TextBlock Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40,40,40,20" FontSize="30" Height="60" Width="600"></TextBlock>
+            <TextBlock Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40,40,40,5" FontSize="30" Height="auto" Width="auto"></TextBlock>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <TextBlock x:Name="_tbPb" Visibility="Hidden" TextAlignment="Center" Margin="50,0,40,0" FontSize="20" Height="60" Width="400"/>
                 <Viewbox  Width="100" Height="100"

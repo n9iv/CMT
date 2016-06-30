@@ -46,7 +46,7 @@ namespace C_SwitchConfigurator
             try
             {
                 _spCswitch.Open();
-                Log.Write("C-Switch communication is oppened\n");
+                Log.Write("C-Switch communication is opened\n");
                 this.Flush();
                 return (int)ErrorCodes.Success;
             }
@@ -59,7 +59,7 @@ namespace C_SwitchConfigurator
 
                 if (ex is InvalidOperationException)
                 {
-                    Log.Write("The serial port is already oppened");
+                    Log.Write("The serial port is already opened");
                 }
 
                 if (ex is IOException)

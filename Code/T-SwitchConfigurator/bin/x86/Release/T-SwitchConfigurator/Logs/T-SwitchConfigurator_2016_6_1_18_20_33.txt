@@ -1,6 +1,0 @@
-18:20:33:955:	T-SwitchConfigurator.vshost.exe reset s 3 0 T-SwitchConfigurator\Scripts
-
-18:20:33:955:	T-Switch communication is oppened
-
-18:20:33:986:	Login Switch:
-18:20:49:368:	Boot1 Checksum Test...............................PASSBoot2 Checksum Test...............................PASSFlash Image Validation Test.......................PASSBOOT Software Version 1.0.2.0 Built  12-Aug-2013  12:30:46Networking device with CPU based on arm926ejs core. 256 MByte SDRAM. I-Cache 16 KB. D-Cache 16 KB. L2 Cache 256 KB. Cache Enabled.MAC Address   :  1c:51:b5:00:1f:e5.Autoboot in 2 seconds - press RETURN or Esc. to abort and enter prom.Preparing to decompress...  0% 50% 100%Decompressing SW from image-2   0%   1%   2%   3%   4%   5%   6%   7%   8%   9%  10%  11%  12%  13%  14%  15%  16%  17%  18%  19%  20%  21% - read

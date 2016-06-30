@@ -96,15 +96,14 @@ namespace CMT.CswitchConfiguratorGUI
             res = _cSwitchProc.ExitCode;
             _cSwitchProc.Close();
 
+            str = Configurator.GetErrorMsg((ErrorCodes)res);
             if (res == (int)ErrorCodes.Success)
             {
                 b = Brushes.Green;
-                str = "Configuration succeeded!";
             }
 
             else
             {
-                str = Configurator.GetErrorMsg((ErrorCodes)res);
                 b = Brushes.Red;
             }
             EndConfigurate(b, str);

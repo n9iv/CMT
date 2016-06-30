@@ -78,6 +78,7 @@ namespace C_SwitchConfigurator
                 return resVal;
             }
 
+            Log.Write("\nRun Script");
             _cSwitch.SendData("conf t");
             Thread.Sleep(DELAYTIME);
             if (_cSwitch.ReadData(out rcv, "conf t") != ErrorCodes.Success)
@@ -117,9 +118,9 @@ namespace C_SwitchConfigurator
 
         private int LogIn()
         {
-            int isLogIn = (int)ErrorCodes.Success;
+            int isLogIn = (int)ErrorCodes.Success, cnt = 0;
             string rcv;
-            Log.Write("LogIn");
+            Log.Write("\nLogIn");
             _cSwitch.Flush();
             if (_cSwitch.SendData("\r\n") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
@@ -130,13 +131,17 @@ namespace C_SwitchConfigurator
             {
                 return (int)ErrorCodes.Success;
             }
-            while (rcv.Contains(">") == false)
+            while ((rcv.Contains(">") == false) && (cnt < 40))
             {
+                cnt++;
                 Thread.Sleep(15000);
                 _cSwitch.SendData("\r\n");
                 Thread.Sleep(DELAYTIME);
                 _cSwitch.ReadData(out rcv, "");
             }
+
+            if (cnt >= 40)
+                return (int)ErrorCodes.LoginFailed;
             if (_cSwitch.SendData("en") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
             Thread.Sleep(DELAYTIME);
@@ -156,25 +161,28 @@ namespace C_SwitchConfigurator
         protected int SaveSettings()
         {
             string rcv;
+            int cnt = 0;
             Log.Write("\nSave settings:");
             _cSwitch.Flush();
             if (_cSwitch.SendData("wr") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
             Thread.Sleep(2000);
             _cSwitch.ReadData(out rcv, "");
-            while (rcv.Contains("#"))
+            while ((rcv.Contains("#")) && (cnt < 120))
             {
+                cnt++;
                 Thread.Sleep(DELAYTIME);
                 _cSwitch.ReadData(out rcv, "");
             }
-
+            if (cnt >= 120)
+                return (int)ErrorCodes.SaveDataFaiuled;
             return VerifyConfigForRouter();
         }
 
         public int ResetRouter()
         {
             string rcv;
-            int resVal;
+            int resVal, cnt = 0;
 
             if ((resVal = _cSwitch.Open()) != (int)ErrorCodes.Success)
                 return resVal;
@@ -192,21 +200,27 @@ namespace C_SwitchConfigurator
             _cSwitch.SendData("yes");
             Thread.Sleep(1000);
             _cSwitch.ReadData(out rcv, "");
-            while (rcv.Contains("[confirm]") == false)
+            while ((rcv.Contains("[confirm]") == false) && (cnt < 120))
             {
+                cnt++;
                 Thread.Sleep(DELAYTIME);
                 _cSwitch.ReadData(out rcv, "");
             }
+            if (cnt >= 120)
+                return (int)ErrorCodes.Failed;
             _cSwitch.SendData("\n");
             Thread.Sleep(5000);
             _cSwitch.ReadData(out rcv, "");
-            while (!rcv.Contains("initial configuration dialog? [yes/no]:"))
+            cnt = 0;
+            while ((!rcv.Contains("initial configuration dialog? [yes/no]:")) && (cnt < 60))
             {
+                cnt++;
                 _cSwitch.SendData("\r\n");
                 Thread.Sleep(3000);
                 _cSwitch.ReadData(out rcv, "");
             }
-
+            if (cnt >= 60)
+                return (int)ErrorCodes.Failed;
             if (_cSwitch.SendData("no") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
             Thread.Sleep(1000);
@@ -221,12 +235,16 @@ namespace C_SwitchConfigurator
             Thread.Sleep(DELAYTIME);
             if (_cSwitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
-            while (rcv.Contains(">") == false)
+            cnt = 0;
+            while ((rcv.Contains(">") == false) && (cnt < 850))
             {
+                cnt++;
                 _cSwitch.SendData("\r\n");
                 Thread.Sleep(DELAYTIME);
                 _cSwitch.ReadData(out rcv, "");
             }
+            if (cnt >= 850)
+                return (int)ErrorCodes.Failed;
             _cSwitch.SendData("en");
             Thread.Sleep(DELAYTIME);
             _cSwitch.ReadData(out rcv, "");

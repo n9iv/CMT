@@ -1,3 +1,0 @@
-20:56:50:248:	C-SwitchConfigurator.vshost.exe m 2 C-SwitchConfigurator\Scripts\
-
-20:56:52:987:	Check directory path, there is no such directory!

@@ -8,10 +8,10 @@
 
         <Grid>
         <StackPanel HorizontalAlignment="Center" Height="1500">
-            <TextBlock FontSize="30" Margin ="10" HorizontalAlignment="Center">Rubidium Clock Configuration<LineBreak/><LineBreak/><LineBreak/></TextBlock>
+            <TextBlock FontSize="30" Margin ="10" HorizontalAlignment="Center">Rubidium Clock Configuration<LineBreak/><LineBreak/></TextBlock>
             <TextBlock FontSize="20" HorizontalAlignment="Center">Click the following button to configurate the clock<LineBreak/></TextBlock>
             <ToggleButton Name="_btnConfig" FontSize="30" Height="60" Width="250" Click="_btnConfig_Click">Configure</ToggleButton>
-            <TextBlock x:Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40,40,40,20" FontSize="30" Height="60" Width="600"/>
+            <TextBlock x:Name="_tbConf" HorizontalAlignment="Center" TextAlignment="Center" Margin="40,40,40,10" FontSize="30" Height="auto" Width="auto"/>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <TextBlock x:Name="_tbPb" Visibility="Hidden" TextAlignment="Center" Margin="50,0,40,0" FontSize="20" Height="60" Width="400"/>
                 <Viewbox  Width="100" Height="100"

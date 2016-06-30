@@ -32,7 +32,7 @@ namespace CMT
 
             animationTimer = new DispatcherTimer(
                 DispatcherPriority.ContextIdle, Dispatcher);
-            animationTimer.Interval = new TimeSpan(0, 0, 0, 0, 300);
+            animationTimer.Interval = new TimeSpan(0, 0, 0, 0, 250);
         }
         #endregion
 

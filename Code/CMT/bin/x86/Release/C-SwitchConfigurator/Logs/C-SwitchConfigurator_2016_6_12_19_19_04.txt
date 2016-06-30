@@ -1,3 +1,0 @@
-19:19:04:269:	C-SwitchConfigurator.exe reset m 2 C-SwitchConfigurator\Scripts\
-
-19:19:04:278:	Serial port Gets invalid parameters

@@ -1,3 +1,0 @@
-21:27:57:967:	C-SwitchConfigurator.exe r 3 C-SwitchConfigurator\Scripts\
-
-21:27:57:976:	One of the script files is missing

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace CMT
 {
@@ -18,46 +19,53 @@ namespace CMT
         XMLFileMissing = -7,
         LoginFailed = -8,
         SaveDataFailed = -9
-    };
+    }
 
+    /// <summary>
+    /// Parse ErrorMessages XML file and returns the corresponding error message according to error code
+    /// </summary>
     class Configurator
     {
+        private static XmlDocument _doc;
+        private static Dictionary<ErrorCodes, string> _errorMessages;
+
+        static Configurator()
+        {
+            _doc = new XmlDocument();
+            _errorMessages = new Dictionary<ErrorCodes, string>();
+        }
+
         public static string GetErrorMsg(ErrorCodes errorCode)
         {
-            string str = null;
+            return _errorMessages[errorCode];
+        }
 
-            switch (errorCode)
+        public static void Init()
+        {
+            string filePath = "ErrorMessages.xml";
+
+            _doc.Load(filePath);
+            ParseErrorMessageFile();
+        }
+
+        private static void ParseErrorMessageFile()
+        {
+            XmlNode errorMessages = _doc.DocumentElement.SelectSingleNode("/ErrorMessages");
+            string message = null, code = null;
+            ErrorCodes erroCode = ErrorCodes.Failed;
+
+            foreach (XmlNode errorMessage in errorMessages.ChildNodes)
             {
-                case ErrorCodes.Success:
-                    str = "Configuration succeeded";
-                    break;
-                case ErrorCodes.ConfigurationFailed:
-                case ErrorCodes.Failed:
-                    str = "Configuration failed";
-                    break;
-                case ErrorCodes.LoginFailed:
-                    str = "Login failed";
-                    break;
-                case ErrorCodes.ReadSerialFailed:
-                    str = "Read data via serial failed";
-                    break;
-                case ErrorCodes.SaveDataFailed:
-                    str = "Configuration failed - Save settings failed";
-                    break;
-                case ErrorCodes.SPConnectionFailed:
-                    str = "Connection via serial port failed";
-                    break;
-                case ErrorCodes.WritreSerialFailed:
-                    str = "Write data via serial failed";
-                    break;
-                case ErrorCodes.XMLFieldMissing:
-                    str = "The port name field in XML file is empty";
-                    break;
-                case ErrorCodes.XMLFileMissing:
-                    str = "XML file is missing";
-                    break;
+                message = errorMessage.InnerText;
+                code = errorMessage.Attributes["Code"].Value;
+                erroCode = (ErrorCodes)Enum.Parse(typeof(ErrorCodes), code);
+
+                if (!Enum.IsDefined(typeof(ErrorCodes), erroCode))
+                    throw new Exception(string.Format("Code of the message \"{0}\" is not corresponding to configurator Error Code.", message));
+
+                _errorMessages.Add(erroCode, message);
             }
-            return str;
         }
     }
 }
+

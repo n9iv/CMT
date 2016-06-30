@@ -7,9 +7,9 @@
     <StartArguments>reset s 3 0 T-SwitchConfigurator\Scripts</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartArguments>s 2 0 Scripts\T-Switch</StartArguments>
+    <StartArguments>reset r 0 1 T-SwitchConfigurator\Scripts</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <StartArguments>reset s 3 0 T-SwitchConfigurator\Scripts</StartArguments>
+    <StartArguments>s 1 0 T-SwitchConfigurator\Scripts</StartArguments>
   </PropertyGroup>
 </Project>

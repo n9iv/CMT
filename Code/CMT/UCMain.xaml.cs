@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
+using System.Xml;
 
 namespace CMT
 {
@@ -104,22 +105,22 @@ namespace CMT
 
         private void DisplayImage(string str)
         {
-            string imagePath = _imagesPath[str];
-            var proc = Process.GetCurrentProcess();
-            string confFolder = _foldersPath[str];
-            string path = proc.MainModule.FileName;
-            string fdPath;
-            if (str.Contains("BNET") == true)
-                fdPath = @"BN-APP\";
-            else
-                fdPath = confFolder.Replace(" ", "") + @"\";
-            fdPath += @"MainPagePic\";
-            imagePath = path.Replace("CMT.exe", fdPath + imagePath);
-            if (File.Exists(imagePath))
-                _image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
-            else
-                _image = null;
-            _iImageMain.Source = _image;
+            //string imagePath = _imagesPath[str];
+            //var proc = Process.GetCurrentProcess();
+            //string confFolder = _foldersPath[str];
+            //string path = proc.MainModule.FileName;
+            //string fdPath;
+            //if (str.Contains("BNET") == true)
+            //    fdPath = @"BN-APP\";
+            //else
+            //    fdPath = confFolder.Replace(" ", "") + @"\";
+            //fdPath += @"MainPagePic\";
+            //imagePath = path.Replace("CMT.exe", fdPath + imagePath);
+            //if (File.Exists(imagePath))
+            //    _image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+            //else
+            //    _image = null;
+            //_iImageMain.Source = _image;
         }
 
         private void SetImagesPath()

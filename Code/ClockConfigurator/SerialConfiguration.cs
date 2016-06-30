@@ -45,7 +45,7 @@ namespace ClockConfigurator
             try
             {
                 _spClock.Open();
-                Log.Write("Clock communication is oppened\n");
+                Log.Write("Clock communication is opened\n");
                 this.Flush();
                 return 0;
             }
@@ -58,7 +58,7 @@ namespace ClockConfigurator
 
                 if (ex is InvalidOperationException)
                 {
-                    Log.Write("The serial port is already oppened");
+                    Log.Write("The serial port is already opened");
                 }
 
                 if (ex is IOException)

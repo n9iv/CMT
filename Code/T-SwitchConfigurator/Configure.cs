@@ -68,8 +68,9 @@ namespace T_SwitchConfigurator
         protected virtual int RunScriptSwitch(int val, string type, bool router)
         {
             int resVal = 0;
-            string line, rcv = null;
+            string line, rcv = null, interfaceStr = null;
             string[] tokens;
+            bool toTakeIp = false;
             StreamReader script = null;
             _path = GetFilePath(type, router);
 
@@ -82,6 +83,11 @@ namespace T_SwitchConfigurator
                 Log.Write(ex.Message);
                 return (int)ErrorCodes.Failed;
             }
+
+            if (type == "BN")
+                interfaceStr = "interface vlan 14";
+            else
+                interfaceStr = "interface vlan 99";
 
             Log.Write("\nStart write script:");
 
@@ -108,16 +114,14 @@ namespace T_SwitchConfigurator
                     break;
                 }
                 Thread.Sleep(20);
-                if (line.Contains("ip address "))
+                if (line.Contains(interfaceStr))
+                    toTakeIp = true;
+                if (line.Contains("ip address ") && toTakeIp)
                 {
                     tokens = line.Split(' ');
                     _switchIP = tokens[3];
+                    toTakeIp = false;
                 }
-                //Check configured value
-                //tokens = line.Split(' ');
-                //_Tswitch.SendData(tokens[0]);
-                //_Tswitch.ReadData(out rcv,"");
-
             }
             script.Close();
             if (resVal != (int)ErrorCodes.Success)
@@ -131,6 +135,8 @@ namespace T_SwitchConfigurator
             int isLogIn = (int)ErrorCodes.Success;
             string rcv, data;
             int flag = 0;
+            int cnt = 0, cnt1 = 0;
+
             Log.Write("Login Switch:");
 
             _Tswitch.Flush();
@@ -143,18 +149,26 @@ namespace T_SwitchConfigurator
                 return (int)ErrorCodes.ReadSerialFailed;
             if (rcv.Contains("#"))
                 return (int)ErrorCodes.Success;
-            while (rcv.Contains("User Name:") == false)
+            while ((rcv.Contains("User Name:") == false) && (cnt < 15))
             {
+                cnt++;
                 Thread.Sleep(15000);
                 _Tswitch.ReadData(out rcv, "");
             }
-            while (rcv.IndexOf("authentication failed") > rcv.IndexOf("User Name"))
+            if (cnt >= 15)
+                return (int)ErrorCodes.LoginFailed;
+
+            cnt = 0;
+            while ((rcv.IndexOf("authentication failed") > rcv.IndexOf("User Name")) && (cnt < 100))
             {
+                cnt++;
                 _Tswitch.Flush();
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.ReadData(out rcv, "");
             }
+            if (cnt >= 100)
+                return (int)ErrorCodes.LoginFailed;
             Thread.Sleep(TIMEINTERVAL);
             if (rcv.Contains("User Name:"))
                 _Tswitch.SendData("admin");
@@ -166,17 +180,25 @@ namespace T_SwitchConfigurator
             }
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.ReadData(out rcv, "");
-            while (rcv.Contains("authentication failed") || rcv.Contains("Password"))
+            cnt = 0;
+            cnt1 = 0;
+            while ((rcv.Contains("authentication failed") || rcv.Contains("Password")) && (cnt < 100))
             {
+                cnt++;
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(TIMEINTERVAL);
-                while (rcv.Contains("User Name:") == false)
+                cnt1 = 0;
+                while ((rcv.Contains("User Name:") == false) && (cnt1 < 100))
                 {
+                    cnt1++;
                     _Tswitch.Flush();
                     _Tswitch.SendData("\r\n");
                     Thread.Sleep(TIMEINTERVAL);
                     _Tswitch.ReadData(out rcv, "");
                 }
+
+                if (cnt1 >= 100)
+                    return (int)ErrorCodes.LoginFailed;
                 _Tswitch.SendData(_userName);
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.ReadData(out rcv, "");
@@ -188,7 +210,8 @@ namespace T_SwitchConfigurator
                 }
 
             }
-
+            if (cnt >= 100)
+                return (int)ErrorCodes.LoginFailed;
             _Tswitch.SendData("\r\n");
             Thread.Sleep(TIMEINTERVAL);
             if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
@@ -202,7 +225,7 @@ namespace T_SwitchConfigurator
         protected virtual int RunScriptRouter(int val, string type, bool router)
         {
             int resVal = 0;
-            string line, rcv = null;
+            string line, rcv = null, interfaceStr = null;
             string[] tokens;
             StreamReader script = null;
             bool toTakeIp = false;
@@ -212,13 +235,18 @@ namespace T_SwitchConfigurator
             {
                 script = File.OpenText(_path);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Write(ex.Message);
                 return (int)ErrorCodes.Failed;
             }
 
-            Log.Write("\nStart write script:");
+            if (type == "BN")
+                interfaceStr = "interface Ethernet0/0.14";
+            else
+                interfaceStr = "interface Ethernet0/0.99";
+
+            Log.Write("\nRun Script:");
             _Tswitch.SendData("conf t");
             Thread.Sleep(TIMEINTERVAL);
             if (_Tswitch.ReadData(out line, "") != ErrorCodes.Success)
@@ -239,7 +267,7 @@ namespace T_SwitchConfigurator
                     break;
                 }
                 Thread.Sleep(20);
-                if (line.Contains("interface Ethernet0/0.99"))
+                if (line.Contains(interfaceStr))
                     toTakeIp = true;
                 if ((line.Contains("ip address")) && (toTakeIp))
                 {
@@ -264,6 +292,8 @@ namespace T_SwitchConfigurator
             bool isRst = false;
             int isLogIn = (int)ErrorCodes.Success;
             string rcv, data;
+            int cnt = 0;
+
             Log.Write("Login Router:");
 
             _Tswitch.Flush();
@@ -274,13 +304,17 @@ namespace T_SwitchConfigurator
             //Thread.Sleep(200);
             if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
-            while ((rcv.Contains("Router#") == false) && (rcv.Contains("MT9012C login:") == false))
+            while ((rcv.Contains("Router#") == false) && (rcv.Contains("MT9012C login:") == false) && (cnt < 12))
             {
+                cnt++;
                 Thread.Sleep(15000);
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.ReadData(out rcv, "");
             }
+
+            if (cnt >= 12)
+                return (int)ErrorCodes.LoginFailed;
             _Tswitch.SendData("\r\n");
             Thread.Sleep(4000);
             _Tswitch.SendData("\r\n");
@@ -303,19 +337,33 @@ namespace T_SwitchConfigurator
             Thread.Sleep(TIMEINTERVAL);
             if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
-            while (rcv.Contains("[root@MT9012C ~]# ") == false)
+            cnt = 0;
+            while ((rcv.Contains("[root@MT9012C ~]# ") == false) && (cnt < 100))
             {
+                cnt++;
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.ReadData(out rcv, "");
             }
-
+            if (cnt >= 100)
+                return (int)ErrorCodes.LoginFailed;
             if (_Tswitch.SendData("cisco") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
-            Thread.Sleep(5000);
+            Thread.Sleep(20000);
             _Tswitch.ReadData(out rcv, "");
             //Check if reset configuration is done
+            cnt = 0;
+            while ((rcv.Contains("initial configuration dialog? [yes/no]:") == false) && (!rcv.Contains("Username:")) && (cnt < 10))
+            {
+                cnt++;
+                _Tswitch.SendData("\r\n");
+                Thread.Sleep(20000);
+                _Tswitch.ReadData(out rcv, "");
+            }
+            if (cnt >= 10)
+                return (int)ErrorCodes.LoginFailed;
             if (rcv.Contains("initial configuration dialog? [yes/no]:") == true)
                 isRst = true;
+
             if (isRst)
             {
                 if (_Tswitch.SendData("no") != ErrorCodes.Success)
@@ -326,43 +374,56 @@ namespace T_SwitchConfigurator
             {
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(TIMEINTERVAL);
-                while (rcv.Contains("Username:") == false)
+                cnt = 0;
+                while ((rcv.Contains("Username:") == false) && (cnt < 450))
                 {
+                    cnt++;
                     _Tswitch.SendData("\r\n");
                     Thread.Sleep(TIMEINTERVAL);
                     _Tswitch.ReadData(out rcv, "");
                 }
+                if (cnt >= 450)
+                    return (int)ErrorCodes.LoginFailed;
+
+                _Tswitch.Flush();
                 _Tswitch.SendData("\r\n");
-                _Tswitch.SendData("\r\n");
-                _Tswitch.SendData(_userName);
                 Thread.Sleep(TIMEINTERVAL);
+                _Tswitch.ReadData(out rcv, "");
+
+                cnt = 0;
+                while ((rcv != "User Access VerificationUsername: ") && (cnt < 20))
+                {
+                    cnt++;
+                    _Tswitch.Flush();
+                    _Tswitch.SendData("\r\n");
+                    Thread.Sleep(TIMEINTERVAL);
+                    _Tswitch.ReadData(out rcv, "");
+                }
+
+                if (cnt >= 20)
+                    return (int)ErrorCodes.LoginFailed;
+                _Tswitch.SendData(_userName);
+                Thread.Sleep(600);
                 _Tswitch.ReadData(out rcv, "");
                 if (rcv.Contains("Password:") == false)
                     return (int)ErrorCodes.LoginFailed;
                 _Tswitch.SendData(_password);
-                Thread.Sleep(TIMEINTERVAL);
+                Thread.Sleep(600);
                 if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
                     return (int)ErrorCodes.ReadSerialFailed;
 
             }
             _Tswitch.SendData("\r\n");
-            Thread.Sleep(5000);
-            _Tswitch.ReadData(out rcv, "");
-            if (rcv.Contains(">") == false)
-                return (int)ErrorCodes.LoginFailed;
-            _Tswitch.SendData("en");
-            Thread.Sleep(TIMEINTERVAL);
-            if (!isRst)
-            {
-                if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
-                    return (int)ErrorCodes.ReadSerialFailed;
-                if (rcv.Contains("Password:") == false)
-                    return (int)ErrorCodes.LoginFailed;
-                _Tswitch.SendData("cisco");
-            }
             Thread.Sleep(TIMEINTERVAL);
             if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
+            if (rcv.Contains(">") == true)
+            {
+                _Tswitch.SendData("en");
+                Thread.Sleep(TIMEINTERVAL);
+                _Tswitch.ReadData(out rcv, "");
+            }
+
             if (rcv.Contains("#") == false)
                 return (int)ErrorCodes.LoginFailed;
             return isLogIn;
@@ -371,58 +432,12 @@ namespace T_SwitchConfigurator
         protected int ResetRouter()
         {
             string rcv;
-
+            int cnt = 0, res;
             _Tswitch.Flush();
-            //if (_Tswitch.SendData("\n") != ErrorCodes.Success)
-            //    return (int)ErrorCodes.WritreSerialFailed;
-            //Thread.Sleep(TIMEINTERVAL);
-            ////_Tswitch.SendData("\n");
-            ////Thread.Sleep(200);
-            //if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
-            //    return (int)ErrorCodes.ReadSerialFailed;
-            //while ((rcv.Contains("Router#") == false) && (rcv.Contains("MT9012C login:") == false))
-            //{
-            //    Thread.Sleep(15000);
-            //    _Tswitch.SendData("\r\n");
-            //    Thread.Sleep(TIMEINTERVAL);
-            //    _Tswitch.ReadData(out rcv, "");
-            //}
 
-            //Thread.Sleep(TIMEINTERVAL);
-            //if (rcv.Contains("MT9012C login:") == false)
-            //    return (int)ErrorCodes.LoginFailed;
-            //if (_Tswitch.SendData(_routerDefaultUser) != ErrorCodes.Success)
-            //    return (int)ErrorCodes.WritreSerialFailed;
-            //Thread.Sleep(TIMEINTERVAL);
-            //if (_Tswitch.ReadData(out rcv, _routerDefaultUser) != ErrorCodes.Success)
-            //    return (int)ErrorCodes.ReadSerialFailed;
-            //if (rcv.Contains("Password:") == false)
-            //    return (int)ErrorCodes.Failed;
-            //if (_Tswitch.SendData(_routerDefaultPass) != ErrorCodes.Success)
-            //    return (int)ErrorCodes.WritreSerialFailed;
-            //Thread.Sleep(TIMEINTERVAL);
-            //if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
-            //    return (int)ErrorCodes.ReadSerialFailed;
-            //while(rcv.Contains("[root@MT9012C ~]# ") == false)
-            //{
-            //    _Tswitch.SendData("\r\n");
-            //    _Tswitch.ReadData(out rcv, "");
-            //}
-            //Thread.Sleep(TIMEINTERVAL);
-            //if (_Tswitch.SendData("cisco") != ErrorCodes.Success)
-            //    return (int)ErrorCodes.WritreSerialFailed;
-            //Thread.Sleep(TIMEINTERVAL);
-            //while((rcv.Contains(">") == false) && (rcv.Contains("Username") == false))
-            //{
-            //    Thread.Sleep(2000);
-            //    _Tswitch.SendData("\r\n");
-            //    _Tswitch.ReadData(out rcv, "");
-            //}
-            //if (rcv.Contains("Username") == true)
-            //{
-
-            //}
-            LogInRouter("r");
+            if ((res = LogInRouter("r")) != (int)ErrorCodes.Success)
+                return res;
+            Log.Write("\nReset Router:");
             if (_Tswitch.SendData("write erase") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
             _Tswitch.SendData("\n");
@@ -432,33 +447,49 @@ namespace T_SwitchConfigurator
             _Tswitch.SendData("\n");
             Thread.Sleep(5000);
             _Tswitch.ReadData(out rcv, "");
-            while (!rcv.Contains("initial configuration dialog? [yes/no]:"))
+            Thread.Sleep(20000);
+            while ((!rcv.Contains("initial configuration dialog? [yes/no]:")) && (!rcv.Contains("Router>")) && (cnt < 30))
             {
+                cnt++;
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(3000);
                 _Tswitch.ReadData(out rcv, "");
             }
+            if (cnt >= 30)
+                return (int)ErrorCodes.Failed;
+            if (rcv.Contains("initial configuration dialog? [yes/no]:"))
+            {
+                if (_Tswitch.SendData("no") != ErrorCodes.Success)
+                    return (int)ErrorCodes.WritreSerialFailed;
+                Thread.Sleep(150000);
+            }
 
-            if (_Tswitch.SendData("no") != ErrorCodes.Success)
-                return (int)ErrorCodes.WritreSerialFailed;
-            Thread.Sleep(150000);
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.SendData("\r\n");
             Thread.Sleep(TIMEINTERVAL);
             if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
-            while (rcv.Contains("Router>") == false)
+            cnt = 0;
+            while ((rcv.Contains("Router>") == false) && (cnt < 100))
             {
-                return (int)ErrorCodes.Failed;
+                cnt++;
+                _Tswitch.SendData("\r\n");
+                Thread.Sleep(TIMEINTERVAL);
+                _Tswitch.ReadData(out rcv, "");
             }
+            if (cnt >= 100)
+                return (int)ErrorCodes.Failed;
             _Tswitch.SendData("en");
+            Log.Write("Reset succeeded:");
             return (int)ErrorCodes.Success;
         }
 
         protected int ResetSwitch()
         {
             string rcv;
+            int cnt = 0;
 
+            Log.Write("\nReset Router:");
             _Tswitch.SendData("\r\n");
             Thread.Sleep(TIMEINTERVAL);
             if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
@@ -469,12 +500,15 @@ namespace T_SwitchConfigurator
                 return (int)ErrorCodes.WritreSerialFailed;
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.SendData("Y");
-            while (rcv.Contains("#") == false)
+            while ((rcv.Contains("#") == false) && (cnt < 100))
             {
+                cnt++;
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.ReadData(out rcv, "");
             }
+            if (cnt >= 100)
+                return (int)ErrorCodes.Failed;
             if (_Tswitch.SendData("reload") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
             Thread.Sleep(TIMEINTERVAL);
@@ -493,26 +527,38 @@ namespace T_SwitchConfigurator
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.ReadData(out rcv, "");
             _Tswitch.Flush();
-            while (rcv.Contains("User Name:") == false)
+            cnt = 0;
+            while ((rcv.Contains("User Name:") == false) && (cnt < 25))
             {
+                cnt++;
                 Thread.Sleep(10000);
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.ReadData(out rcv, "");
             }
-            while (rcv.IndexOf("authentication failed") > rcv.IndexOf("User Name"))
+            if (cnt >= 25)
+                return (int)ErrorCodes.Failed;
+            cnt = 0;
+            while ((rcv.IndexOf("authentication failed") > rcv.IndexOf("User Name")) && (cnt < 120))
             {
+                cnt++;
                 _Tswitch.Flush();
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.ReadData(out rcv, "");
             }
+            if (cnt >= 120)
+                return (int)ErrorCodes.Failed;
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.SendData("admin");
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.ReadData(out rcv, "");
             if (rcv.Contains("console#"))
+            {
+                Log.Write("Reset succeeded:");
                 return (int)ErrorCodes.Success;
+            }
+
             else
             {
                 _Tswitch.SendData("\r\n");
@@ -520,7 +566,10 @@ namespace T_SwitchConfigurator
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.ReadData(out rcv, "");
                 if (rcv.Contains("console#"))
+                {
+                    Log.Write("Reset succeeded:");
                     return (int)ErrorCodes.Success;
+                }
             }
             return (int)ErrorCodes.Failed;
 

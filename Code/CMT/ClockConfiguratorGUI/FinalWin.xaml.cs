@@ -68,20 +68,18 @@ namespace CMT.ClockConfiguratorGUI
             int res = -1;
             string str;
             Brush b = Brushes.Red;
-
             _clockProc.WaitForExit();
             res = _clockProc.ExitCode;
             _clockProc.Close();
 
+            str = Configurator.GetErrorMsg((ErrorCodes)res);
             if (res == (int)ErrorCodes.Success)
             {
                 b = Brushes.Green;
-                str = "Configuration succeeded!";
             }
 
             else
             {
-                str = Configurator.GetErrorMsg((ErrorCodes)res);
                 b = Brushes.Red;
             }
             this.Dispatcher.Invoke((Action)(() =>

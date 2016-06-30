@@ -1,3 +1,0 @@
-19:18:53:946:	T-SwitchConfigurator.exe reset r 7 0 T-SwitchConfigurator\Scripts
-
-19:18:53:956:	Check script files.

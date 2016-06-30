@@ -48,7 +48,7 @@ namespace T_SwitchConfigurator
             try
             {
                 _spSwitch.Open();
-                Log.Write("T-Switch communication is oppened\n");
+                Log.Write("T-Switch communication is opened\n");
                 return (int)ErrorCodes.Success;
 
             }
@@ -61,7 +61,7 @@ namespace T_SwitchConfigurator
 
                 if (ex is InvalidOperationException)
                 {
-                    Log.Write("The serial port is already oppened");
+                    Log.Write("The serial port is already opened");
                 }
 
                 if (ex is IOException)
