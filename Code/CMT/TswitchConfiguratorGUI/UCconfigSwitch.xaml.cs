@@ -105,6 +105,8 @@ namespace CMT.TswitchConfiguratorGUI
 
         private void EndConfigurate(Brush color, String msg)
         {
+            if (Configurator.Terminated)
+                return;
             this.Dispatcher.Invoke((Action)(() =>
             {
                 _tbConf.Foreground = color;
@@ -129,6 +131,7 @@ namespace CMT.TswitchConfiguratorGUI
            _switchProc.StartInfo.RedirectStandardError = true;
            _switchProc.StartInfo.UseShellExecute = false;
            _switchProc.StartInfo.CreateNoWindow = true;
+           Configurator.ConfiguratorProc = _switchProc;
            _switchProc.Start();
        }));
         }

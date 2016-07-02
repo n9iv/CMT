@@ -168,13 +168,13 @@ namespace C_SwitchConfigurator
                 return (int)ErrorCodes.WritreSerialFailed;
             Thread.Sleep(2000);
             _cSwitch.ReadData(out rcv, "");
-            while ((rcv.Contains("#")) && (cnt < 120))
+            while ((rcv.Contains("#")) && (cnt < 240))
             {
                 cnt++;
                 Thread.Sleep(DELAYTIME);
                 _cSwitch.ReadData(out rcv, "");
             }
-            if (cnt >= 120)
+            if (cnt >= 240)
                 return (int)ErrorCodes.SaveDataFaiuled;
             return VerifyConfigForRouter();
         }

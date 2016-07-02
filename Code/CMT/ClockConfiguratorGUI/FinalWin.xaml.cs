@@ -49,6 +49,7 @@ namespace CMT.ClockConfiguratorGUI
             _clockProc.StartInfo.RedirectStandardError = true;
             _clockProc.StartInfo.UseShellExecute = false;
             _clockProc.StartInfo.CreateNoWindow = true;
+            Configurator.ConfiguratorProc = _clockProc;
             _clockProc.Start();
             _ConfThread.Start();
 
@@ -82,6 +83,8 @@ namespace CMT.ClockConfiguratorGUI
             {
                 b = Brushes.Red;
             }
+            if (Configurator.Terminated)
+                return;
             this.Dispatcher.Invoke((Action)(() =>
             {
                 _tbConf.Foreground = b;

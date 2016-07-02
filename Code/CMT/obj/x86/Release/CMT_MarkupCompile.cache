@@ -4,20 +4,16 @@
 winexe
 C#
 .cs
-D:\CMT\CMT\obj\x86\Release\
+C:\Users\arthurs\Git\CMT\Code\CMT\obj\x86\Release\
 CMT
 none
 false
 TRACE
-D:\CMT\CMT\App.xaml
+C:\Users\arthurs\Git\CMT\Code\CMT\App.xaml
 16-2029583572
 
 23-898469515
-<<<<<<< HEAD
-18-457134320
-=======
 18-1737512661
->>>>>>> origin/master
 BN-App\UCbnAppInstruction.xaml;BN-App\UCrunBNapp.xaml;CircularProgressBar.xaml;ClockConfiguratorGUI\FinalWin.xaml;ClockConfiguratorGUI\UCinstruction.xaml;CswitchConfiguratorGUI\UCconfigCSwitch.xaml;CswitchConfiguratorGUI\UCcSwitchconfigOptions.xaml;CswitchConfiguratorGUI\UCcSwitchInstruction.xaml;TswitchConfiguratorGUI\UCconfigRouter.xaml;TswitchConfiguratorGUI\UCconfigSwitch.xaml;TswitchConfiguratorGUI\UCrouterInstruction.xaml;TswitchConfiguratorGUI\UCtsOptionChoose.xaml;TswitchConfiguratorGUI\USswitchInstruction.xaml;UCMain.xaml;MainWindow.xaml;ClockConfiguratorGUI\UCclockConfigurator.xaml;
 
 False

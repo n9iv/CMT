@@ -292,7 +292,7 @@ namespace T_SwitchConfigurator
             bool isRst = false;
             int isLogIn = (int)ErrorCodes.Success;
             string rcv, data;
-            int cnt = 0;
+            int cnt = 0, loginRetries = 0;
 
             Log.Write("Login Router:");
 
@@ -385,30 +385,47 @@ namespace T_SwitchConfigurator
                 if (cnt >= 450)
                     return (int)ErrorCodes.LoginFailed;
 
-                _Tswitch.Flush();
-                _Tswitch.SendData("\r\n");
-                Thread.Sleep(TIMEINTERVAL);
-                _Tswitch.ReadData(out rcv, "");
+                loginRetries = 0;
 
-                cnt = 0;
-                while ((rcv != "User Access VerificationUsername: ") && (cnt < 20))
+                //Retry for 10 times to login. 
+                while ((!rcv.Contains("Password:")) && (loginRetries < 10))
                 {
-                    cnt++;
-                    _Tswitch.Flush();
-                    _Tswitch.SendData("\r\n");
+                    loginRetries++;
+                    int len = rcv.Length - rcv.LastIndexOfAny("Username".ToArray()) + "Username".Length;
+                    if ((rcv.LastIndexOfAny("User Access Verification".ToArray()) > rcv.LastIndexOfAny("Username".ToCharArray())) || (len > 3))
+                    {
+                        _Tswitch.Flush();
+                        _Tswitch.SendData("\r\n");
+                        Thread.Sleep(TIMEINTERVAL);
+                        _Tswitch.ReadData(out rcv, "");
+
+                        cnt = 0;
+                        while ((rcv != "User Access VerificationUsername: ") && (rcv != "Username: ") && (rcv != "Username:Username: ") && (cnt < 20))
+                        {
+                            cnt++;
+                            _Tswitch.Flush();
+                            _Tswitch.SendData("\r\n");
+                            Thread.Sleep(TIMEINTERVAL);
+                            _Tswitch.ReadData(out rcv, "");
+                        }
+
+                        if (cnt >= 20)
+                            return (int)ErrorCodes.LoginFailed;
+                    }
                     Thread.Sleep(TIMEINTERVAL);
+                    _Tswitch.SendData(_userName);
+                    Thread.Sleep(TIMEINTERVAL);
+                    _Tswitch.Flush();
                     _Tswitch.ReadData(out rcv, "");
                 }
 
-                if (cnt >= 20)
+                if (loginRetries >= 10)
                     return (int)ErrorCodes.LoginFailed;
-                _Tswitch.SendData(_userName);
-                Thread.Sleep(600);
-                _Tswitch.ReadData(out rcv, "");
                 if (rcv.Contains("Password:") == false)
                     return (int)ErrorCodes.LoginFailed;
+                Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.SendData(_password);
-                Thread.Sleep(600);
+                Thread.Sleep(TIMEINTERVAL);
                 if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
                     return (int)ErrorCodes.ReadSerialFailed;
 

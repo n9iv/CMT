@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Diagnostics;
 
 namespace CMT
 {
@@ -26,6 +27,8 @@ namespace CMT
     /// </summary>
     class Configurator
     {
+        public static Process ConfiguratorProc;
+        public static bool Terminated = false;
         private static XmlDocument _doc;
         private static Dictionary<ErrorCodes, string> _errorMessages;
 
@@ -65,6 +68,17 @@ namespace CMT
 
                 _errorMessages.Add(erroCode, message);
             }
+        }
+
+        public static void TerminateRunningConfigurator()
+        {
+            Terminated = true;
+            Process[] temp = Process.GetProcessesByName(ConfiguratorProc.ProcessName);
+            if (temp.Length > 0)
+            {
+                ConfiguratorProc.Kill();
+            }
+
         }
     }
 }

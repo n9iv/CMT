@@ -1,3 +1,0 @@
-21:49:34:674:	T-SwitchConfigurator.exe reset s 3 0 T-SwitchConfigurator\Scripts
-
-21:49:34:678:	Serial port Gets invalid parameters

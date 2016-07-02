@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configurator>
+  <Serial>
+    <PortName>COM1</PortName>
+  </Serial>
+  <Switch>
+    <Username>admin</Username>
+    <Password></Password>
+  </Switch>
+  <Router>
+    <Username>admin</Username>
+    <Password>cisco</Password>
+  </Router>
+</Configurator>

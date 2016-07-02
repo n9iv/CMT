@@ -234,7 +234,7 @@ namespace CMT
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error Message");
+                MessageBox.Show(ex.Message, "ErrorMessages.xml - Error Message");
                 Application.Current.Windows[0].Close();
             }
 
@@ -326,6 +326,11 @@ namespace CMT
         public static void FlushClickEvent()
         {
             FlushMouseMessages();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Configurator.TerminateRunningConfigurator();
         }
     }
 }
