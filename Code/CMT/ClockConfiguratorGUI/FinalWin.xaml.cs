@@ -83,6 +83,7 @@ namespace CMT.ClockConfiguratorGUI
             {
                 b = Brushes.Red;
             }
+
             if (Configurator.Terminated)
                 return;
             this.Dispatcher.Invoke((Action)(() =>

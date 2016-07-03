@@ -1,3 +1,0 @@
-14:52:43:	ClockConfigurator.vshost.exe 2 ClockConfigurator\Scripts
-
-14:52:43:	Serial port Gets invalid parameters

@@ -7,7 +7,7 @@
     <ProjectGuid>{D0C3AD09-6699-42C4-81F6-CB452C0E7EEF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>T_SwitchConfigurator</RootNamespace>
+    <RootNamespace>ClockConfigurator</RootNamespace>
     <AssemblyName>ClockConfigurator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

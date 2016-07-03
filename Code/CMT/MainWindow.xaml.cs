@@ -60,7 +60,7 @@ namespace CMT
 
             MessageBoxButton button = MessageBoxButton.YesNo;
 
-            var res = MessageBox.Show(msg, cap, button,MessageBoxImage.Warning,MessageBoxResult.No);
+            var res = MessageBox.Show(msg, cap, button, MessageBoxImage.Warning, MessageBoxResult.No);
 
             if (res == MessageBoxResult.Yes)
             {
@@ -144,9 +144,9 @@ namespace CMT
             if (indx == Main._typeList.Count - 1)
                 _btnNext.IsEnabled = false;
 
-            
+
             _btnNext.IsEnabled = Main._typeList.Find(x => x.userControl == _cUserCtrlMain.Content.GetType()).isEnabled;
-       
+
             if (_btnBack.IsEnabled == false)
                 _btnBack.IsEnabled = true;
             if (_btnMainPage.IsEnabled == false)
@@ -234,7 +234,7 @@ namespace CMT
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ErrorMessages.xml - Error Message");
+                MessageBox.Show(ex.Message, "Error Message");
                 Application.Current.Windows[0].Close();
             }
 

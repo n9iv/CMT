@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Diagnostics;
+using System.Windows;
 
 namespace CMT
 {
@@ -40,7 +41,9 @@ namespace CMT
 
         public static string GetErrorMsg(ErrorCodes errorCode)
         {
-            return _errorMessages[errorCode];
+            if (Enum.IsDefined(typeof(ErrorCodes), errorCode))
+                return _errorMessages[errorCode];
+            return _errorMessages[ErrorCodes.Failed];
         }
 
         public static void Init()
@@ -72,11 +75,26 @@ namespace CMT
 
         public static void TerminateRunningConfigurator()
         {
-            Terminated = true;
-            Process[] temp = Process.GetProcessesByName(ConfiguratorProc.ProcessName);
-            if (temp.Length > 0)
+            string msg = "This will terminate the configuration process.\nWould you like to continue?";
+
+            if (ConfiguratorProc == null) 
+                return;
+            try
             {
-                ConfiguratorProc.Kill();
+                Process[] temp = Process.GetProcessesByName(ConfiguratorProc.ProcessName);
+                if (temp.Length > 0)
+                {
+                    var res = MessageBox.Show(msg, "Configurator Termination Warning", MessageBoxButton.YesNo);
+                    if (res == MessageBoxResult.Yes)
+                    {
+                        Terminated = true;
+                        ConfiguratorProc.Kill();
+                    }
+                }
+            }
+            catch
+            {
+                return;
             }
 
         }

@@ -1,0 +1,3 @@
+21:42:18:812:	ClockConfigurator.vshost.exe 0 ClockConfigurator\Scripts
+
+21:42:20:515:	Check directory path, there is no such directory!

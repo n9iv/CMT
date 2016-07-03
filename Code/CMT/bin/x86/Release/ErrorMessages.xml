@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ErrorMessages>
   <ErrorMessage Code="0" Description="Success">Configuration succeeded</ErrorMessage>
   <ErrorMessage Code="-1" Description="Fail">Configuration failed</ErrorMessage>
-  <ErrorMessage Code="-2" Description="Cannot open serial port">Connection via serial port failed</ErrorMessage>
+  <ErrorMessage Code="-2" Description="Cannot open serial port">Connection via serial port failed, make sure the USB converter is connected to USB1</ErrorMessage>
   <ErrorMessage Code="-3" Description="Read from serial failed">Read data via serial failed</ErrorMessage>
   <ErrorMessage Code="-4" Description="Write to serial failed">Write data via serial failed</ErrorMessage>
   <ErrorMessage Code="-5" Description="Configuration failed">Configuration failed</ErrorMessage>

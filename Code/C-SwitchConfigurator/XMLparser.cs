@@ -62,9 +62,9 @@ namespace C_SwitchConfigurator
             {
                 _xmlDoc.Load(_xmlFileName);
             }
-            catch (System.IO.FileNotFoundException)
+            catch (Exception ex)
             {
-                Console.WriteLine("Configurator.xml file does not exist");
+                Log.Write(ex.Message);
                 return ErrorCodes.XMLFileMissing;
             }
 

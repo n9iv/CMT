@@ -62,14 +62,9 @@ namespace ClockConfigurator
             {
                 _xmlDoc.Load(_xmlFileName);
             }
-            catch (System.IO.FileNotFoundException)
+            catch (Exception e)
             {
-                Console.WriteLine("Configurator.xml file does not exist");
-                return Configure.ErrorCodes.XMLFileMissing;
-            }
-            catch (XmlException e)
-            {
-                Console.WriteLine(e.Message);
+                Log.Write(e.Message);
                 return Configure.ErrorCodes.XMLFileMissing;
             }
 

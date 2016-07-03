@@ -22,15 +22,17 @@ namespace T_SwitchConfigurator
             int MN = 0, BN = 0, res = (int)ErrorCodes.Failed;
             bool reset = false;
 
-            if ((res = XMLparser.Parse(type)) != (int)ErrorCodes.Success)
-                return res;
-
             foreach (string str in args)
                 msg += " " + str;
             if (args[0] != "?")
             {
                 Log.CreateFile("T-SwitchConfigurator");
                 Log.Write(msg + "\n");
+            }
+
+            if ((res = XMLparser.Parse(type)) != (int)ErrorCodes.Success)
+            {
+                return Close(res);
             }
 
             //Check correctness of inserted arguments

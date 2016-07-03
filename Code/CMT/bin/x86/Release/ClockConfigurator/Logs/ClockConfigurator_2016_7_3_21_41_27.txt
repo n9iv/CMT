@@ -1,0 +1,3 @@
+21:41:27:147:	ClockConfigurator.exe 0 ClockConfigurator\Scripts
+
+21:41:27:151:	Could not find file 'C:\Users\arthurs\Git\CMT\Code\CMT\bin\x86\Release\ClockConfigurator\ClockConfigurator.xml'.
