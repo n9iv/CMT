@@ -23,6 +23,9 @@ namespace C_SwitchConfigurator
             int res = (int)ErrorCodes.Failed, val = 0;
             ErrorCodes err;
 
+            if ((err = XMLparser.Parse()) != ErrorCodes.Success)
+                return (int)err;
+
             foreach (string str in args)
                 msg += " " + str;
             if (args[0] != "?")
@@ -30,10 +33,6 @@ namespace C_SwitchConfigurator
                 Log.CreateFile("C-SwitchConfigurator");
                 Log.Write(msg + "\n");
             }
-
-            if ((err = XMLparser.Parse()) != ErrorCodes.Success)
-                return Close((int)err);
-
 
             switch (args.Length)
             {

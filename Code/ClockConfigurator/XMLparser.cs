@@ -64,7 +64,7 @@ namespace ClockConfigurator
             }
             catch (Exception e)
             {
-                Log.Write(e.Message);
+                Console.WriteLine(e.Message);
                 return Configure.ErrorCodes.XMLFileMissing;
             }
 

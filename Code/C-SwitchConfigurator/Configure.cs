@@ -35,6 +35,7 @@ namespace C_SwitchConfigurator
         private string _switchIP;
         private const string _userNameRep = "USER_NAME";
         private const string _passRep = "USER_PASS";
+        private const string DEFAULTPASS = "cisco";
 
         public Configure(string port, string path, bool isMain)
         {
@@ -104,7 +105,6 @@ namespace C_SwitchConfigurator
                     tokens = line.Split(' ');
                     _switchIP = tokens[3];
                 }
-                Thread.Sleep(DELAYTIME);
 
             }
 
@@ -127,11 +127,11 @@ namespace C_SwitchConfigurator
 
             if (_cSwitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
-            if(rcv.Contains("#"))
+            if (rcv.Contains("#"))
             {
                 return (int)ErrorCodes.Success;
             }
-            while ((rcv.Contains(">") == false) && (cnt < 40))
+            while ((rcv.Contains(">") == false) && (rcv.Contains("Password") == false) && (cnt < 40))
             {
                 cnt++;
                 Thread.Sleep(15000);
@@ -142,18 +142,45 @@ namespace C_SwitchConfigurator
 
             if (cnt >= 40)
                 return (int)ErrorCodes.LoginFailed;
+
+            if (rcv.Contains("Password"))
+                _cSwitch.SendData(DEFAULTPASS);
+            Thread.Sleep(DELAYTIME);
             if (_cSwitch.SendData("en") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
             Thread.Sleep(DELAYTIME);
             if (_cSwitch.ReadData(out rcv, "en") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
-            if (rcv.Contains("Password:") == true)
+            cnt = 0;
+            while ((rcv.Contains("Password:") == false) && (cnt < 20))
+            {
+                cnt++;
+                _cSwitch.Flush();
+                _cSwitch.SendData("\r\n");
+                Thread.Sleep(DELAYTIME);
+                _cSwitch.ReadData(out rcv, "");
+            }
+
+            if (rcv.Contains("Password:"))
             {
                 _cSwitch.SendData(_password);
                 Thread.Sleep(DELAYTIME);
                 _cSwitch.ReadData(out rcv, "");
             }
-            if (rcv.Contains("#") == false)
+
+            cnt = 0;
+            while ((rcv.Contains("#") == false) && (cnt < 20))
+            {
+                cnt++;
+                _cSwitch.Flush();
+                _cSwitch.SendData("\r\n");
+                Thread.Sleep(DELAYTIME);
+                _cSwitch.ReadData(out rcv, "");
+            }
+
+            if (cnt >= 20)
+                return (int)ErrorCodes.LoginFailed;
+            if(rcv.Contains("#") == false) 
                 return (int)ErrorCodes.LoginFailed;
             return isLogIn;
         }
@@ -189,7 +216,7 @@ namespace C_SwitchConfigurator
 
             if (LogIn() != (int)ErrorCodes.Success)
                 return (int)ErrorCodes.Failed;
-            Log.Write("Reset Script");
+            Log.Write("\nReset");
             if (_cSwitch.SendData("write erase") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
             Thread.Sleep(2000);
@@ -212,14 +239,14 @@ namespace C_SwitchConfigurator
             Thread.Sleep(5000);
             _cSwitch.ReadData(out rcv, "");
             cnt = 0;
-            while ((!rcv.Contains("initial configuration dialog? [yes/no]:")) && (cnt < 60))
+            while ((!rcv.Contains("initial configuration dialog? [yes/no]:")) && (cnt < 400))
             {
                 cnt++;
                 _cSwitch.SendData("\r\n");
                 Thread.Sleep(3000);
                 _cSwitch.ReadData(out rcv, "");
             }
-            if (cnt >= 60)
+            if (cnt >= 400)
                 return (int)ErrorCodes.Failed;
             if (_cSwitch.SendData("no") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
@@ -236,7 +263,7 @@ namespace C_SwitchConfigurator
             if (_cSwitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
             cnt = 0;
-            while ((rcv.Contains(">") == false) && (cnt < 850))
+            while ((rcv.Contains(">") == false) && (rcv.Contains("Password") == false) && (cnt < 850))
             {
                 cnt++;
                 _cSwitch.SendData("\r\n");
@@ -245,12 +272,20 @@ namespace C_SwitchConfigurator
             }
             if (cnt >= 850)
                 return (int)ErrorCodes.Failed;
+
+            if (rcv.Contains("Password"))
+                _cSwitch.SendData(DEFAULTPASS);
+            Thread.Sleep(DELAYTIME);
             _cSwitch.SendData("en");
             Thread.Sleep(DELAYTIME);
             _cSwitch.ReadData(out rcv, "");
             _cSwitch.Close();
             if (rcv.Contains("Switch#"))
+            {
+                Log.Write("Reset Succeeded");
                 return (int)ErrorCodes.Success;
+            }
+
             return (int)ErrorCodes.Failed;
         }
 

@@ -114,7 +114,7 @@ namespace C_SwitchConfigurator
                     foreach (char ch in dataArray)
                     {
                         _spCswitch.Write(ch.ToString());
-                        Thread.Sleep(200);
+                        Thread.Sleep(20);
                     }
                 }
                 _spCswitch.Write("\n");

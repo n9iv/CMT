@@ -37,7 +37,12 @@ namespace CMT
             {
                 Navigate.SetNextEnable(this, false);
             }
-
+            else
+            {
+                string selectedVal = (string)_cbBatVal.SelectedItem.ToString();
+                int.TryParse(selectedVal, out _val);
+                MainWindow.val[0] = _val;
+            }
         }
 
         private void _rbMFU_Checked(object sender, RoutedEventArgs e)

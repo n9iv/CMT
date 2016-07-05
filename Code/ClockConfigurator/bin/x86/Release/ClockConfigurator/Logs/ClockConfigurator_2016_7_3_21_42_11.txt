@@ -1,3 +1,0 @@
-21:42:12:021:	ClockConfigurator.exe 0 ClockConfigurator\Scripts
-
-21:42:12:025:	Check directory path, there is no such directory!

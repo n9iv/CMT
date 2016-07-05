@@ -23,6 +23,9 @@ namespace ClockConfigurator
             Configure.ErrorCodes err;
             string msg = GetProcName();
 
+            if ((err = XMLparser.Parse()) != Configure.ErrorCodes.Success)
+                return (int)err;
+
             foreach (string str in args)
                 msg += " " + str;
             if (args[0] != "?")
@@ -30,9 +33,6 @@ namespace ClockConfigurator
                 Log.CreateFile("ClockConfigurator");
                 Log.Write(msg + "\n");
             }
-
-            if ((err = XMLparser.Parse()) != Configure.ErrorCodes.Success)
-                return Close((int)err);
 
             switch (args.Length)
             {

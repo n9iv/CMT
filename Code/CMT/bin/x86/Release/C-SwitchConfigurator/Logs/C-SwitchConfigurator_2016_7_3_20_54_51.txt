@@ -1,4 +1,0 @@
-20:54:51:955:	C-SwitchConfigurator.exe reset r 2 C-SwitchConfigurator\Scripts\
-
-20:54:51:963:	Could not find file 'C:\Users\arthurs\Git\CMT\Code\CMT\bin\x86\Release\C-SwitchConfigurator\C-SwitchConfigurator.xml'.
-20:54:51:973:	Check directory path, there is no such directory!

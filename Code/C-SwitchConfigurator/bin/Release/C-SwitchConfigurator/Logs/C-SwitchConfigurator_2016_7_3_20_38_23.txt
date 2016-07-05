@@ -1,3 +1,0 @@
-20:38:23:303:	C-SwitchConfigurator.exe m 2 C-SwitchConfigurator\Scripts\
-
-20:38:23:314:	Check directory path, there is no such directory!

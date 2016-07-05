@@ -67,7 +67,7 @@ namespace T_SwitchConfigurator
             }
             catch (Exception ex)
             {
-               Log.Write(ex.Message);
+               Console.WriteLine(ex.Message);
                 return (int)ErrorCodes.XMLFileMissing;
             }
 

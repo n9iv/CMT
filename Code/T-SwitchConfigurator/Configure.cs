@@ -326,7 +326,7 @@ namespace T_SwitchConfigurator
                 return (int)ErrorCodes.LoginFailed;
             if (_Tswitch.SendData(_routerDefaultUser) != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
-            Thread.Sleep(TIMEINTERVAL);
+            Thread.Sleep(400);
             data = _routerDefaultUser;
             if (_Tswitch.ReadData(out rcv, data) != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
@@ -391,7 +391,7 @@ namespace T_SwitchConfigurator
                 _Tswitch.ReadData(out rcv, "");
 
                 cnt = 0;
-                while ((rcv != "User Access VerificationUsername: ") && (cnt < 20))
+                while ((rcv != "User Access VerificationUsername: ") && (!rcv.Contains("Username: Username: Username:")) && (cnt < 20))
                 {
                     cnt++;
                     _Tswitch.Flush();
@@ -417,6 +417,15 @@ namespace T_SwitchConfigurator
             Thread.Sleep(TIMEINTERVAL);
             if (_Tswitch.ReadData(out rcv, "") != ErrorCodes.Success)
                 return (int)ErrorCodes.ReadSerialFailed;
+            if (rcv.Contains("#") == false)
+            {
+                while (rcv.Contains(">") == false)
+                {
+                    _Tswitch.SendData("\r\n");
+                    Thread.Sleep(TIMEINTERVAL);
+                    _Tswitch.ReadData(out rcv, "");
+                }
+            }
             if (rcv.Contains(">") == true)
             {
                 _Tswitch.SendData("en");
@@ -580,6 +589,7 @@ namespace T_SwitchConfigurator
             string rcv;
             Log.Write("\nSave settings:");
             _Tswitch.Flush();
+            Thread.Sleep(300);
             if (_Tswitch.SendData("wr") != ErrorCodes.Success)
                 return (int)ErrorCodes.WritreSerialFailed;
             Thread.Sleep(2000);
