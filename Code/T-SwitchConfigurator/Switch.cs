@@ -12,8 +12,8 @@ namespace T_SwitchConfigurator
         public static string routeBN = "CCU_T_Rauter.txt";
         public static string switchMN = "MFU_T_Switch.txt";
         public static string switchBN = "CCU_T_Switch.txt";
-        private int _val;
-        private string _type;
+        private int _val; //stores the MN value or BN value
+        private string _type; //indicates whether it is MN or BN by storing the string itself
 
         public Switch(string port, int MN, int BN, string path)
             : base(port, path)

@@ -33,8 +33,11 @@ namespace CMT.BN_App
             Process BNappProc = new Process();
 
             BNappProc.StartInfo.FileName = @"BN-APP\run_bn-app.lnk";
+            BNappProc.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
             BNappProc.Start();
+            Application.Current.Windows[0].Topmost = false;
             BNappProc.WaitForExit();
+            Application.Current.Windows[0].Topmost = true;
             MainWindow.FlushClickEvent();
             BNappProc.Close();
         }

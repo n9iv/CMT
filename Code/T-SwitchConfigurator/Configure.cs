@@ -171,15 +171,25 @@ namespace T_SwitchConfigurator
                 return (int)ErrorCodes.LoginFailed;
             Thread.Sleep(TIMEINTERVAL);
             if (rcv.Contains("User Name:"))
+            {
                 _Tswitch.SendData("admin");
+                Thread.Sleep(TIMEINTERVAL);
+                _Tswitch.SendData("\r\n");
+            }
+                
             else
             {
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.SendData("admin");
+                Thread.Sleep(TIMEINTERVAL);
+                _Tswitch.SendData("\r\n");
             }
+            _Tswitch.SendData("\r\n");
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.ReadData(out rcv, "");
+            if (rcv.Contains("#"))
+                return isLogIn;
             cnt = 0;
             cnt1 = 0;
             while ((rcv.Contains("authentication failed") || rcv.Contains("Password")) && (cnt < 100))
@@ -560,6 +570,12 @@ namespace T_SwitchConfigurator
                 return (int)ErrorCodes.Failed;
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.SendData("admin");
+            Thread.Sleep(TIMEINTERVAL);
+            _Tswitch.ReadData(out rcv, "");
+            if (rcv.Contains("Password") || rcv.Contains("password"))
+                _Tswitch.SendData("\r\n");
+            Thread.Sleep(TIMEINTERVAL);
+            _Tswitch.SendData("\r\n");
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.ReadData(out rcv, "");
             if (rcv.Contains("console#"))
