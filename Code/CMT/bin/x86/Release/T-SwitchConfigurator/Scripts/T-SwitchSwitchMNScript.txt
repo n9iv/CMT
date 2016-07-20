@@ -1,5 +1,0 @@
-hostname techaya_mfu_port1
-int vl 98
-ip address 194.0.MN.253 255.255.255.0
-description test
-end

@@ -176,7 +176,7 @@ namespace T_SwitchConfigurator
                 Thread.Sleep(TIMEINTERVAL);
                 _Tswitch.SendData("\r\n");
             }
-                
+
             else
             {
                 _Tswitch.SendData("\r\n");
@@ -197,8 +197,9 @@ namespace T_SwitchConfigurator
                 cnt++;
                 _Tswitch.SendData("\r\n");
                 Thread.Sleep(TIMEINTERVAL);
+
                 cnt1 = 0;
-                while ((rcv.Contains("User Name:") == false) && (cnt1 < 100))
+                while ((rcv.IndexOf("authentication failed") > rcv.IndexOf("User Name")) && (cnt1 < 100))
                 {
                     cnt1++;
                     _Tswitch.Flush();
@@ -578,12 +579,30 @@ namespace T_SwitchConfigurator
             _Tswitch.SendData("\r\n");
             Thread.Sleep(TIMEINTERVAL);
             _Tswitch.ReadData(out rcv, "");
+            cnt = 0;
+            while (!rcv.Contains("console#") && (cnt < 20))
+            {
+                cnt++;
+                _Tswitch.SendData("\r\n");
+                Thread.Sleep(TIMEINTERVAL);
+                _Tswitch.ReadData(out rcv, "");
+                if(rcv.Contains("User Name"))
+                {
+                    _Tswitch.SendData("admin");
+                    Thread.Sleep(TIMEINTERVAL);
+                    _Tswitch.ReadData(out rcv, "");
+                }
+
+            }
+
+            if (cnt >= 20)
+                return (int)ErrorCodes.Failed;
+
             if (rcv.Contains("console#"))
             {
                 Log.Write("Reset succeeded:");
                 return (int)ErrorCodes.Success;
             }
-
             else
             {
                 _Tswitch.SendData("\r\n");
