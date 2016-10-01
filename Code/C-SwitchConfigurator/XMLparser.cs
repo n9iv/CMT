@@ -7,6 +7,9 @@ using System.Xml;
 
 namespace C_SwitchConfigurator
 {
+    /// <summary>
+    /// Parse the XML file by sections.
+    /// </summary>
     class XMLparser
     {
         public static string portName;

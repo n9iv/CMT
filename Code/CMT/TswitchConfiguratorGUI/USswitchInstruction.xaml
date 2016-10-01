@@ -8,7 +8,10 @@
     <Grid>
         <StackPanel Width="1000" Margin="100,0" Grid.RowSpan="2">
             <TextBlock FontSize="40" Margin="10" HorizontalAlignment="Center" >Cabin Ethernet Switch Configuration - Stage 1<LineBreak/></TextBlock>
-            <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Auto" Name="_wbInstruction" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="400"/>
+            <WebBrowser OverridesDefaultStyle="False"
+                        ScrollViewer.CanContentScroll="False"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden" Name="_wbInstruction" HorizontalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Width="1200" Height="400" LoadCompleted="_wbInstruction_LoadCompleted"/>
         </StackPanel>
     </Grid>
 </UserControl>

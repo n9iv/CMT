@@ -24,6 +24,10 @@ namespace C_SwitchConfigurator
             }
         }
 
+        /// <summary>
+        /// Creates text file.
+        /// </summary>
+        /// <param name="confName"></param>
         public static void CreateFile(string confName)
         {
             _fdPath = confName + @"\Logs\";
@@ -52,6 +56,11 @@ namespace C_SwitchConfigurator
             }
         }
 
+        /// <summary>
+        /// Write message to log.
+        /// In the beginning of the message full time is added
+        /// </summary>
+        /// <param name="msg"></param>
         public static void Write(string msg)
         {
             if (!_logCreationFailed)
@@ -81,6 +90,11 @@ namespace C_SwitchConfigurator
             }
         }
 
+        /// <summary>
+        /// Checks the number of existing logs in the folder.
+        /// if the number is more than required, erases the older log.
+        /// </summary>
+        /// <returns></returns>
         private static int VerifyNoLogFiles()
         {
             FileSystemInfo fileInfo;
@@ -104,6 +118,10 @@ namespace C_SwitchConfigurator
 
         }
 
+        /// <summary>
+        /// Get date and time in correspondig format yyyy_mm_dd_hh_mm_ss_ms
+        /// </summary>
+        /// <returns></returns>
         private static string GetDateTime()
         {
             string str;
@@ -117,6 +135,11 @@ namespace C_SwitchConfigurator
             return str;
         }
 
+        /// <summary>
+        /// Checks if the folder the logs stored in exists.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private static bool CheckLogFolder(string path)
         {
             if (!Directory.Exists(path))

@@ -34,6 +34,7 @@ namespace C_SwitchConfigurator
                 Log.Write(msg + "\n");
             }
 
+            //Checks the arguments received from command line
             switch (args.Length)
             {
                 case 0:
@@ -179,6 +180,10 @@ namespace C_SwitchConfigurator
             return str;
         }
 
+        /// <summary>
+        /// Returns the current process name.
+        /// </summary>
+        /// <returns></returns>
         private static string GetProcName()
         {
             Process proc = Process.GetCurrentProcess();

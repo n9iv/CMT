@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace C_SwitchConfigurator
 {
+    /// <summary>
+    /// Enum for codes the program returns.
+    /// </summary>
     public enum ErrorCodes
     {
         Success = 0,
@@ -26,8 +29,8 @@ namespace C_SwitchConfigurator
     {
         private string _path;
         private SerialConfiguration _cSwitch;
-        private string _userName = XMLparser.switchUserName;
-        private string _password = XMLparser.switcPassword;
+        private string _userName = XMLparser.switchUserName; //stores user name from XML file
+        private string _password = XMLparser.switcPassword; //stores password from XML file
         private const int DELAYTIME = 200;
         private string _mainPath = @"\ccu_sw1.txt";
         private string _redundancyPath = @"\ccu_sw2.txt";
@@ -52,6 +55,14 @@ namespace C_SwitchConfigurator
             return _cSwitch.init();
         }
 
+        /// <summary>
+        /// Reads the script file line by line and sends each line to clock via serial.
+        /// In each line:
+        /// The BN, if exists, is replaced by value.
+        /// The USER_PASS and USER_PASS, if exist, are replaced by username and password from the XML file.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
         public int RunScript(int val)
         {
             StreamReader script = null;
@@ -80,6 +91,8 @@ namespace C_SwitchConfigurator
             }
 
             Log.Write("\nRun Script");
+
+            //Enter the unit to configure mode.
             _cSwitch.SendData("conf t");
             Thread.Sleep(DELAYTIME);
             if (_cSwitch.ReadData(out rcv, "conf t") != ErrorCodes.Success)
@@ -116,9 +129,13 @@ namespace C_SwitchConfigurator
             return resVal;
         }
 
+        /// <summary>
+        /// Login the unit
+        /// </summary>
+        /// <returns></returns>
         private int LogIn()
         {
-            int isLogIn = (int)ErrorCodes.Success, cnt = 0;
+            int isLogIn = (int)ErrorCodes.Success, cnt = 0; // cnt - counts number of loop retries
             string rcv;
             Log.Write("\nLogIn");
             _cSwitch.Flush();
@@ -185,6 +202,10 @@ namespace C_SwitchConfigurator
             return isLogIn;
         }
 
+        /// <summary>
+        /// After the configuration is succeeded, saves the configured settings
+        /// </summary>
+        /// <returns></returns>
         protected int SaveSettings()
         {
             string rcv;
@@ -206,6 +227,10 @@ namespace C_SwitchConfigurator
             return VerifyConfigForRouter();
         }
 
+        /// <summary>
+        /// In case the reset option is chosen, reset the unit configuration
+        /// </summary>
+        /// <returns></returns>
         public int ResetRouter()
         {
             string rcv;

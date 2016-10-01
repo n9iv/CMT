@@ -8,8 +8,14 @@ using System.Threading;
 
 namespace ClockConfigurator
 {
+    /// <summary>
+    /// Consists of functions to configure the unit
+    /// </summary>
     class Configure
     {
+        /// <summary>
+        /// Enum for codes the program returns.
+        /// </summary>
         public enum ErrorCodes
         {
             Success = 0,
@@ -37,6 +43,12 @@ namespace ClockConfigurator
             return _clock.init();
         }
 
+        /// <summary>
+        /// Reads the script file line by line and sends each line to clock via serial.
+        /// After each sending, check if it was properly configured.
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
         public int RunScript(int val)
         {
             int resVal = 0;
@@ -65,6 +77,8 @@ namespace ClockConfigurator
             {
                 //configure
 
+                //if the position of the clock is MFU, read the corresponding line in the script
+                //In the script, read the line goes after the line "[MFU]"
                 if (isMFU)
                 {
                     if (line == "[MFU]")
@@ -72,6 +86,8 @@ namespace ClockConfigurator
                     if (line == "[else]")
                         skip = true;
                 }
+
+                //otherwise
                 else
                 {
                     if (line == "[MFU]")
@@ -92,6 +108,7 @@ namespace ClockConfigurator
                 if (skip)
                     continue;
 
+                //Replaces the Battery value where needed
                 if (!isMFU)
                 {
                     line = line.Replace("{0}", (70 + val).ToString());
@@ -131,6 +148,7 @@ namespace ClockConfigurator
                 }
                 if (!isMFU)
                 {
+                 
                     rcv = rcv.Replace("0" + (70 + val).ToString(), (70 + val).ToString());
                     if (tokens.Length > 3)
                         line = tokens[0] + " " + tokens[1] + tokens[2] + tokens[3];

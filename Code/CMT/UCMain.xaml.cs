@@ -51,7 +51,7 @@ namespace CMT
                 s = r.Content.ToString();
                 DisplayImage(s);
             }
-
+            
             EnableNext();
         }
 

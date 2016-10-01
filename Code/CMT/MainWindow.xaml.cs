@@ -28,10 +28,10 @@ namespace CMT
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int[] val;
-        public static List<UserControl> _userControlList;
-        private string _adminUserName = "Administrator";
-        private static bool _isAdmin = false;
+        public static int[] val;                                //Contains parameters to be passed to constructor for creating an instance.
+        public static List<UserControl> _userControlList;       //Stores UserControls that were already navigated from in chosen component.
+        private string _adminUserName = "Administrator";        //Default administrator user name.
+        private static bool _isAdmin = false;                   //Indicates whether the program is running as an admin user.
 
         public MainWindow()
         {
@@ -72,6 +72,9 @@ namespace CMT
             }
         }
 
+        //Creates an instance of an object by it`s type.
+        //e.g. gets the type "UCcSwitchInstruction" and returns UCcSwitchInstruction UserControl instance.
+        //num - an array of parameters to be passed to constructor for creating an instance.
         private object GetInstance(Type t, int[] num)
         {
             if (num == null)
@@ -207,7 +210,8 @@ namespace CMT
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Environment.UserName == _adminUserName)
+            string adminUserNameFromFile = Properties.Settings.Default.AdminUserName;
+            if ((Environment.UserName == _adminUserName) || (Environment.UserName == adminUserNameFromFile))
                 _isAdmin = true;
             if (!_isAdmin)
             {
@@ -288,6 +292,7 @@ namespace CMT
             }
         }
 
+        //Enables or disables navigate bar
         public void SetNavigateBar(bool enable)
         {
             _cUserCtrlBtn.IsEnabled = enable;

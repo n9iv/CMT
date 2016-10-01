@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 namespace CMT
 {
+    /// <summary>
+    /// Each UserControl is attached to the structure below.
+    /// To navigate from page to page, the application uses this structure.
+    /// </summary>
     public class UCstruct
     {
         private Type _userControl;

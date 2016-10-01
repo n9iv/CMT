@@ -13,13 +13,17 @@ namespace ClockConfigurator
     {
         private string _port;
         private SerialPort _spClock;
-        private int _boudRate = 19200;
+        private int _boudRate = 19200; //Default boud rate
 
         public SerialConfiguration(string port)
         {
            _port = port.ToUpper();
         }
 
+        /// <summary>
+        /// Sets all the attributes for serial communication
+        /// </summary>
+        /// <returns></returns>
         public int init()
         {
             int resVal = 0;
@@ -40,6 +44,10 @@ namespace ClockConfigurator
             return resVal;
         }
 
+        /// <summary>
+        /// Open serial communication
+        /// </summary>
+        /// <returns></returns>
         public Configure.ErrorCodes Open()
         {
             try
@@ -78,6 +86,12 @@ namespace ClockConfigurator
             Log.Write("Clock communication is closed\n");
         }
 
+        /// <summary>
+        /// Reads line from serial.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public Configure.ErrorCodes ReadData(out String data, string token)
         {
             string tmp = null;
@@ -102,6 +116,11 @@ namespace ClockConfigurator
             return Configure.ErrorCodes.Success;
         }
 
+        /// <summary>
+        /// Writes to serial.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public Configure.ErrorCodes SendData(string data)
         {
             char[] dataArray = data.ToCharArray();
@@ -123,6 +142,9 @@ namespace ClockConfigurator
             }
         }
 
+        /// <summary>
+        /// Erases the serial buffer.
+        /// </summary>
         public void Flush()
         {
             _spClock.BaseStream.Flush();

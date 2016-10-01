@@ -19,7 +19,7 @@ using mshtml;
 namespace CMT.CswitchConfiguratorGUI
 {
     /// <summary>
-    /// Interaction logic for UCcSwitchInstruction.xaml
+    /// Loads HTML file instructions.
     /// </summary>
     public partial class UCcSwitchInstruction : UserControl
     {
@@ -60,6 +60,12 @@ namespace CMT.CswitchConfiguratorGUI
             string fileName = "C-SwitchConfigurator\\Instructions\\" + name;
             fullPath = fullPath.Replace("CMT.exe", fileName);
             return fullPath;
+        }
+
+        private void _wbInstruction_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            mshtml.IHTMLDocument2 dom = (mshtml.IHTMLDocument2)_wbInstruction.Document;
+            dom.body.style.overflow = "hidden";
         }
     }
 }

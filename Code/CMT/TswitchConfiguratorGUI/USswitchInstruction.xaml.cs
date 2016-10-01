@@ -44,5 +44,11 @@ namespace CMT.TswitchConfiguratorGUI
             }
             this._wbInstruction.Navigate(fullPath);
         }
+
+        private void _wbInstruction_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            mshtml.IHTMLDocument2 dom = (mshtml.IHTMLDocument2)_wbInstruction.Document;
+            dom.body.style.overflow = "hidden";
+        }
     }
 }

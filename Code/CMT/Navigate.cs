@@ -12,6 +12,12 @@ using System.Windows;
 
 namespace CMT
 {
+    /// <summary>
+    /// The navigation system uses this class.
+    /// Each component has a function that is being called after you choose a component to configure.
+    /// When you choose to navigate to next page, the navigation system takes the appropriate UserControl window from the list
+    /// according to the page you are navigate from.
+    /// </summary>
     class Navigate
     {
         private static List<UCstruct> _typeList;
@@ -35,7 +41,7 @@ namespace CMT
             _typeList.Clear();
             _typeList.Add(new UCstruct(typeof(UCtsOptionChoose), false));
             _typeList.Add(new UCstruct(typeof(USswitchInstruction), true));
-            _typeList.Add(new UCstruct(typeof(UCconfigSwitch), true));
+            _typeList.Add(new UCstruct(typeof(UCconfigSwitch), false));
             _typeList.Add(new UCstruct(typeof(UCrouterInstruction), true));
             _typeList.Add(new UCstruct(typeof(UCconfigRouter), false));
 

@@ -91,9 +91,11 @@ namespace CMT.TswitchConfiguratorGUI
             res = _switchProc.ExitCode;
             _switchProc.Close();
             str = Configurator.GetErrorMsg((ErrorCodes)res);
+
             if (res == (int)ErrorCodes.Success)
             {
                 b = Brushes.Green;
+                this.Dispatcher.Invoke(new Action<UserControl,bool>(Navigate.SetNextEnable),this,true);
             }
 
             else
@@ -161,6 +163,13 @@ namespace CMT.TswitchConfiguratorGUI
             Window win = Application.Current.Windows[0];
             MainWindow m = (MainWindow)win;
             m.SetNavigateBar(enable);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            if (MainWindow.IsAdmin)
+                this.Dispatcher.Invoke(new Action<UserControl, bool>(Navigate.SetNextEnable), this, true);
         }
     }
 }

@@ -20,6 +20,10 @@ namespace C_SwitchConfigurator
             _port = port.ToUpper();
         }
 
+        /// <summary>
+        /// Sets all the attributes for serial communication
+        /// </summary>
+        /// <returns></returns>
         public int init()
         {
             int resVal = (int)ErrorCodes.Success;
@@ -41,6 +45,10 @@ namespace C_SwitchConfigurator
             return resVal;
         }
 
+        /// <summary>
+        /// Open serial communication
+        /// </summary>
+        /// <returns></returns>
         public int Open()
         {
             try
@@ -79,6 +87,12 @@ namespace C_SwitchConfigurator
             Log.Write("C-Switch communication is closed\n");
         }
 
+        /// <summary>
+        /// Reads line from serial.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public ErrorCodes ReadData(out String data, string token)
         {
             string tmp = null;
@@ -104,6 +118,11 @@ namespace C_SwitchConfigurator
             return ErrorCodes.Success;
         }
 
+        /// <summary>
+        /// Writes to serial.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public ErrorCodes SendData(string data)
         {
             char[] dataArray = data.ToCharArray();
@@ -129,6 +148,9 @@ namespace C_SwitchConfigurator
             return ErrorCodes.Success;
         }
 
+        /// <summary>
+        /// Erases the serial buffer.
+        /// </summary>
         public void Flush()
         {
             _spCswitch.BaseStream.Flush();

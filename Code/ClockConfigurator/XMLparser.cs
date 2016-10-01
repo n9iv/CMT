@@ -7,6 +7,9 @@ using System.Xml;
 
 namespace ClockConfigurator
 {
+    /// <summary>
+    /// Parse the XML file by sections.
+    /// </summary>
     class XMLparser
     {
         public static string portName;

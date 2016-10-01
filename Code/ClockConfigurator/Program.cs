@@ -34,6 +34,7 @@ namespace ClockConfigurator
                 Log.Write(msg + "\n");
             }
 
+            //Checks the arguments received from command line
             switch (args.Length)
             {
                 case 0:
@@ -117,6 +118,10 @@ namespace ClockConfigurator
             return str;
         }
 
+        /// <summary>
+        /// Returns the current process name.
+        /// </summary>
+        /// <returns></returns>
         private static string GetProcName()
         {
             Process proc = Process.GetCurrentProcess();
