@@ -146,7 +146,7 @@ namespace CMT.CswitchConfiguratorGUI
         {
             this.Dispatcher.Invoke((Action)(() =>
             {
-                _tbPb.Text = "Reseting configuration";
+                _tbPb.Text = "Resetting configuration";
             }));
 
             RunProc(_rstFlag);

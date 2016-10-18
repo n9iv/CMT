@@ -23,3 +23,9 @@ C:\Users\arthurs\Desktop\CMT\ClockConfigurator\bin\Debug\ClockConfigurator.pdb
 C:\Users\arthurs\Desktop\CMT\ClockConfigurator\obj\Debug\ClockConfigurator.csprojResolveAssemblyReference.cache
 C:\Users\arthurs\Desktop\CMT\ClockConfigurator\obj\Debug\ClockConfigurator.exe
 C:\Users\arthurs\Desktop\CMT\ClockConfigurator\obj\Debug\ClockConfigurator.pdb
+C:\Users\arthurs\Git\CMT!\Code\ClockConfigurator\bin\Debug\ClockConfigurator.exe.config
+C:\Users\arthurs\Git\CMT!\Code\ClockConfigurator\bin\Debug\ClockConfigurator.exe
+C:\Users\arthurs\Git\CMT!\Code\ClockConfigurator\bin\Debug\ClockConfigurator.pdb
+C:\Users\arthurs\Git\CMT!\Code\ClockConfigurator\obj\Debug\ClockConfigurator.csprojResolveAssemblyReference.cache
+C:\Users\arthurs\Git\CMT!\Code\ClockConfigurator\obj\Debug\ClockConfigurator.exe
+C:\Users\arthurs\Git\CMT!\Code\ClockConfigurator\obj\Debug\ClockConfigurator.pdb
