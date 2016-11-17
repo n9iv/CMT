@@ -21,7 +21,7 @@ namespace CMT.TswitchConfiguratorGUI
     public partial class UCtsOptionChoose : UserControl
     {
         private int _MN, _BN;
-        private string[] _MNarray = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "101", "102", "103", "104", "105", "106", "107", "108", "109" };
+        private string[] _MNarray = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110" };
         private string[] _BNarray = { "1", "2", "3" };
 
         public UCtsOptionChoose()

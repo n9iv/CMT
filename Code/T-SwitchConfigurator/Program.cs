@@ -164,9 +164,9 @@ namespace T_SwitchConfigurator
 
         private static int CheckMNValue(int MN)
         {
-            if ((MN < 0) || ((MN > 10) && (MN < 101)) || (MN > 109))
+            if ((MN < 0) || ((MN > 10) && (MN < 101)) || (MN > 110))
             {
-                Log.Write("Incorrect value. The MN values should be between 1-9 or 101-109");
+                Log.Write("Incorrect value. The MN values should be between 1-9 or 101-110");
                 return -1;
             }
             return 0;
